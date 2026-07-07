@@ -13,12 +13,12 @@ export function Footer() {
       <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-10">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
           <div>
-            <div className="flex items-center gap-4">
-              <Monogram className="h-14 w-14 text-gold" draw={false} />
-              <div>
-                <p className="font-serif text-3xl">{site.name}</p>
-                <p className="overline mt-1 text-gold">Since {site.since}</p>
-              </div>
+            <div className="mb-6 select-none">
+              <img
+                src="/media/Logo.png"
+                alt="Sharma & Sharma Intellectual Property Law"
+                className="h-14 w-auto object-contain brightness-0 invert"
+              />
             </div>
             <p className="mt-8 max-w-sm text-sm leading-relaxed text-cream/60">
               {site.description}
