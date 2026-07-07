@@ -14,20 +14,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <div className="border-y border-line bg-cream py-8">
-        <Marquee
-          items={[
-            "Trademark",
-            "Copyright",
-            "Design",
-            "International Filing",
-            "Monitoring",
-            "Litigation",
-            "Licensing",
-            "Advisory",
-          ]}
-        />
-      </div>
       <LegacyTimeline />
       <PracticeAreas />
       <Stats />
