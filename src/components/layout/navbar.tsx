@@ -19,7 +19,6 @@ export function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false);
 
   const headerRef = useRef<HTMLDivElement>(null);
-  const ribbonRef = useRef<HTMLDivElement>(null);
   const navContainerRef = useRef<HTMLDivElement>(null);
   const logoContainerRef = useRef<HTMLAnchorElement>(null);
   const logoImgRef = useRef<HTMLImageElement>(null);
@@ -81,12 +80,11 @@ export function Navbar() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const ribbon = ribbonRef.current;
     const container = navContainerRef.current;
     const logoContainer = logoContainerRef.current;
     const logoImg = logoImgRef.current;
 
-    if (!ribbon || !container) return;
+    if (!container) return;
 
     const mm = gsap.matchMedia();
 
@@ -101,14 +99,7 @@ export function Navbar() {
         },
       });
 
-      tl.to(ribbon, {
-        height: 0,
-        opacity: 0,
-        y: -10,
-        pointerEvents: "none",
-        duration: 0.3,
-      }, 0)
-      .to(container, {
+      tl.to(container, {
         borderRadius: "999px",
         paddingTop: "14px", // 14px padding + 54px logo = 82px scrolled height
         paddingBottom: "14px",
@@ -120,7 +111,7 @@ export function Navbar() {
         boxShadow: "0 10px 30px -15px rgba(22, 33, 58, 0.08)",
         width: "86vw",
         maxWidth: "1460px",
-        y: 14,
+        y: -4, // Shifts slightly up closer to the viewport top on scroll
         duration: 0.4,
       }, 0);
 
@@ -150,14 +141,7 @@ export function Navbar() {
         },
       });
 
-      tl.to(ribbon, {
-        height: 0,
-        opacity: 0,
-        y: -8,
-        pointerEvents: "none",
-        duration: 0.3,
-      }, 0)
-      .to(container, {
+      tl.to(container, {
         borderRadius: "999px",
         paddingTop: "10px",
         paddingBottom: "10px",
@@ -167,7 +151,7 @@ export function Navbar() {
         backdropFilter: "blur(16px)",
         borderColor: "rgba(232, 226, 216, 0.65)",
         boxShadow: "0 10px 30px -15px rgba(22, 33, 58, 0.08)",
-        y: 8,
+        y: -2, // Move slightly up on scroll
         duration: 0.4,
       }, 0);
     });
@@ -202,19 +186,8 @@ export function Navbar() {
         className="fixed inset-x-0 top-0 z-[95] w-full pointer-events-none flex flex-col items-center"
         onMouseLeave={() => setActivePanel(null)}
       >
-        {/* Thin Editorial Information Ribbon */}
-        <div
-          ref={ribbonRef}
-          className={cn(
-            "w-full bg-navy text-cream/90 py-2.5 text-center overline text-[9px] tracking-[0.25em] font-sans border-b border-line/10 pointer-events-auto overflow-hidden transition-all duration-300",
-            mobileOpen && "opacity-0 h-0 py-0 border-none"
-          )}
-        >
-          Since 1972 • New Delhi • Intellectual Property Law
-        </div>
-
-        {/* Outer alignment container */}
-        <div className="w-full px-4 md:px-8 py-6 pointer-events-none flex justify-center">
+        {/* Outer alignment container positioned closer to the top, respecting Safe Areas */}
+        <div className="w-full px-4 md:px-8 pt-[calc(14px+env(safe-area-inset-top,0px))] md:pt-[calc(16px+env(safe-area-inset-top,0px))] lg:pt-[calc(18px+env(safe-area-inset-top,0px))] pb-2 pointer-events-none flex justify-center">
           {/* Morphing Inner Container */}
           <div
             ref={navContainerRef}
@@ -541,7 +514,7 @@ export function Navbar() {
               animate={{ clipPath: "circle(150% at calc(100% - 40px) 45px)", opacity: 1 }}
               exit={{ clipPath: "circle(0px at calc(100% - 40px) 45px)", opacity: 0 }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed inset-0 z-[85] bg-cream paper-grain text-navy flex flex-col justify-between p-6 pt-28 md:p-12 md:pt-36 pointer-events-auto overflow-y-auto"
+              className="fixed inset-0 z-[85] bg-cream paper-grain text-navy flex flex-col justify-between p-6 pt-[120px] md:p-12 md:pt-36 pointer-events-auto overflow-y-auto"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}

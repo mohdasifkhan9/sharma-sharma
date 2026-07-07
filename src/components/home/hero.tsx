@@ -128,7 +128,7 @@ export function Hero() {
     <section
       ref={heroRef}
       onMouseMove={handleMouseMove}
-      className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-cream pt-[130px] pb-6 pointer-events-auto"
+      className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-cream pt-[95px] md:pt-[105px] lg:pt-[115px] pb-6 pointer-events-auto"
     >
       {/* Background cinematic video container */}
       <motion.div style={{ y: videoY }} className="absolute inset-0 z-0 pointer-events-none">
