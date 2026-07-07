@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { navItems, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,7 +13,10 @@ export function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<"services" | "about" | null>(null);
-  const [practiceAreasOpen, setPracticeAreasOpen] = useState(false);
+
+  // Accordion states for Mobile Menu
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   const headerRef = useRef<HTMLDivElement>(null);
   const ribbonRef = useRef<HTMLDivElement>(null);
@@ -29,7 +32,8 @@ export function Navbar() {
   useEffect(() => {
     setMobileOpen(false);
     setActivePanel(null);
-    setPracticeAreasOpen(false);
+    setAboutOpen(false);
+    setServicesOpen(false);
   }, [pathname]);
 
   // Lock body scroll when mobile menu is open
@@ -173,18 +177,22 @@ export function Navbar() {
     };
   }, []);
 
-  const accordionItems = [
+  const serviceAccordionItems = [
     { name: "Trademark Registration", href: "/trademark" },
     { name: "Trademark Search", href: "/services" },
     { name: "Trademark Renewal", href: "/services" },
-    { name: "Copyright", href: "/copyright" },
+    { name: "Copyright Registration", href: "/copyright" },
     { name: "Design Registration", href: "/design-registration" },
     { name: "International Filing", href: "/services" },
     { name: "Brand Protection", href: "/services" },
-    { name: "IP Portfolio Management", href: "/services" },
     { name: "Licensing", href: "/services" },
     { name: "Monitoring", href: "/services" },
-    { name: "Opposition", href: "/services" },
+    { name: "IP Portfolio Management", href: "/services" },
+  ];
+
+  const aboutAccordionItems = [
+    { name: "Our Story", href: "/about" },
+    { name: "Core Partners", href: "/about" },
   ];
 
   return (
@@ -538,55 +546,26 @@ export function Navbar() {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              {/* Editorial links */}
+              {/* Editorial links - Same hierarchy as Desktop */}
               <div className="flex flex-col gap-5 max-w-lg mt-4">
-                {[
-                  { label: "Home", href: "/" },
-                  { label: "About", href: "/about" },
-                ].map((item, i) => {
-                  const active = pathname === item.href;
-                  return (
-                    <div key={item.href} className="overflow-hidden">
-                      <motion.div
-                        initial={{ y: 50, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.1 + i * 0.05, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                      >
-                        <Link
-                          href={item.href}
-                          onClick={() => setMobileOpen(false)}
-                          className={cn(
-                            "inline-block font-serif text-3xl md:text-4xl py-1 uppercase tracking-tight font-medium transition-all duration-300 hover:text-gold relative",
-                            active && "text-gold translate-x-2"
-                          )}
-                        >
-                          {item.label}
-                          {active && (
-                            <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-navy" />
-                          )}
-                        </Link>
-                      </motion.div>
-                    </div>
-                  );
-                })}
-
-                {/* Practice Areas Accordion */}
+                
+                {/* 1. About (Accordion) */}
                 <div className="overflow-hidden">
                   <motion.div
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <button
-                      onClick={() => setPracticeAreasOpen(!practiceAreasOpen)}
+                      onClick={() => setAboutOpen(!aboutOpen)}
                       className={cn(
                         "w-full flex justify-between items-center text-left font-serif text-3xl md:text-4xl py-1 uppercase tracking-tight font-medium cursor-pointer transition-all duration-300 hover:text-gold",
-                        practiceAreasOpen && "text-gold"
+                        aboutOpen && "text-gold"
                       )}
                     >
-                      <span>Practice Areas</span>
+                      <span>About</span>
                       <motion.span
-                        animate={{ rotate: practiceAreasOpen ? 45 : 0 }}
+                        animate={{ rotate: aboutOpen ? 45 : 0 }}
                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                         className="text-2xl font-light font-sans"
                       >
@@ -595,15 +574,15 @@ export function Navbar() {
                     </button>
 
                     <AnimatePresence>
-                      {practiceAreasOpen && (
+                      {aboutOpen && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                           className="overflow-hidden pl-5 border-l border-line mt-3 space-y-2.5"
                         >
-                          {accordionItems.map((item, idx) => {
+                          {aboutAccordionItems.map((item, idx) => {
                             const isChildActive = pathname === item.href;
                             return (
                               <motion.div
@@ -633,9 +612,76 @@ export function Navbar() {
                   </motion.div>
                 </div>
 
+                {/* 2. Services (Accordion) */}
+                <div className="overflow-hidden">
+                  <motion.div
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <button
+                      onClick={() => setServicesOpen(!servicesOpen)}
+                      className={cn(
+                        "w-full flex justify-between items-center text-left font-serif text-3xl md:text-4xl py-1 uppercase tracking-tight font-medium cursor-pointer transition-all duration-300 hover:text-gold",
+                        servicesOpen && "text-gold"
+                      )}
+                    >
+                      <span>Services</span>
+                      <motion.span
+                        animate={{ rotate: servicesOpen ? 45 : 0 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="text-2xl font-light font-sans"
+                      >
+                        +
+                      </motion.span>
+                    </button>
+
+                    <AnimatePresence>
+                      {servicesOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden pl-5 border-l border-line mt-3 space-y-2.5"
+                        >
+                          {serviceAccordionItems.map((item, idx) => {
+                            const isChildActive = pathname === item.href;
+                            return (
+                              <motion.div
+                                key={idx}
+                                initial={{ x: -10, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ delay: idx * 0.03, duration: 0.4 }}
+                                className="overflow-hidden"
+                              >
+                                <Link
+                                  href={item.href}
+                                  onClick={() => setMobileOpen(false)}
+                                  className={cn(
+                                    "flex items-center gap-2 font-sans text-xs tracking-wider uppercase text-navy/70 hover:text-gold transition-all duration-300 py-1",
+                                    isChildActive && "text-gold font-bold translate-x-1.5"
+                                  )}
+                                >
+                                  <span className="w-1.5 h-[1px] bg-gold" />
+                                  {item.name}
+                                </Link>
+                              </motion.div>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </div>
+
+                {/* Direct Links (Trademark, Copyright, Design, Insights, Consultation) */}
                 {[
+                  { label: "Trademark", href: "/trademark" },
+                  { label: "Copyright", href: "/copyright" },
+                  { label: "Design", href: "/design-registration" },
                   { label: "Insights", href: "/insights" },
-                  { label: "Contact", href: "/contact" },
+                  { label: "Consultation", href: "/contact" },
                 ].map((item, i) => {
                   const active = pathname === item.href;
                   return (
@@ -643,7 +689,7 @@ export function Navbar() {
                       <motion.div
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.25 + i * 0.05, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ delay: 0.2 + i * 0.05, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                       >
                         <Link
                           href={item.href}
@@ -670,7 +716,7 @@ export function Navbar() {
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
+                  transition={{ delay: 0.45, duration: 0.6 }}
                 >
                   <Link
                     href="/contact"
