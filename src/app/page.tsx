@@ -1,6 +1,6 @@
 import { Hero } from "@/components/home/hero";
 import { ClientTicker } from "@/components/home/ticker";
-import { LegacyTimeline, Stats } from "@/components/home/story";
+import { LegacyTimeline } from "@/components/home/story";
 import { PracticeAreas, TrademarkTypes, Industries } from "@/components/home/grids";
 import { TrademarkJourney } from "@/components/home/journey";
 import {
@@ -17,7 +17,6 @@ export default function HomePage() {
       <ClientTicker />
       <LegacyTimeline />
       <PracticeAreas />
-      <Stats />
       <TrademarkJourney />
       <TrademarkTypes />
       <Industries />

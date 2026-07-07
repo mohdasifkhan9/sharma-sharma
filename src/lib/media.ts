@@ -4,7 +4,7 @@ export const media = {
   hero: {
     video: "https://videos.pexels.com/video-files/8170599/uhd_25fps.mp4",
     poster:
-      "https://images.pexels.com/photos/8146200/pexels-photo-8146200.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1400&w=2000",
+      "https://images.pexels.com/photos/7841451/pexels-photo-7841451.jpeg?auto=compress&w=1260&h=750&dpr=2",
   },
   architecture: [
     "https://images.pexels.com/photos/36887535/pexels-photo-36887535.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1100&w=1600",
