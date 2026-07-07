@@ -2,7 +2,7 @@
 
 export const media = {
   hero: {
-    video: "https://videos.pexels.com/video-files/7533208/7533208-uhd_3840_2160_30fps.mp4",
+    video: "https://videos.pexels.com/video-files/8170599/uhd_25fps.mp4",
     poster:
       "https://images.pexels.com/photos/8146200/pexels-photo-8146200.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1400&w=2000",
   },

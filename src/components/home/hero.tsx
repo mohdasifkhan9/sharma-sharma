@@ -138,11 +138,11 @@ export function Hero() {
           loop
           muted
           playsInline
-          className="absolute inset-0 object-cover w-full h-[120%] grayscale opacity-[0.25] transition-all duration-[2000ms]"
+          className="absolute inset-0 object-cover w-full h-[120%] grayscale opacity-[0.32] transition-all duration-[2000ms]"
           src={media.hero.video}
         />
         {/* Luxury editorial overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-cream/15 via-cream/65 to-cream" />
+        <div className="absolute inset-0 bg-gradient-to-b from-cream/5 via-cream/50 to-cream" />
         <div className="paper-grain absolute inset-0 mix-blend-overlay opacity-30" />
       </motion.div>
 
