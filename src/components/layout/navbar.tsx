@@ -13,6 +13,7 @@ export function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<"services" | "about" | null>(null);
+  const [practiceAreasOpen, setPracticeAreasOpen] = useState(false);
 
   const headerRef = useRef<HTMLDivElement>(null);
   const ribbonRef = useRef<HTMLDivElement>(null);
@@ -20,11 +21,37 @@ export function Navbar() {
   const logoContainerRef = useRef<HTMLAnchorElement>(null);
   const logoImgRef = useRef<HTMLImageElement>(null);
 
+  // Close menus on page transitions
   useEffect(() => {
     setMobileOpen(false);
     setActivePanel(null);
+    setPracticeAreasOpen(false);
   }, [pathname]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  // Handle escape key to close menu
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // GSAP ScrollTrigger Morph Animation
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -37,7 +64,7 @@ export function Navbar() {
 
     const mm = gsap.matchMedia();
 
-    // Desktop Responsive Morph
+    // Desktop Responsive Morph (>=1024px)
     mm.add("(min-width: 1024px)", () => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -57,7 +84,7 @@ export function Navbar() {
       }, 0)
       .to(container, {
         borderRadius: "999px",
-        paddingTop: "14px", // 14px top/bottom padding + 54px logo = 82px scrolled height
+        paddingTop: "14px", // 14px padding + 54px logo = 82px scrolled height
         paddingBottom: "14px",
         paddingLeft: "40px",
         paddingRight: "40px",
@@ -86,7 +113,7 @@ export function Navbar() {
       }
     });
 
-    // Mobile/Tablet Responsive Morph
+    // Mobile/Tablet Responsive Morph (<1024px)
     mm.add("(max-width: 1023px)", () => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -144,24 +171,24 @@ export function Navbar() {
           {/* Morphing Inner Container */}
           <div
             ref={navContainerRef}
-            className="w-[92vw] max-w-[1520px] bg-cream border border-line px-10 py-4 flex items-center justify-between transition-shadow duration-500 shadow-[0_4px_20px_rgba(22,33,58,0.02)] relative pointer-events-auto mx-auto"
+            className="w-[92vw] max-w-[1520px] bg-cream border border-line px-6 py-4 lg:px-10 flex items-center justify-between transition-shadow duration-500 shadow-[0_4px_20px_rgba(22,33,58,0.02)] relative pointer-events-auto mx-auto"
             style={{ minHeight: "82px" }}
           >
             {/* Premium Brand Logo Image */}
             <Link
               ref={logoContainerRef}
               href="/"
-              className="flex items-center select-none py-1 pr-12 border-r border-line/35 w-[260px] shrink-0"
+              className="flex items-center select-none py-1 pr-6 border-r border-line/25 lg:pr-12 lg:border-line/35 w-[220px] lg:w-[260px] shrink-0"
             >
               <img
                 ref={logoImgRef}
                 src="/media/Logo.png"
                 alt="Sharma & Sharma Intellectual Property Law"
-                className="h-[58px] w-auto object-contain transition-all duration-500"
+                className="h-[48px] lg:h-[58px] w-auto object-contain transition-all duration-500"
               />
             </Link>
 
-            {/* Asymmetrical Spacing & Precise Typography Links */}
+            {/* Asymmetrical Spacing & Precise Typography Links (Desktop Only) */}
             <div className="hidden lg:flex items-center">
               {/* Group A: Core Brand Identity */}
               <div className="flex items-center gap-[36px] mr-12">
@@ -223,11 +250,12 @@ export function Navbar() {
               </div>
             </div>
 
-            {/* Visually Integrated CTA & Mobile trigger */}
+            {/* CTA & Mobile trigger wrapper */}
             <div className="flex items-center gap-6">
+              {/* Visually Integrated CTA (Desktop Only) */}
               <Link
                 href="/contact"
-                className="group relative overflow-hidden border border-navy/25 hover:border-navy px-6 py-3.5 rounded-none transition-colors duration-500 bg-transparent text-navy text-[11px] font-sans tracking-[0.22em] uppercase flex items-center justify-center"
+                className="hidden lg:flex group relative overflow-hidden border border-navy/25 hover:border-navy px-6 py-3.5 rounded-none transition-colors duration-500 bg-transparent text-navy text-[11px] font-sans tracking-[0.22em] uppercase items-center justify-center"
               >
                 <span className="relative z-10 transition-transform duration-500 group-hover:translate-y-[-140%] inline-block">
                   Consultation
@@ -238,18 +266,30 @@ export function Navbar() {
                 </span>
               </Link>
 
-              {/* Custom Architectural Burger Button */}
+              {/* Premium Luxury Hamburger Trigger (Mobile Only) */}
               <button
-                onClick={() => setMobileOpen(true)}
-                className="flex lg:hidden flex-col gap-1.5 p-2 justify-center items-end cursor-pointer group"
-                aria-label="Open Menu"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="flex lg:hidden flex-col justify-center items-center cursor-pointer z-[100] relative w-11 h-11 pointer-events-auto rounded-full hover:bg-navy/5 transition-colors duration-300"
+                aria-label={mobileOpen ? "Close Menu" : "Open Menu"}
               >
-                <span className="w-7 h-[1.5px] bg-navy transition-all duration-300 group-hover:w-5" />
-                <span className="w-5 h-[1.5px] bg-navy transition-all duration-300" />
+                <div className="w-6 h-3 relative flex flex-col justify-between items-end">
+                  {/* Top Line */}
+                  <motion.span
+                    animate={mobileOpen ? { rotate: 45, y: 5.5, width: "24px" } : { rotate: 0, y: 0, width: "24px" }}
+                    transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
+                    className="h-[1.5px] bg-navy block origin-center"
+                  />
+                  {/* Bottom Line */}
+                  <motion.span
+                    animate={mobileOpen ? { rotate: -45, y: -5, width: "24px" } : { rotate: 0, y: 0, width: "16px" }}
+                    transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
+                    className="h-[1.5px] bg-navy block origin-center"
+                  />
+                </div>
               </button>
             </div>
 
-            {/* Editorial Mega Panels */}
+            {/* Desktop Editorial Mega Panels */}
             <AnimatePresence>
               {activePanel && (
                 <motion.div
@@ -436,78 +476,171 @@ export function Navbar() {
       {/* Full-Screen Mobile Editorial Experience */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ y: "-100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "-100%" }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[95] bg-navy text-cream flex flex-col md:flex-row pointer-events-auto"
-          >
-            {/* Cinematic background video */}
-            <div className="relative w-full md:w-1/2 h-[35vh] md:h-full overflow-hidden order-last md:order-first">
-              <div className="absolute inset-0 bg-navy/70 z-10" />
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 object-cover w-full h-full grayscale opacity-30"
-                src="https://videos.pexels.com/video-files/10614145/10614145-uhd_3840_2160_30fps.mp4"
-              />
-              <div className="absolute bottom-10 left-10 z-20 hidden md:block">
-                <span className="overline text-[10px] text-gold">Corporate Headquarters</span>
-                <h4 className="font-serif text-2xl mt-2 text-cream font-medium">Sharma & Sharma</h4>
-                <p className="text-xs text-cream/50 mt-1">236, Chandni Chowk, Delhi</p>
-              </div>
-            </div>
+          <>
+            {/* Backdrop Overlay for closing on click outside */}
+            <div
+              className="fixed inset-0 z-[85] bg-navy/15 backdrop-blur-sm pointer-events-auto"
+              onClick={() => setMobileOpen(false)}
+            />
 
-            {/* Menu Links */}
-            <div className="w-full md:w-1/2 h-[65vh] md:h-full flex flex-col justify-between p-8 md:p-16 z-20">
-              <div className="flex justify-between items-center">
-                <span className="font-serif text-xl tracking-[0.25em] text-gold font-bold">S & S</span>
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-cream/15 hover:border-cream/50 transition-colors duration-300"
-                  aria-label="Close Menu"
-                >
-                  <span className="text-[10px] font-sans tracking-[0.2em] text-cream">CLOSE</span>
-                </button>
-              </div>
-
-              <div className="flex flex-col gap-3 mt-8">
-                {navItems.map((item, i) => (
-                  <div key={item.href} className="overflow-hidden">
-                    <motion.div
-                      initial={{ y: 80, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.15 + i * 0.07, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            <motion.div
+              initial={{ clipPath: "circle(0px at calc(100% - 40px) 45px)" }}
+              animate={{ clipPath: "circle(150% at calc(100% - 40px) 45px)" }}
+              exit={{ clipPath: "circle(0px at calc(100% - 40px) 45px)" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-0 z-[90] bg-cream paper-grain text-navy flex flex-col justify-between p-8 pt-28 md:p-16 md:pt-36 pointer-events-auto overflow-y-auto"
+            >
+              {/* Editorial links */}
+              <div className="flex flex-col gap-6 max-w-lg mt-6">
+                {/* 1. Home */}
+                <div className="overflow-hidden">
+                  <motion.div
+                    initial={{ y: 60, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link
+                      href="/"
+                      onClick={() => setMobileOpen(false)}
+                      className="block font-serif text-4xl hover:text-gold transition-colors py-1 uppercase tracking-tight font-medium"
                     >
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="block font-serif text-4xl md:text-5xl hover:text-gold transition-colors duration-300 py-1.5 uppercase tracking-tight font-medium"
-                      >
-                        {item.label}
-                      </Link>
-                    </motion.div>
-                  </div>
-                ))}
+                      Home
+                    </Link>
+                  </motion.div>
+                </div>
+
+                {/* 2. About */}
+                <div className="overflow-hidden">
+                  <motion.div
+                    initial={{ y: 60, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link
+                      href="/about"
+                      onClick={() => setMobileOpen(false)}
+                      className="block font-serif text-4xl hover:text-gold transition-colors py-1 uppercase tracking-tight font-medium"
+                    >
+                      About
+                    </Link>
+                  </motion.div>
+                </div>
+
+                {/* 3. Practice Areas (Accordion) */}
+                <div className="overflow-hidden">
+                  <motion.div
+                    initial={{ y: 60, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <button
+                      onClick={() => setPracticeAreasOpen(!practiceAreasOpen)}
+                      className="w-full flex justify-between items-center text-left font-serif text-4xl hover:text-gold transition-colors py-1 uppercase tracking-tight font-medium cursor-pointer"
+                    >
+                      <span>Practice Areas</span>
+                      <span className="text-xl font-sans font-light transition-transform duration-300 ml-4">
+                        {practiceAreasOpen ? "—" : "+"}
+                      </span>
+                    </button>
+
+                    <AnimatePresence>
+                      {practiceAreasOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden pl-6 border-l border-line mt-3 space-y-2.5"
+                        >
+                          {[
+                            { name: "Trademark Registration", href: "/trademark" },
+                            { name: "Copyright", href: "/copyright" },
+                            { name: "Design Registration", href: "/design-registration" },
+                            { name: "International Filing", href: "/services" },
+                            { name: "Brand Protection", href: "/services" },
+                            { name: "IP Portfolio Management", href: "/services" },
+                          ].map((item, idx) => (
+                            <Link
+                              key={idx}
+                              href={item.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="block font-sans text-sm tracking-wider uppercase text-navy/70 hover:text-gold transition-colors py-1"
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </div>
+
+                {/* 4. Insights */}
+                <div className="overflow-hidden">
+                  <motion.div
+                    initial={{ y: 60, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.25, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link
+                      href="/insights"
+                      onClick={() => setMobileOpen(false)}
+                      className="block font-serif text-4xl hover:text-gold transition-colors py-1 uppercase tracking-tight font-medium"
+                    >
+                      Insights
+                    </Link>
+                  </motion.div>
+                </div>
+
+                {/* 5. Contact */}
+                <div className="overflow-hidden">
+                  <motion.div
+                    initial={{ y: 60, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link
+                      href="/contact"
+                      onClick={() => setMobileOpen(false)}
+                      className="block font-serif text-4xl hover:text-gold transition-colors py-1 uppercase tracking-tight font-medium"
+                    >
+                      Contact
+                    </Link>
+                  </motion.div>
+                </div>
               </div>
 
-              <div className="flex justify-between items-end border-t border-cream/10 pt-6 mt-6">
-                <div>
-                  <span className="block text-[9px] text-cream/40 uppercase tracking-[0.18em]">Inquiries</span>
-                  <a href={`mailto:${site.email}`} className="text-xs text-gold hover:underline mt-1 block">
-                    {site.email}
-                  </a>
-                </div>
-                <div>
-                  <span className="block text-[9px] text-cream/40 uppercase tracking-[0.18em] text-right">Established</span>
-                  <span className="text-xs text-cream/60 mt-1 block">Since 1972 • New Delhi</span>
+              {/* Mobile CTA and Bottom Section */}
+              <div className="mt-12 flex flex-col gap-8">
+                {/* Book Consultation Button (Inside Menu Only) */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35, duration: 0.6 }}
+                >
+                  <Link
+                    href="/contact"
+                    onClick={() => setMobileOpen(false)}
+                    className="w-full text-center block bg-navy hover:bg-navy-soft text-cream px-8 py-5 text-[11px] font-sans tracking-[0.25em] uppercase border border-navy/20 transition-colors duration-300"
+                  >
+                    Book Consultation
+                  </Link>
+                </motion.div>
+
+                {/* Metadata Row */}
+                <div className="flex justify-between items-end border-t border-line/60 pt-6">
+                  <div>
+                    <span className="block text-[8px] text-muted uppercase tracking-[0.2em]">Established</span>
+                    <span className="text-xs text-navy font-serif mt-1 block">Since 1972 • New Delhi</span>
+                  </div>
+                  <div>
+                    <span className="block text-[8px] text-muted uppercase tracking-[0.2em] text-right">Practice</span>
+                    <span className="text-xs text-navy font-serif mt-1 block text-right">Intellectual Property Law</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
