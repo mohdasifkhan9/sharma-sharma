@@ -111,19 +111,6 @@ export function Hero() {
     );
   }, []);
 
-  const clientLogos = [
-    "/media/client_1.png",
-    "/media/client_2.png",
-    "/media/client_3.png",
-    "/media/client_4.png",
-    "/media/client_5.png",
-    "/media/client_6.png",
-    "/media/client_7.png",
-    "/media/client_8.png",
-    "/media/client_9.png",
-    "/media/client_10.png",
-  ];
-
   return (
     <section
       ref={heroRef}
@@ -324,25 +311,6 @@ export function Hero() {
               ))}
             </div>
           </motion.div>
-        </div>
-      </motion.div>
-
-      {/* INFINITE CLIENT MARQUEE CONTAINER */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 1.2 }}
-        className="w-full border-t border-b border-line/50 py-6 overflow-hidden bg-cream/90 backdrop-blur-sm z-10 font-sans"
-      >
-        <div className="flex marquee-track whitespace-nowrap gap-24 items-center select-none">
-          {[...clientLogos, ...clientLogos, ...clientLogos].map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt="Client Partner Brand Logo"
-              className="h-11 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300 pointer-events-auto filter brightness-[0.8] contrast-[0.95]"
-            />
-          ))}
         </div>
       </motion.div>
     </section>
