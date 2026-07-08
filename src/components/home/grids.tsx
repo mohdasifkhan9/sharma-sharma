@@ -91,9 +91,14 @@ export function TrademarkTypes() {
       example: "Branded typography composition",
       detail: "Protects brand names, letters, numerals, or words in clean, typography-led configurations.",
       visual: (
-        <div className="h-32 w-full flex items-center justify-center border-b border-line/40 mb-6 bg-cream/10 relative overflow-hidden select-none">
-          <span className="font-serif text-3xl tracking-[0.2em] text-navy/80 uppercase font-light">SHARMA</span>
-          <div className="absolute inset-0 border border-gold/10 pointer-events-none m-3" />
+        <div className="relative aspect-[16/10] w-full overflow-hidden mb-6 bg-line/10 border border-line/45 rounded-[2px] transition-transform duration-500 group-hover:scale-[1.015]">
+          <Image
+            src="/media/workmark.jpg"
+            alt="Word Mark Blueprint Specification"
+            fill
+            sizes="(max-width: 768px) 100vw, 30vw"
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          />
         </div>
       ),
     },
@@ -103,13 +108,14 @@ export function TrademarkTypes() {
       example: "Minimal embossed logo artwork",
       detail: "Secures unique symbols, graphic crests, dynamic devices, and proprietary visual marks.",
       visual: (
-        <div className="h-32 w-full flex items-center justify-center border-b border-line/40 mb-6 bg-cream/10 relative overflow-hidden select-none">
-          <svg className="w-16 h-16 text-gold/85" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1">
-            <circle cx="50" cy="50" r="40" strokeDasharray="3 3" />
-            <circle cx="50" cy="50" r="30" />
-            <path d="M50 35 L50 65 M35 50 L65 50" strokeWidth="0.5" />
-            <circle cx="50" cy="50" r="4" fill="currentColor" />
-          </svg>
+        <div className="relative aspect-[16/10] w-full overflow-hidden mb-6 bg-line/10 border border-line/45 rounded-[2px] transition-transform duration-500 group-hover:scale-[1.015]">
+          <Image
+            src="/media/logomark.jpg"
+            alt="Logo Mark Design Construction Drawing"
+            fill
+            sizes="(max-width: 768px) 100vw, 30vw"
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          />
         </div>
       ),
     },
@@ -119,14 +125,14 @@ export function TrademarkTypes() {
       example: "Wordmark and symbol lockup",
       detail: "Protects composite brand configurations uniting word identifiers and visual logo assets.",
       visual: (
-        <div className="h-32 w-full flex items-center justify-center border-b border-line/40 mb-6 bg-cream/10 relative overflow-hidden select-none">
-          <div className="flex flex-col items-center gap-2">
-            <svg className="w-8 h-8 text-gold/80" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <rect x="25" y="25" width="50" height="50" rx="2" />
-              <path d="M40 50 L60 50 M50 40 L50 60" />
-            </svg>
-            <span className="font-sans text-[10px] tracking-[0.3em] text-navy/70 uppercase">S&S LEGAL</span>
-          </div>
+        <div className="relative aspect-[16/10] w-full overflow-hidden mb-6 bg-line/10 border border-line/45 rounded-[2px] transition-transform duration-500 group-hover:scale-[1.015]">
+          <Image
+            src="/media/combinationmark.jpg"
+            alt="Combination Mark Grid Layout Layout"
+            fill
+            sizes="(max-width: 768px) 100vw, 30vw"
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          />
         </div>
       ),
     },
@@ -136,10 +142,14 @@ export function TrademarkTypes() {
       example: "Editorial quote taglines",
       detail: "Guards distinct catchphrases, advertising taglines, and marketing expressions of identity.",
       visual: (
-        <div className="h-32 w-full flex items-center justify-center border-b border-line/40 mb-6 bg-cream/10 relative overflow-hidden select-none px-4">
-          <div className="text-center">
-            <span className="font-serif text-[13px] italic text-navy/75 leading-relaxed block font-medium">“Protecting the Ideas That Shape Tomorrow”</span>
-          </div>
+        <div className="relative aspect-[16/10] w-full overflow-hidden mb-6 bg-line/10 border border-line/45 rounded-[2px] transition-transform duration-500 group-hover:scale-[1.015]">
+          <Image
+            src="/media/sloganmark.jpg"
+            alt="Slogan Typographic Sheet Specifications"
+            fill
+            sizes="(max-width: 768px) 100vw, 30vw"
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          />
         </div>
       ),
     },
@@ -149,14 +159,14 @@ export function TrademarkTypes() {
       example: "Three-dimensional configuration",
       detail: "Secures proprietary packaging shapes, container silhouettes, or 3D product configurations.",
       visual: (
-        <div className="h-32 w-full flex items-center justify-center border-b border-line/40 mb-6 bg-cream/10 relative overflow-hidden select-none">
-          <svg className="w-12 h-20 text-gold/85" viewBox="0 0 60 100" fill="none" stroke="currentColor" strokeWidth="1.2">
-            <path d="M20 20 h20 v8 h-20 z" />
-            <path d="M15 28 h30 v60 a5 5 0 0 1 -5 5 h-20 a5 5 0 0 1 -5 -5 z" />
-            <line x1="30" y1="20" x2="30" y2="10" />
-            <circle cx="30" cy="10" r="4" />
-            <rect x="22" y="44" width="16" height="20" rx="1" strokeWidth="0.8" />
-          </svg>
+        <div className="relative aspect-[16/10] w-full overflow-hidden mb-6 bg-line/10 border border-line/45 rounded-[2px] transition-transform duration-500 group-hover:scale-[1.015]">
+          <Image
+            src="/media/shapemark.jpg"
+            alt="Shape Mark Perfume Silhouette Blueprints"
+            fill
+            sizes="(max-width: 768px) 100vw, 30vw"
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          />
         </div>
       ),
     },
@@ -166,16 +176,14 @@ export function TrademarkTypes() {
       example: "Signature acoustic waveforms",
       detail: "Protects distinctive brand melodies, mnemonic sequences, or recognized jingles.",
       visual: (
-        <div className="h-32 w-full flex items-center justify-center border-b border-line/40 mb-6 bg-cream/10 relative overflow-hidden select-none">
-          <svg className="w-32 h-12 text-gold/85" viewBox="0 0 160 60" fill="none" stroke="currentColor" strokeWidth="1.2">
-            <path d="M10 30 Q20 5, 30 30 T50 30 T70 30 T90 30 T110 30 T130 30 T150 30" strokeDasharray="2 2" strokeWidth="0.5" />
-            <path d="M10 30 Q25 10, 40 30 T70 30 T100 30 T130 30 T150 30" />
-            <line x1="20" y1="15" x2="20" y2="45" strokeWidth="1" />
-            <line x1="50" y1="20" x2="50" y2="40" strokeWidth="1" />
-            <line x1="80" y1="10" x2="80" y2="50" strokeWidth="1" />
-            <line x1="110" y1="18" x2="110" y2="42" strokeWidth="1" />
-            <line x1="140" y1="25" x2="140" y2="35" strokeWidth="1" />
-          </svg>
+        <div className="relative aspect-[16/10] w-full overflow-hidden mb-6 bg-line/10 border border-line/45 rounded-[2px] transition-transform duration-500 group-hover:scale-[1.015]">
+          <Image
+            src="/media/soundmark.jpg"
+            alt="Sound Mark Waveform Analysis Charts"
+            fill
+            sizes="(max-width: 768px) 100vw, 30vw"
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          />
         </div>
       ),
     },
