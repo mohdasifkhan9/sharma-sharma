@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SectionLabel, SplitHeading, Reveal } from "@/components/ui/reveal";
@@ -10,79 +10,84 @@ import { Counter } from "@/components/ui/interactive";
 import { stories, articles } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { MediaFrame } from "@/components/ui/media";
+import { Globe } from "@/components/ui/globe";
 
 export function GlobalProtection() {
-  const [activeDest, setActiveDest] = useState<string | null>(null);
+  const [selectedDest, setSelectedDest] = useState<string | null>(null);
   const [isDesktop, setIsDesktop] = useState(true);
 
-  // SVG Coordinates mapping New Delhi [320, 115] to major jurisdictions
   const destinations = [
     {
-      id: "eu",
-      name: "European Union",
-      x: 235,
-      y: 65,
-      services: ["Trademark Filing", "Design Registration", "Portfolio Management", "Madrid Protocol Advisory"],
+      id: "us",
+      name: "United States",
+      services: ["USPTO Applications", "Intent-to-Use Strategies", "Office Action Responses", "Portfolio Maintenance"],
     },
     {
       id: "uk",
       name: "United Kingdom",
-      x: 215,
-      y: 60,
       services: ["UKIPO Filings", "Post-Brexit Protection", "Enforcement & Oppositions"],
     },
     {
-      id: "us",
-      name: "United States",
-      x: 110,
-      y: 75,
-      services: ["USPTO Applications", "Intent-to-Use Strategies", "Office Action Responses"],
+      id: "eu",
+      name: "European Union",
+      services: ["EUIPO Registrations", "Madrid Protocol Advisory", "Portfolio Synchronization"],
     },
     {
       id: "canada",
       name: "Canada",
-      x: 95,
-      y: 70,
-      services: ["CIPO Filings", "Global Trade Advisory", "Portfolio Maintenance"],
+      services: ["CIPO Filings", "Global Trade Advisory", "Border Enforcement"],
     },
     {
       id: "australia",
       name: "Australia",
-      x: 435,
-      y: 205,
-      services: ["IP Australia Registrations", "Madrid Pathway Security", "Local Representation"],
+      services: ["IP Australia Filings", "Madrid Pathway Security", "Local Representative Counsel"],
     },
     {
       id: "japan",
       name: "Japan",
-      x: 415,
-      y: 90,
       services: ["JPO Applications", "Bilingual Support Filings", "Strategic Advisory"],
     },
     {
       id: "singapore",
       name: "Singapore",
-      x: 355,
-      y: 155,
-      services: ["IPOS Filings", "ASEAN Regional Protection", "IP Portfolio Coordination"],
-    },
-    {
-      id: "uae",
-      name: "United Arab Emirates",
-      x: 295,
-      y: 115,
-      services: ["GCC Filings", "Customs Recordation", "Brand Enforcement Advisory"],
+      services: ["IPOS Registrations", "ASEAN Regional Protection", "IP Portfolio Coordination"],
     },
     {
       id: "korea",
       name: "South Korea",
-      x: 395,
-      y: 95,
-      services: ["KIPO Registrations", "Patent & Trademark Synergy", "Litigation Support"],
+      services: ["KIPO Registrations", "Patent & Trademark Synergy", "Local Representation"],
+    },
+    {
+      id: "uae",
+      name: "United Arab Emirates",
+      services: ["GCC Filings", "Customs Recordation", "Brand Enforcement Advisory"],
+    },
+    {
+      id: "saudi",
+      name: "Saudi Arabia",
+      services: ["SAIP Filings", "MENA Trade Security", "Portfolio Protection"],
+    },
+    {
+      id: "germany",
+      name: "Germany",
+      services: ["DPMA Registrations", "EU Court Enforcement", "Local Advisory"],
+    },
+    {
+      id: "france",
+      name: "France",
+      services: ["INPI Applications", "Luxury Brand Enforcement", "Anti-Counterfeiting Action"],
+    },
+    {
+      id: "switzerland",
+      name: "Switzerland",
+      services: ["IPI Registrations", "Madrid Protocol Hub Coordination", "Asset Protection"],
+    },
+    {
+      id: "netherlands",
+      name: "Netherlands",
+      services: ["BOIP Applications", "Benelux Market Protection", "European Logistics Enforcement"],
     },
   ];
-
-  const origin = { x: 320, y: 115 }; // New Delhi, India
 
   useEffect(() => {
     const handleResize = () => {
@@ -102,14 +107,16 @@ export function GlobalProtection() {
         
         {/* LEFT PANEL: 42% space */}
         <div className="lg:col-span-5 flex flex-col justify-center items-start">
-          <SectionLabel>Global Protection</SectionLabel>
+          <span className="text-[10px] tracking-[0.25em] font-sans uppercase text-gold font-semibold">
+            GLOBAL PROTECTION
+          </span>
           
           <SplitHeading className="display mt-6 text-[clamp(2.2rem,5vw,4.5rem)] text-navy leading-[1.1]">
             Local Roots. Worldwide Reach.
           </SplitHeading>
 
           <p className="mt-6 text-[14px] sm:text-[15px] leading-relaxed text-muted max-w-md">
-            From our heritage in India to international filing strategies across major jurisdictions, we help businesses protect their trademarks, designs, and intellectual property wherever growth takes them.
+            From our heritage in India to international filing strategies across major jurisdictions, we help businesses protect trademarks, copyrights, designs and intellectual property wherever innovation grows.
           </p>
 
           <Link
@@ -139,148 +146,54 @@ export function GlobalProtection() {
           </div>
         </div>
 
-        {/* RIGHT PANEL: 58% space (Architectural world map showcase) */}
+        {/* RIGHT PANEL: 58% space (Interactive COBE Globe) */}
         <div className="lg:col-span-7 w-full flex flex-col items-center justify-center relative">
           
           {/* Deep Navy visual frame box */}
-          <div className="w-full aspect-[16/10] bg-navy border border-navy/90 rounded-[4px] relative overflow-hidden p-6 shadow-2xl">
+          <div className="w-full aspect-[16/10] bg-navy border border-navy/90 rounded-[4px] relative overflow-hidden flex flex-col items-center justify-center p-6 shadow-2xl">
             
-            {/* Soft animated background particles */}
-            <div className="absolute inset-0 pointer-events-none opacity-20">
-              <div className="absolute top-10 left-10 w-1.5 h-1.5 rounded-full bg-gold animate-ping duration-[3s]" />
-              <div className="absolute bottom-16 right-20 w-1 h-1 rounded-full bg-cream animate-ping duration-[4s]" />
-              <div className="absolute top-24 right-32 w-1.5 h-1.5 rounded-full bg-gold animate-ping duration-[5s]" />
+            {/* The COBE WebGL Globe component */}
+            <div className="relative w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[500px] aspect-square flex items-center justify-center z-10 -mt-16 lg:-mt-20">
+              <Globe className="w-full h-full" />
             </div>
 
-            {/* SVG Interactive Blueprint Network */}
-            <svg
-              viewBox="0 0 500 250"
-              className="w-full h-full"
-              fill="none"
-              stroke="currentColor"
-            >
-              {/* Abstract minimalist continent references under map */}
-              <g className="text-cream/[0.04]" strokeWidth="0.5">
-                {/* Americas */}
-                <path d="M 40,50 Q 80,40 120,60 T 140,110 T 110,180" />
-                {/* Eurasia & Africa */}
-                <path d="M 200,60 Q 280,30 380,45 T 440,80" />
-                <path d="M 210,110 Q 250,150 280,210" />
-                {/* Australia */}
-                <path d="M 410,180 Q 430,220 460,200" />
-              </g>
-
-              {/* Gold dynamic routes lines and pulses */}
-              <g strokeWidth="0.8">
-                {destinations.map((d) => {
-                  const isActive = activeDest === d.id;
-                  // Curve cubic lines originating from Delhi
-                  const controlX = (origin.x + d.x) / 2;
-                  const controlY = Math.min(origin.y, d.y) - 30;
-                  const pathD = `M ${origin.x},${origin.y} Q ${controlX},${controlY} ${d.x},${d.y}`;
-
-                  return (
-                    <g key={d.id} className="transition-all duration-300">
-                      {/* Subdued connector */}
-                      <path
-                        d={pathD}
-                        className={cn(
-                          "transition-all duration-500",
-                          isActive ? "text-gold stroke-[1.5px]" : "text-gold/20"
-                        )}
-                      />
-
-                      {/* Golden traveling pulse path overlay */}
-                      <path
-                        d={pathD}
-                        className="text-gold opacity-90 stroke-[1.2px]"
-                        strokeDasharray="5, 30"
-                        style={{
-                          animation: "pulse 4s linear infinite",
-                        }}
-                      />
-                    </g>
-                  );
-                })}
-              </g>
-
-              {/* Node Markers */}
-              <g>
-                {/* Origin: India (New Delhi) */}
-                <circle
-                  cx={origin.x}
-                  cy={origin.y}
-                  r="4"
-                  className="fill-gold stroke-cream stroke-[1.5px] animate-pulse"
-                />
-                <circle
-                  cx={origin.x}
-                  cy={origin.y}
-                  r="9"
-                  className="stroke-gold/40 stroke-[1px] fill-none animate-ping"
-                />
-
-                {/* Destinations */}
-                {destinations.map((d) => {
-                  const isActive = activeDest === d.id;
-                  return (
-                    <g
-                      key={d.id}
-                      className="cursor-pointer pointer-events-auto"
-                      onMouseEnter={() => setActiveDest(d.id)}
-                      onMouseLeave={() => setActiveDest(null)}
-                    >
-                      {/* Hover Target buffer circle */}
-                      <circle
-                        cx={d.x}
-                        cy={d.y}
-                        r="12"
-                        className="fill-transparent"
-                      />
-                      {/* Real dot marker */}
-                      <circle
-                        cx={d.x}
-                        cy={d.y}
-                        r={isActive ? "3.5" : "2"}
-                        className={cn(
-                          "transition-all duration-300",
-                          isActive ? "fill-gold stroke-cream stroke-[1px]" : "fill-cream/70"
-                        )}
-                      />
-                    </g>
-                  );
-                })}
-              </g>
-
-              {/* Custom CSS for SVG stroke animations */}
-              <style>{`
-                @keyframes pulse {
-                  to {
-                    stroke-dashoffset: -35;
-                  }
-                }
-              `}</style>
-            </svg>
-
             {/* Custom Interactive Tooltip Sheet */}
-            <div className="absolute bottom-4 left-4 right-4 bg-navy-soft/90 backdrop-blur-md border border-cream/10 p-4 transition-all duration-300 select-none pointer-events-none">
+            <div className="absolute bottom-4 left-4 right-4 bg-navy-soft/95 backdrop-blur-md border border-cream/10 p-4 transition-all duration-300 select-none z-20">
+              {/* Country Selection Tags */}
+              <div className="flex flex-wrap gap-1.5 mb-3 overflow-y-auto max-h-12 scrollbar-none pointer-events-auto">
+                {destinations.map((d) => (
+                  <button
+                    key={d.id}
+                    onClick={() => setSelectedDest(selectedDest === d.id ? null : d.id)}
+                    className={cn(
+                      "text-[8px] sm:text-[9px] tracking-wider uppercase px-2 py-0.5 border transition-all duration-300 font-sans cursor-pointer rounded-[2px]",
+                      selectedDest === d.id
+                        ? "bg-gold border-gold text-navy font-bold"
+                        : "bg-transparent border-cream/10 text-cream/70 hover:border-gold hover:text-gold"
+                    )}
+                  >
+                    {d.name}
+                  </button>
+                ))}
+              </div>
+
               <AnimatePresence mode="wait">
-                {activeDest ? (
+                {selectedDest ? (
                   <motion.div
-                    key={activeDest}
+                    key={selectedDest}
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -5 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <span className="text-[9px] tracking-widest text-gold font-sans uppercase font-bold block mb-1">
-                      Jurisdiction Services
+                    <span className="text-[8px] tracking-widest text-gold font-sans uppercase font-bold block mb-1">
+                      International Filing Strategy
                     </span>
-                    <h4 className="font-serif text-lg text-cream font-medium">
-                      {destinations.find((d) => d.id === activeDest)?.name}
+                    <h4 className="font-serif text-base text-cream font-medium">
+                      {destinations.find((d) => d.id === selectedDest)?.name}
                     </h4>
                     <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-cream/70 font-sans tracking-wide">
-                      {destinations.find((d) => d.id === activeDest)?.services.map((srv, index) => (
+                      {destinations.find((d) => d.id === selectedDest)?.services.map((srv, index) => (
                         <span key={index} className="flex items-center gap-1.5">
                           <span className="w-1 h-1 rounded-full bg-gold" />
                           {srv}
@@ -296,11 +209,11 @@ export function GlobalProtection() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <span className="text-[9px] tracking-widest text-gold font-sans uppercase font-bold block mb-1">
-                      International Filings
+                    <span className="text-[8px] tracking-widest text-gold font-sans uppercase font-bold block mb-1">
+                      Global Filing Network
                     </span>
-                    <h4 className="font-serif text-sm text-cream/80">
-                      Hover nodes to view filing strategies in major jurisdictions (US, EU, UK, Canada, Australia, Japan, etc.)
+                    <h4 className="font-serif text-xs text-cream/75 leading-relaxed">
+                      Tap any destination above to view local brand protection and IP registration offerings across major global jurisdictions.
                     </h4>
                   </motion.div>
                 )}
