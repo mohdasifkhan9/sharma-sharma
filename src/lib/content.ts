@@ -60,14 +60,14 @@ export const trademarkTypes = [
 ];
 
 export const industries = [
-  { name: "Healthcare", image: media.research[2] },
-  { name: "Technology", image: media.design[1] },
-  { name: "Fashion", image: media.retail[2] },
-  { name: "Manufacturing", image: media.design[2] },
-  { name: "Automobile", image: media.design[3] },
-  { name: "Education", image: media.founders[1] },
-  { name: "Food & Beverage", image: media.packaging[1] },
-  { name: "Startups", image: media.founders[0] },
+  { name: "Healthcare", image: "/media/medical.jpeg" },
+  { name: "Technology", image: "/media/technology.jpeg" },
+  { name: "Fashion", image: "/media/fashion.jpeg" },
+  { name: "Manufacturing", image: "/media/manufacturing.jpeg" },
+  { name: "Automobile", image: "/media/automobile.jpeg" },
+  { name: "Education", image: "/media/education.jpeg" },
+  { name: "Food & Beverage", image: "/media/food.jpeg" },
+  { name: "Startups", image: "/media/startup.jpeg" },
 ];
 
 export const stories = [

@@ -2,18 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SectionLabel, SplitHeading, Reveal } from "@/components/ui/reveal";
 import { MediaFrame } from "@/components/ui/media";
 import { Section } from "@/components/layout/section";
 import { practiceAreas } from "@/lib/site";
-import { industries as siteIndustries } from "@/lib/content";
+import { industries } from "@/lib/content";
 import { media } from "@/lib/media";
-import { cn } from "@/lib/utils";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const areaImages = [
   media.packaging[0],
@@ -245,264 +242,37 @@ export function TrademarkTypes() {
 }
 
 export function Industries() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
-
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isDesktop, setIsDesktop] = useState(true);
-
-  const list = [
-    {
-      num: "01",
-      name: "Healthcare",
-      desc: "Protecting life-saving therapeutics, clinical trial data, medical devices, and diagnostics for health innovators.",
-      services: ["Patent Filing", "Design Protection", "Trade Secrets"],
-      image: "https://images.pexels.com/photos/3735709/pexels-photo-3735709.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    },
-    {
-      num: "02",
-      name: "Technology",
-      desc: "Guarding software algorithms, hardware architecture, neural networks, and digital brand identities in global markets.",
-      services: ["Copyright Registration", "Software Licensing", "Trademark Prosecution"],
-      image: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    },
-    {
-      num: "03",
-      name: "Fashion",
-      desc: "Defending proprietary fabric configurations, signature design cuts, luxury retail identities, and apparel trademarks.",
-      services: ["Design Registry", "Anti-Counterfeiting", "Madrid Protocol"],
-      image: "https://images.pexels.com/photos/3755700/pexels-photo-3755700.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    },
-    {
-      num: "04",
-      name: "Manufacturing",
-      desc: "Registering utility designs, mechanical configurations, material structures, and supply-chain patent claims.",
-      services: ["Utility Models", "Patent Prosecution", "Enforcement"],
-      image: "https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    },
-    {
-      num: "05",
-      name: "Automobile",
-      desc: "Securing trademark protection for vehicle components, electric power assemblies, clay designs, and safety innovations.",
-      services: ["Design Patents", "Portfolio Audits", "Brand Protection"],
-      image: "https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    },
-    {
-      num: "06",
-      name: "Food & Beverage",
-      desc: "Defending signature consumer recipes, distinctive beverage labels, custom bottle shapes, and retail franchise rights.",
-      services: ["Trade Dress", "Logo Protection", "Franchise Contracts"],
-      image: "https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    },
-    {
-      num: "07",
-      name: "Education",
-      desc: "Protecting course curricula, academic publications, proprietary digital learning platforms, and university symbols.",
-      services: ["Copyright Filing", "Content Syndication", "Logos"],
-      image: "https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    },
-    {
-      num: "08",
-      name: "Startups",
-      desc: "Drafting pre-launch IP protection models, trade secret architectures, and seed-to-scale international portfolios.",
-      services: ["IP Strategy", "Trademark Search", "NDA Enforcement"],
-      image: "https://images.pexels.com/photos/3182796/pexels-photo-3182796.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    },
-  ];
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 1024);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (!isDesktop) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const container = containerRef.current;
-    const sticky = stickyRef.current;
-    if (!container || !sticky) return;
-
-    const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: container,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const index = Math.min(
-            Math.floor(progress * list.length),
-            list.length - 1
-          );
-          setActiveIndex(index);
-        },
-      });
-    }, container);
-
-    return () => ctx.revert();
-  }, [isDesktop]);
-
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full bg-paper paper-grain select-none pointer-events-auto"
-      style={{ height: isDesktop ? `${list.length * 100}vh` : "auto" }}
-    >
-      <div
-        ref={stickyRef}
-        className={cn(
-          "w-full flex flex-col justify-center items-center px-6 md:px-12 lg:px-24 z-20 overflow-hidden",
-          isDesktop ? "h-screen sticky top-0" : "h-auto relative py-16"
-        )}
-      >
-        {/* Subtle background blueprint/stamp overlay (under 2% opacity) */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.015] border m-12 border-navy" />
-
-        {/* Content alignment box */}
-        <div className="w-full max-w-[1440px] z-10 relative">
-          
-          {/* Header Row - Keeps spacing tight */}
-          <div className="mb-10 lg:mb-12 border-b border-line/35 pb-5">
-            <span className="text-[10px] tracking-[0.25em] font-sans uppercase text-gold font-semibold">
-              Industries We Protect
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl mt-2 text-navy tracking-tight">
-              Trusted Across Industries.
-            </h2>
-            <p className="mt-3 text-xs sm:text-sm text-muted/80 max-w-2xl leading-relaxed">
-              For more than five decades, Sharma & Sharma has helped businesses across diverse industries protect their brands, innovations, and intellectual property with precision, experience, and long-term strategic guidance.
-            </p>
-          </div>
-
-          {/* Desktop Pinned Split Gallery View */}
-          {isDesktop ? (
-            <div className="grid grid-cols-12 gap-16 items-center h-[55vh]">
-              {/* Left Column - Narratives */}
-              <div className="col-span-5 flex flex-col justify-center items-start h-full pr-10">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeIndex}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full space-y-5"
-                  >
-                    <span className="font-mono text-xs tracking-widest text-gold block">
-                      CHAPTER {list[activeIndex].num} // {list[activeIndex].name.toUpperCase()}
-                    </span>
-
-                    <h3 className="font-serif text-4xl text-navy tracking-tight font-medium">
-                      {list[activeIndex].name}.
-                    </h3>
-
-                    <p className="text-sm leading-relaxed text-muted/95 font-sans">
-                      {list[activeIndex].desc}
-                    </p>
-
-                    <div className="border-t border-b border-line/45 py-3 w-full">
-                      <span className="text-[9px] uppercase tracking-widest text-navy/50 block mb-2 font-sans font-semibold">
-                        Protected Assets
-                      </span>
-                      <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-gold/90 font-serif font-medium">
-                        {list[activeIndex].services.map((srv, idx) => (
-                          <span key={idx} className="flex items-center gap-1.5">
-                            <span className="w-1 h-1 rounded-full bg-gold/75" />
-                            {srv}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <Link
-                      href="/services"
-                      className="group flex items-center gap-1.5 text-[11px] font-sans tracking-[0.2em] uppercase text-navy hover:text-gold transition-colors pt-2"
-                    >
-                      Explore Industry
-                      <span className="group-hover:translate-x-1.5 transition-transform duration-300">→</span>
-                    </Link>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              {/* Right Column - Massive borderless photo */}
-              <div className="col-span-7 h-full w-full relative overflow-hidden bg-line/10 rounded-[2px] shadow-2xl">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeIndex}
-                    initial={{ opacity: 0, scale: 1.05, filter: "blur(5px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, scale: 0.97, filter: "blur(2px)" }}
-                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0 w-full h-full"
-                  >
-                    <Image
-                      src={list[activeIndex].image}
-                      alt={list[activeIndex].name}
-                      fill
-                      sizes="55vw"
-                      className="object-cover grayscale hover:grayscale-0 transition-all duration-[1200ms]"
-                      priority
-                    />
-                  </motion.div>
-                </AnimatePresence>
-                <div className="absolute inset-0 bg-gradient-to-tr from-navy/15 via-transparent to-transparent pointer-events-none" />
-              </div>
-            </div>
-          ) : (
-            /* Dedicated Mobile/Tablet stack layout */
-            <div className="space-y-12 w-full mt-4">
-              {list.map((item, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col gap-5 border-b border-line/35 pb-8 last:border-none last:pb-0"
-                >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-line/10 rounded-[2px] shadow-md">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-baseline">
-                      <h3 className="font-serif text-2xl text-navy font-semibold">
-                        {item.name}
-                      </h3>
-                      <span className="font-mono text-xs text-gold/80">
-                        {item.num}
-                      </span>
-                    </div>
-
-                    <p className="text-[13px] leading-relaxed text-muted">
-                      {item.desc}
-                    </p>
-
-                    <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-gold font-serif py-1">
-                      {item.services.map((srv, idx) => (
-                        <span key={idx} className="flex items-center gap-1.5">
-                          <span className="w-1 h-1 rounded-full bg-gold/75" />
-                          {srv}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
+    <Section className="bg-paper">
+      <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div>
+          <SectionLabel>Industries</SectionLabel>
+          <SplitHeading className="display mt-6 text-[clamp(2.2rem,5vw,4.5rem)] text-navy">
+            Trusted across sectors.
+          </SplitHeading>
         </div>
       </div>
-    </div>
+
+      <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
+        {industries.map((ind, i) => (
+          <Reveal key={ind.name} delay={i * 0.04}>
+            <div className="group relative aspect-[3/4] overflow-hidden rounded-[4px]">
+              <MediaFrame
+                src={ind.image}
+                alt={ind.name}
+                sizes="(max-width:768px) 50vw, 25vw"
+                className="h-full w-full"
+                rounded={false}
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent" />
+              <div className="pointer-events-none absolute bottom-0 left-0 p-5">
+                <span className="overline text-cream/60">0{i + 1}</span>
+                <h3 className="font-serif text-2xl text-cream">{ind.name}</h3>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
   );
 }
