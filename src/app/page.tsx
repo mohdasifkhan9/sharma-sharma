@@ -2,6 +2,7 @@ import { Hero } from "@/components/home/hero";
 import { ClientTicker } from "@/components/home/ticker";
 import { LegacyTimeline } from "@/components/home/story";
 import { PracticeAreas, TrademarkTypes, Industries } from "@/components/home/grids";
+import { TrustSection } from "@/components/home/trust";
 import { TrademarkJourney } from "@/components/home/journey";
 import {
   GlobalProtection,
@@ -20,6 +21,7 @@ export default function HomePage() {
       <TrademarkJourney />
       <TrademarkTypes />
       <Industries />
+      <TrustSection />
       <GlobalProtection />
       <SuccessStories />
       <KnowledgeCenter />
