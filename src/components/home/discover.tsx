@@ -149,16 +149,16 @@ export function GlobalProtection() {
         {/* RIGHT PANEL: 58% space (Interactive COBE Globe) */}
         <div className="lg:col-span-7 w-full flex flex-col items-center justify-center relative">
           
-          {/* Deep Navy visual frame box */}
-          <div className="w-full aspect-[16/10] bg-navy border border-navy/90 rounded-[4px] relative overflow-hidden flex flex-col items-center justify-center p-6 shadow-2xl">
+          {/* Floating Globe container directly on Warm Ivory background */}
+          <div className="w-full aspect-[16/10] relative flex flex-col items-center justify-center p-4">
             
             {/* The COBE WebGL Globe component */}
-            <div className="relative w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[500px] aspect-square flex items-center justify-center z-10 -mt-16 lg:-mt-20">
+            <div className="relative w-full max-w-[440px] sm:max-w-[480px] lg:max-w-[540px] aspect-square flex items-center justify-center z-10 -mt-20 lg:-mt-24">
               <Globe className="w-full h-full" />
             </div>
 
-            {/* Custom Interactive Tooltip Sheet */}
-            <div className="absolute bottom-4 left-4 right-4 bg-navy-soft/95 backdrop-blur-md border border-cream/10 p-4 transition-all duration-300 select-none z-20">
+            {/* Custom Interactive Tooltip Sheet (Ivory Museum style) */}
+            <div className="absolute bottom-4 left-4 right-4 bg-cream/95 backdrop-blur-md border border-gold/25 p-4 shadow-lg transition-all duration-300 select-none z-20">
               {/* Country Selection Tags */}
               <div className="flex flex-wrap gap-1.5 mb-3 overflow-y-auto max-h-12 scrollbar-none pointer-events-auto">
                 {destinations.map((d) => (
@@ -168,8 +168,8 @@ export function GlobalProtection() {
                     className={cn(
                       "text-[8px] sm:text-[9px] tracking-wider uppercase px-2 py-0.5 border transition-all duration-300 font-sans cursor-pointer rounded-[2px]",
                       selectedDest === d.id
-                        ? "bg-gold border-gold text-navy font-bold"
-                        : "bg-transparent border-cream/10 text-cream/70 hover:border-gold hover:text-gold"
+                        ? "bg-gold border-gold text-cream font-bold"
+                        : "bg-transparent border-navy/15 text-navy/70 hover:border-gold hover:text-gold"
                     )}
                   >
                     {d.name}
@@ -189,13 +189,13 @@ export function GlobalProtection() {
                     <span className="text-[8px] tracking-widest text-gold font-sans uppercase font-bold block mb-1">
                       International Filing Strategy
                     </span>
-                    <h4 className="font-serif text-base text-cream font-medium">
+                    <h4 className="font-serif text-base text-navy font-medium">
                       {destinations.find((d) => d.id === selectedDest)?.name}
                     </h4>
-                    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-cream/70 font-sans tracking-wide">
+                    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-muted font-sans tracking-wide">
                       {destinations.find((d) => d.id === selectedDest)?.services.map((srv, index) => (
                         <span key={index} className="flex items-center gap-1.5">
-                          <span className="w-1 h-1 rounded-full bg-gold" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-gold" />
                           {srv}
                         </span>
                       ))}
@@ -212,7 +212,7 @@ export function GlobalProtection() {
                     <span className="text-[8px] tracking-widest text-gold font-sans uppercase font-bold block mb-1">
                       Global Filing Network
                     </span>
-                    <h4 className="font-serif text-xs text-cream/75 leading-relaxed">
+                    <h4 className="font-serif text-xs text-navy/85 leading-relaxed">
                       Tap any destination above to view local brand protection and IP registration offerings across major global jurisdictions.
                     </h4>
                   </motion.div>

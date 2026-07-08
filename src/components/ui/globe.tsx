@@ -30,37 +30,34 @@ export function Globe({ className }: { className?: string }) {
       height: width * 2,
       phi: 0,
       theta: 0.3,
-      dark: 1,
-      diffuse: 1.2,
+      dark: 0, // Light theme globe for white/ivory museum style
+      diffuse: 1.1,
       mapSamples: 16000,
-      mapBrightness: 6,
-      baseColor: [0.086, 0.129, 0.243], // Deep Navy #16213E as ocean
-      markerColor: [0.788, 0.643, 0.361], // Soft Gold #C9A45C for land
-      glowColor: [0.788, 0.643, 0.361], // Soft Gold glow
-      opacity: 0.9,
+      mapBrightness: 1.2,
+      baseColor: [0.98, 0.97, 0.95], // Warm Ivory matching background
+      markerColor: [0.788, 0.643, 0.361], // Soft luxury gold for markers
+      glowColor: [0.98, 0.97, 0.95], // Ambient glow matches ivory
+      opacity: 1,
       markers: [
-        // Origin: India (New Delhi)
-        { location: [28.6139, 77.209], size: 0.08 },
+        // Origin: India (New Delhi) - larger glowing gold marker
+        { location: [28.6139, 77.209], size: 0.07 },
         // Jurisdictions
-        { location: [40.7128, -74.006], size: 0.04 }, // USA (NY)
-        { location: [51.5074, -0.1278], size: 0.04 }, // UK (London)
-        { location: [50.8503, 4.3517], size: 0.04 }, // EU (Brussels)
-        { location: [43.6532, -79.3832], size: 0.04 }, // Canada
-        { location: [-33.8688, 151.2093], size: 0.04 }, // Australia
-        { location: [35.6762, 139.6503], size: 0.04 }, // Japan
-        { location: [1.3521, 103.8198], size: 0.04 }, // Singapore
-        { location: [37.5665, 126.978], size: 0.04 }, // South Korea
-        { location: [25.2048, 55.2708], size: 0.04 }, // UAE
-        { location: [24.7136, 46.6753], size: 0.04 }, // Saudi Arabia
-        { location: [52.52, 13.405], size: 0.04 }, // Germany
-        { location: [48.8566, 2.3522], size: 0.04 }, // France
-        { location: [46.2044, 6.1432], size: 0.04 }, // Switzerland
-        { location: [52.3676, 4.9041], size: 0.04 }, // Netherlands
+        { location: [40.7128, -74.006], size: 0.03 }, // USA (NY)
+        { location: [51.5074, -0.1278], size: 0.03 }, // UK (London)
+        { location: [50.8503, 4.3517], size: 0.03 }, // EU (Brussels)
+        { location: [43.6532, -79.3832], size: 0.03 }, // Canada
+        { location: [-33.8688, 151.2093], size: 0.03 }, // Australia
+        { location: [35.6762, 139.6503], size: 0.03 }, // Japan
+        { location: [1.3521, 103.8198], size: 0.03 }, // Singapore
+        { location: [37.5665, 126.978], size: 0.03 }, // South Korea
+        { location: [52.52, 13.405], size: 0.03 }, // Germany
+        { location: [48.8566, 2.3522], size: 0.03 }, // France
+        { location: [25.2048, 55.2708], size: 0.03 }, // UAE
       ],
       onRender: (state) => {
-        // Auto-rotation (1 full rotation ~ 90 seconds -> speed ~ 0.007 rad per frame)
+        // Auto-rotation (1 full rotation ~ 90 seconds -> speed ~ 0.003 rad per frame)
         if (!pointerInteracting.current) {
-          phi += 0.003;
+          phi += 0.0025;
         }
         state.phi = phi + r;
         state.width = width * 2;
