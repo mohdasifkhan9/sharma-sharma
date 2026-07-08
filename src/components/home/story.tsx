@@ -21,7 +21,7 @@ export function LegacyTimeline() {
       year: "1972",
       title: "The Beginning",
       description: "Late Shri Raghubar Dayal Sharma establishes the foundation of an intellectual property practice built on integrity and craftsmanship.",
-      image: "https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/media/1972.jpeg",
       stats: { value: "1972", label: "Est. Old Delhi" },
       floating: [
         { text: "No. 01842 / Trademark", pos: "top-[-30px] left-[-40px]", rotate: -8, delay: 0.1 },
@@ -32,7 +32,7 @@ export function LegacyTimeline() {
       year: "1985",
       title: "Expansion Era",
       description: "Representing domestic textile pioneers and emerging manufacturing houses as India's brand economy gains momentum.",
-      image: "https://images.pexels.com/photos/5453811/pexels-photo-5453811.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/media/1985.jpeg",
       stats: { value: "50+", label: "Years of Trust" },
       floating: [
         { text: "Official Registry Seal", pos: "top-[10px] right-[-60px]", rotate: 12, delay: 0.3 },
@@ -43,7 +43,7 @@ export function LegacyTimeline() {
       year: "2001",
       title: "Modernization",
       description: "Securing global registration pathways and transitioning into modern trademark management systems for international scaling.",
-      image: "https://images.pexels.com/photos/6077368/pexels-photo-6077368.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/media/2001.jpeg",
       stats: { value: "Thousands+", label: "Brands Protected" },
       floating: [
         { text: "Madrid Protocol Filing", pos: "top-[-40px] left-[20px]", rotate: 5, delay: 0.25 },
@@ -54,7 +54,7 @@ export function LegacyTimeline() {
       year: "Today",
       title: "Global Protection",
       description: "Securing patents, trademarks, and industrial designs across dozens of jurisdictions with third-generation counsel representation.",
-      image: "https://images.pexels.com/photos/8146200/pexels-photo-8146200.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/media/today.jpeg",
       stats: { value: "Global", label: "IP Protection" },
       floating: [
         { text: "Embassy Attestation", pos: "top-[-20px] right-[-30px]", rotate: -10, delay: 0.2 },
@@ -168,7 +168,7 @@ export function LegacyTimeline() {
                       alt={milestones[activeIndex].title}
                       fill
                       sizes="(max-width: 1024px) 80vw, 45vw"
-                      className="object-cover grayscale hover:grayscale-0 transition-all duration-[1200ms]"
+                      className="object-cover transition-all duration-[1200ms]"
                       priority
                     />
                   </motion.div>
@@ -213,11 +213,14 @@ export function LegacyTimeline() {
 
             {/* Content Container */}
             <div className="w-full">
-              <span className="text-[10px] tracking-[0.25em] font-sans uppercase text-gold font-semibold">
-                Our Legacy
-              </span>
+              {/* Top-bordered sub-heading styled exactly like Hero section */}
+              <div className="border-t border-line/60 pt-4 w-full mb-4">
+                <span className="block overline text-gold text-[10px] tracking-[0.3em] font-sans uppercase font-bold">
+                  OUR LEGACY
+                </span>
+              </div>
 
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl mt-3 text-navy tracking-tight leading-[1.1]">
+              <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.8rem)] text-navy leading-[1.1] tracking-tight mt-3">
                 A Half-Century <br className="hidden sm:block" />of Protecting Ideas.
               </h2>
 
