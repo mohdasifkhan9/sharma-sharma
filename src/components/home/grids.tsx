@@ -13,12 +13,12 @@ import { industries } from "@/lib/content";
 import { media } from "@/lib/media";
 
 const areaImages = [
-  media.packaging[0],
-  media.heritage[0],
-  media.design[0],
-  media.global.map,
-  media.research[0],
-  media.meeting[0],
+  "/media/Trademark Registration.jpeg",
+  "/media/Copyright Registration.jpeg",
+  "/media/Design Registration.jpeg",
+  "/media/International Filing.jpeg",
+  "/media/Trademark Monitoring.jpeg",
+  "/media/IP Litigation.jpeg",
 ];
 
 export function PracticeAreas() {
