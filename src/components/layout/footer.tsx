@@ -103,47 +103,6 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Monumental Closing Signature */}
-      <div 
-        aria-hidden 
-        className="pointer-events-none select-none w-full flex flex-col justify-center items-center overflow-y-visible"
-        style={{
-          minHeight: "clamp(240px, 25vw, 440px)",
-          height: "auto",
-        }}
-      >
-        <div 
-          className="w-full text-center px-4 sm:px-10 overflow-x-clip"
-          style={{
-            paddingTop: "0.12em",
-            paddingBottom: "0.16em",
-          }}
-        >
-          {/* Desktop/Tablet version: one line */}
-          <h2 
-            className="font-serif uppercase hidden sm:block text-cream/[0.04] tracking-normal select-none text-center"
-            style={{
-              fontSize: "clamp(120px, 13vw, 240px)",
-              lineHeight: "1.0",
-            }}
-          >
-            SHARMA <span className="text-gold/[0.04] inline-block align-baseline">&amp;</span> SHARMA
-          </h2>
-          
-          {/* Mobile version: stacked two lines */}
-          <h2 
-            className="font-serif uppercase block sm:hidden text-cream/[0.04] tracking-normal select-none text-center"
-            style={{
-              fontSize: "clamp(60px, 18vw, 100px)",
-              lineHeight: "0.95",
-            }}
-          >
-            SHARMA <span className="text-gold/[0.04] inline-block align-baseline">&amp;</span>
-            <br />
-            SHARMA
-          </h2>
-        </div>
-      </div>
     </footer>
   );
 }
