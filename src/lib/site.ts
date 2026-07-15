@@ -6,11 +6,11 @@ export const site = {
   description:
     "Sharma & Sharma is one of India's established Intellectual Property law firms — safeguarding trademarks, copyrights, designs and global brand portfolios since 1972.",
   url: "https://sharmaandsharma.example",
-  email: "info@reservemark.com",
+  email: "info@ipmark.in",
   phones: ["+91-11-45143161", "+91-11-23934967"],
   address: {
-    line1: "236, Chandni Chowk",
-    line2: "Fatehpuri",
+    line1: "466, Western Wing",
+    line2: "Tis Hazari Courts",
     city: "Delhi",
     postal: "110006",
     country: "India",
