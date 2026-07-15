@@ -230,51 +230,180 @@ export function GlobalProtection() {
 }
 
 export function SuccessStories() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const testimonials = [
+    {
+      ref: "CS / 024",
+      quote: "“Sharma & Sharma understood that we were not simply filing a trademark. We were protecting decades of brand equity.”",
+      client: "ARJUN MEHRA",
+      designation: "FOUNDER",
+      company: "MEHRA TEXTILES",
+      location: "NEW DELHI — INDIA",
+      matter: "BRAND PROTECTION",
+      jurisdiction: "INDIA + EUROPEAN UNION",
+      relationship: "12 YEARS",
+      status: "ACTIVE COUNSEL",
+    },
+    {
+      ref: "CS / 089",
+      quote: "“Their strategic counsel on international design registration allowed us to coordinate filings across five continents smoothly.”",
+      client: "PRIYA SHARMA",
+      designation: "CHIEF EXECUTIVE OFFICER",
+      company: "AURA EDITORIAL",
+      location: "MUMBAI — INDIA",
+      matter: "DESIGN REGISTRATION",
+      jurisdiction: "GLOBAL PORTFOLIO",
+      relationship: "8 YEARS",
+      status: "ACTIVE COUNSEL",
+    },
+    {
+      ref: "CS / 112",
+      quote: "“Discretion, speed, and absolute legal authority. They remain our primary counsel for high-stakes trademark litigation.”",
+      client: "ROHIT KAPOOR",
+      designation: "LEGAL DIRECTOR",
+      company: "VINTAGE SPINNERS",
+      location: "KOLKATA — INDIA",
+      matter: "IP LITIGATION",
+      jurisdiction: "SUPREME COURT OF INDIA",
+      relationship: "15 YEARS",
+      status: "ACTIVE COUNSEL",
+    },
+  ];
+
+  const current = testimonials[activeIndex];
+
   return (
-    <Section dark>
+    <Section dark className="relative overflow-hidden select-none pointer-events-auto">
+      {/* Background blueprint details (<2% opacity) */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.015] border m-8 border-cream/40" />
+
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div>
-          <SectionLabel light>Client Success</SectionLabel>
+          <SectionLabel light>CLIENT VOICES</SectionLabel>
           <SplitHeading className="display mt-6 text-[clamp(2.2rem,5vw,4.5rem)] text-cream">
-            Stories worth protecting.
+            Trusted in confidence.
           </SplitHeading>
+        </div>
+        
+        {/* Archival statement progress notation */}
+        <div className="text-[10px] tracking-[0.25em] font-mono text-gold uppercase select-none">
+          STATEMENT {String(activeIndex + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}
         </div>
       </div>
 
-      <div className="mt-16 space-y-16 md:space-y-24">
-        {stories.map((s, i) => (
-          <div
-            key={s.title}
-            className={`grid items-center gap-8 md:grid-cols-2 md:gap-16 ${
-              i % 2 === 1 ? "md:[direction:rtl]" : ""
-            }`}
-          >
-            <div className="[direction:ltr]">
-              <MediaFrame
-                src={s.image}
-                alt={s.client}
-                parallax
-                sizes="(max-width:768px) 100vw, 50vw"
-                className="aspect-[4/3] w-full"
-              />
-            </div>
-            <div className="[direction:ltr]">
-              <Reveal>
-                <p className="overline text-gold">{s.client}</p>
-                <h3 className="mt-4 font-serif text-3xl text-cream md:text-4xl">
-                  {s.title}
-                </h3>
-                <p className="mt-4 max-w-md text-[15px] leading-relaxed text-cream/60">
-                  {s.text}
-                </p>
-                <p className="mt-8 inline-flex items-center gap-3 border border-cream/20 px-5 py-2.5 text-sm text-cream">
-                  <span className="text-gold">✦</span> {s.result}
-                </p>
-              </Reveal>
-            </div>
+      {/* Asymmetric Editorial Grid */}
+      <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:items-start min-h-[460px] lg:min-h-[400px] relative z-10">
+        
+        {/* LEFT COLUMN: Testimonial Pull Quote (68% space) */}
+        <div className="lg:col-span-8 flex flex-col justify-between h-full min-h-[300px]">
+          
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-2xl"
+            >
+              {/* Main Testimonial Statement */}
+              <blockquote className="font-serif text-[clamp(1.5rem,3.5vw,2.5rem)] leading-snug text-cream">
+                {current.quote}
+              </blockquote>
+
+              {/* Client Metadata block */}
+              <div className="mt-8 flex flex-col gap-1.5 border-l-2 border-gold/40 pl-6">
+                <span className="text-[11px] tracking-[0.2em] font-sans font-bold text-cream uppercase">
+                  {current.client}
+                </span>
+                <span className="text-[9px] tracking-[0.25em] font-sans text-gold font-medium uppercase">
+                  {current.designation} · {current.company}
+                </span>
+                <span className="text-[9px] tracking-[0.2em] font-sans text-cream/40 uppercase">
+                  {current.location}
+                </span>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Testimonial Archival Index Navigation */}
+          <div className="mt-10 flex gap-4 border-t border-cream/10 pt-6">
+            {testimonials.map((t, idx) => (
+              <button
+                key={t.ref}
+                onClick={() => setActiveIndex(idx)}
+                className={cn(
+                  "relative text-sm font-serif font-bold py-2 cursor-pointer transition-all duration-300",
+                  idx === activeIndex ? "text-gold scale-110" : "text-cream/40 hover:text-cream"
+                )}
+                aria-label={`View statement ${idx + 1}`}
+              >
+                {String(idx + 1).padStart(2, "0")}
+                {idx === activeIndex && (
+                  <motion.div
+                    layoutId="timeline-indicator"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </button>
+            ))}
           </div>
-        ))}
+
+        </div>
+
+        {/* RIGHT COLUMN: Client Record Panel (32% space) */}
+        <div className="lg:col-span-4 w-full flex justify-end">
+          
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full max-w-[340px] bg-cream border border-line rounded-[2px] p-6 shadow-md text-navy relative"
+            >
+              {/* Header stamp */}
+              <div className="flex justify-between items-center border-b border-line/45 pb-3 mb-5">
+                <span className="overline text-[8px] text-muted font-sans font-semibold">IP REGISTRY FILE</span>
+                <span className="text-[9px] font-mono text-gold font-bold">{current.ref}</span>
+              </div>
+
+              {/* Ledger fields metadata */}
+              <div className="space-y-4 text-xs font-sans">
+                <div className="flex flex-col gap-1">
+                  <span className="text-[8px] text-muted uppercase tracking-widest font-semibold">Matter</span>
+                  <span className="font-serif text-sm font-semibold text-navy">{current.matter}</span>
+                </div>
+                <div className="border-t border-line/30 my-2" />
+
+                <div className="flex flex-col gap-1">
+                  <span className="text-[8px] text-muted uppercase tracking-widest font-semibold">Jurisdiction</span>
+                  <span className="font-serif text-sm font-semibold text-navy">{current.jurisdiction}</span>
+                </div>
+                <div className="border-t border-line/30 my-2" />
+
+                <div className="flex flex-col gap-1">
+                  <span className="text-[8px] text-muted uppercase tracking-widest font-semibold">Relationship</span>
+                  <span className="font-serif text-sm font-semibold text-navy">{current.relationship}</span>
+                </div>
+                <div className="border-t border-line/30 my-2" />
+
+                <div className="flex flex-col gap-1">
+                  <span className="text-[8px] text-muted uppercase tracking-widest font-semibold">Status</span>
+                  <span className="font-serif text-sm font-semibold text-gold">{current.status}</span>
+                </div>
+              </div>
+
+            </motion.div>
+          </AnimatePresence>
+
+        </div>
+
       </div>
+
     </Section>
   );
 }
