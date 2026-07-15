@@ -1,26 +1,11 @@
 import Link from "next/link";
 import { navItems, services, site } from "@/lib/site";
-import { Marquee } from "@/components/ui/interactive";
 import { Monogram } from "@/components/ui/monogram";
 
 export function Footer() {
-  const marqueeItems = services.map(s => {
-    if (s === "Trademark Registration") return "Trademark";
-    if (s === "Copyright Registration") return "Copyright";
-    if (s === "Design Registration") return "Design";
-    if (s === "Trademark Monitoring") return "Monitoring";
-    if (s === "IP Litigation") return "Litigation";
-    if (s === "Legal Advisory") return "Advisory";
-    return s;
-  }).filter(s => 
-    ["Trademark", "Copyright", "Design", "International Filing", "Monitoring", "Litigation", "Licensing", "Advisory"].includes(s)
-  );
-
   return (
     <footer className="relative overflow-hidden bg-navy text-cream">
-      <div className="border-b border-cream/10 py-4">
-        <Marquee items={marqueeItems} />
-      </div>
+
 
       <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-10">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
