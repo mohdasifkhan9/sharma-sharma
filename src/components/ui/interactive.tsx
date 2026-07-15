@@ -50,16 +50,72 @@ export function Marquee({
   items: string[];
   className?: string;
 }) {
-  const doubled = [...items, ...items];
   return (
-    <div className={cn("relative flex overflow-hidden", className)}>
-      <div className="marquee-track flex shrink-0 items-center gap-10 pr-10">
-        {doubled.map((it, i) => (
-          <span key={i} className="flex items-center gap-10 whitespace-nowrap">
-            <span className="font-serif text-3xl text-navy/80 md:text-4xl">{it}</span>
-            <span className="text-gold">✦</span>
-          </span>
-        ))}
+    <div 
+      className={cn("relative overflow-hidden w-full select-none", className)} 
+      style={{ 
+        minHeight: "clamp(92px, 8vw, 132px)", 
+        display: "flex", 
+        alignItems: "center",
+        overflowX: "clip",
+        paddingBlock: "12px",
+      }}
+    >
+      <div className="marquee-track flex flex-nowrap w-max whitespace-nowrap">
+        {/* Group A */}
+        <div 
+          className="marquee-group flex items-center shrink-0 w-max" 
+          style={{ 
+            display: "flex",
+            alignItems: "center",
+            flexShrink: 0,
+            width: "max-content",
+            paddingInline: "clamp(24px, 4vw, 72px)"
+          }}
+        >
+          {items.map((it, i) => (
+            <span key={`a-${i}`} className="flex items-center shrink-0 whitespace-nowrap">
+              <span 
+                className="font-serif text-[clamp(1.8rem,3vw,2.8rem)] text-navy/80 tracking-normal px-4 sm:px-6" 
+                style={{ 
+                  flex: "0 0 auto", 
+                  whiteSpace: "nowrap", 
+                  lineHeight: 1.1 
+                }}
+              >
+                {it}
+              </span>
+              <span className="text-gold flex-none shrink-0" style={{ flex: "0 0 auto" }}>✦</span>
+            </span>
+          ))}
+        </div>
+        {/* Group B (visually identical duplicate) */}
+        <div 
+          className="marquee-group flex items-center shrink-0 w-max" 
+          style={{ 
+            display: "flex",
+            alignItems: "center",
+            flexShrink: 0,
+            width: "max-content",
+            paddingInline: "clamp(24px, 4vw, 72px)"
+          }}
+        >
+          {items.map((it, i) => (
+            <span key={`b-${i}`} className="flex items-center shrink-0 whitespace-nowrap">
+              <span 
+                className="font-serif text-[clamp(1.8rem,3vw,2.8rem)] text-navy/80 tracking-normal px-4 sm:px-6" 
+                style={{ 
+                  flex: "0 0 auto", 
+                  whiteSpace: "nowrap", 
+                  lineHeight: 1.1 
+                }}
+              >
+                {it}
+              </span>
+              <span className="text-gold flex-none shrink-0" style={{ flex: "0 0 auto" }}>✦</span>
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

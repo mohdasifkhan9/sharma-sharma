@@ -1,47 +1,25 @@
-"use client";
-
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { navItems, services, site } from "@/lib/site";
 import { Marquee } from "@/components/ui/interactive";
+import { Monogram } from "@/components/ui/monogram";
 
 export function Footer() {
-  const stageRef = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
-
-  // Mouse move parallax interaction
-  const [mouseX, setMouseX] = useState(0);
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (stageRef.current) {
-      const { left, width } = stageRef.current.getBoundingClientRect();
-      const relativeX = (e.clientX - left) / width - 0.5; // range: -0.5 to 0.5
-      setMouseX(relativeX);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setMouseX(0);
-  };
-
-  // Scroll link motion
-  const { scrollYProgress } = useScroll({
-    target: stageRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Desktop horizontal scroll link movement (xPercent: 8 to -8)
-  const desktopX = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
-  // Mobile horizontal scroll link movement (xPercent: 3 to -3)
-  const mobileX = useTransform(scrollYProgress, [0, 1], ["3%", "-3%"]);
-
-  // Subtle parallax translation based on mouse X (-8px to 8px)
-  const parallaxX = shouldReduceMotion ? 0 : mouseX * 16;
+  const marqueeItems = services.map(s => {
+    if (s === "Trademark Registration") return "Trademark";
+    if (s === "Copyright Registration") return "Copyright";
+    if (s === "Design Registration") return "Design";
+    if (s === "Trademark Monitoring") return "Monitoring";
+    if (s === "IP Litigation") return "Litigation";
+    if (s === "Legal Advisory") return "Advisory";
+    return s;
+  }).filter(s => 
+    ["Trademark", "Copyright", "Design", "International Filing", "Monitoring", "Litigation", "Licensing", "Advisory"].includes(s)
+  );
 
   return (
-    <footer className="relative overflow-hidden bg-navy text-cream select-none">
-      <div className="border-b border-cream/10 py-10">
-        <Marquee items={["Trademark", "Copyright", "Design", "Litigation", "Global Filing", "Brand Protection"]} />
+    <footer className="relative overflow-hidden bg-navy text-cream">
+      <div className="border-b border-cream/10 py-4">
+        <Marquee items={marqueeItems} />
       </div>
 
       <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-10">
@@ -125,76 +103,45 @@ export function Footer() {
         </div>
       </div>
 
-      {/* THE CLOSING SIGNATURE - Kinetic Typography Watermark Stage */}
-      <div
-        ref={stageRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className="relative overflow-hidden w-full bg-navy border-t border-cream/5 select-none pointer-events-auto h-[240px] sm:h-[320px] lg:h-[clamp(300px,32vw,520px)] flex flex-col justify-end pb-8 lg:pb-12"
+      {/* Monumental Closing Signature */}
+      <div 
+        aria-hidden 
+        className="pointer-events-none select-none w-full flex flex-col justify-center items-center overflow-y-visible"
+        style={{
+          minHeight: "clamp(240px, 25vw, 440px)",
+          height: "auto",
+        }}
       >
-        {/* Archival Ledger baseline rule */}
-        <motion.div
-          initial={shouldReduceMotion ? { scaleX: 1 } : { scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute bottom-20 lg:bottom-28 left-[5%] right-[5%] h-[1px] bg-gold/20 origin-left z-0"
-        />
-
-        {/* Micro Archival Details */}
-        <div className="absolute bottom-12 lg:bottom-16 left-[5%] right-[5%] flex justify-between items-center text-[8px] sm:text-[9px] tracking-[0.25em] font-mono text-cream/35 z-10">
-          <span>VOL. 1972 / DELHI</span>
-          <span>IP ADVOCACY / ARCHIVE</span>
-        </div>
-
-        {/* Secondary Signature Line & Large Monogram Composition */}
-        <div className="w-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col items-start relative z-10">
+        <div 
+          className="w-full text-center px-4 sm:px-10 overflow-x-clip"
+          style={{
+            paddingTop: "0.12em",
+            paddingBottom: "0.16em",
+          }}
+        >
+          {/* Desktop/Tablet version: one line */}
+          <h2 
+            className="font-serif uppercase hidden sm:block text-cream/[0.04] tracking-normal select-none text-center"
+            style={{
+              fontSize: "clamp(120px, 13vw, 240px)",
+              lineHeight: "1.0",
+            }}
+          >
+            SHARMA <span className="text-gold/[0.04] inline-block align-baseline">&amp;</span> SHARMA
+          </h2>
           
-          {/* Institutional Label above */}
-          <div className="mb-4 lg:mb-8 flex items-center gap-2">
-            <div className="w-6 h-[1px] bg-gold/60" />
-            {/* Desktop single line */}
-            <span className="hidden sm:inline text-[9px] tracking-[0.25em] font-sans text-gold font-bold uppercase">
-              PROTECTING IDEAS SINCE 1972
-            </span>
-            {/* Mobile stacked layout */}
-            <span className="sm:hidden text-[9px] tracking-[0.2em] font-sans text-gold font-bold uppercase leading-tight">
-              PROTECTING IDEAS<br />SINCE 1972
-            </span>
-          </div>
-
-          {/* Primary Typography Container */}
-          <div className="w-full overflow-hidden">
-            {/* Desktop Composition */}
-            <motion.div
-              style={shouldReduceMotion ? {} : { x: desktopX, translateX: parallaxX }}
-              initial={shouldReduceMotion ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
-              whileInView={{ clipPath: "inset(0 0% 0 0)" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-              className="hidden sm:block whitespace-nowrap font-serif tracking-[-0.04em] text-[clamp(150px,14vw,290px)] leading-[0.85] text-cream/12 cursor-default select-none origin-left"
-            >
-              <span>SHARMA</span>{" "}
-              <span className="text-gold/35 font-serif font-light">&amp;</span>{" "}
-              <span>SHARMA</span>
-            </motion.div>
-
-            {/* Mobile Composition */}
-            <motion.div
-              style={shouldReduceMotion ? {} : { x: mobileX }}
-              initial={shouldReduceMotion ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
-              whileInView={{ clipPath: "inset(0 0% 0 0)" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              className="sm:hidden flex flex-col font-serif tracking-[-0.04em] text-[clamp(62px,18vw,105px)] leading-[0.85] text-cream/12 cursor-default select-none text-left"
-            >
-              <span>
-                SHARMA <span className="text-gold/35 font-serif font-light">&amp;</span>
-              </span>
-              <span>SHARMA</span>
-            </motion.div>
-          </div>
-
+          {/* Mobile version: stacked two lines */}
+          <h2 
+            className="font-serif uppercase block sm:hidden text-cream/[0.04] tracking-normal select-none text-center"
+            style={{
+              fontSize: "clamp(60px, 18vw, 100px)",
+              lineHeight: "0.95",
+            }}
+          >
+            SHARMA <span className="text-gold/[0.04] inline-block align-baseline">&amp;</span>
+            <br />
+            SHARMA
+          </h2>
         </div>
       </div>
     </footer>
