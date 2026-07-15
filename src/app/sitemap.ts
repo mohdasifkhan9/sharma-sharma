@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
+import { articles } from "@/data/insights";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -14,9 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/privacy",
     "/terms",
   ];
+  
+  const articleRoutes = articles.map((a) => `/insights/${a.slug}`);
+  const allRoutes = [...routes, ...articleRoutes];
   const now = new Date();
-  return routes.map((route) => ({
-    url: `${site.url}${route}`,
+  
+  return allRoutes.map((route) => ({
+    url: `https://ipmark.in${route}`,
     lastModified: now,
     changeFrequency: route === "" ? "weekly" : "monthly",
     priority: route === "" ? 1 : 0.7,

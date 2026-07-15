@@ -7,7 +7,8 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SectionLabel, SplitHeading, Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/layout/section";
 import { Counter } from "@/components/ui/interactive";
-import { stories, articles } from "@/lib/content";
+import { stories } from "@/lib/content";
+import { articles } from "@/data/insights";
 import { cn } from "@/lib/utils";
 import { MediaFrame } from "@/components/ui/media";
 import { Globe } from "@/components/ui/globe";
@@ -409,6 +410,9 @@ export function SuccessStories() {
 }
 
 export function KnowledgeCenter() {
+  // Show first 4 articles on the homepage
+  const displayArticles = articles.slice(0, 4);
+
   return (
     <Section className="bg-paper">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -426,12 +430,12 @@ export function KnowledgeCenter() {
       </div>
 
       <div className="mt-14 grid gap-6 md:grid-cols-2">
-        {articles.map((a, i) => (
-          <Reveal key={a.title} delay={i * 0.05}>
-            <Link href="/insights" className="group block" data-cursor="Read">
+        {displayArticles.map((a, i) => (
+          <Reveal key={a.slug} delay={i * 0.05}>
+            <Link href={`/insights/${a.slug}`} className="group block" data-cursor="Read">
               <motion.div className="overflow-hidden rounded-[4px]">
                 <MediaFrame
-                  src={a.image}
+                  src={a.featuredImage}
                   alt={a.title}
                   sizes="(max-width:768px) 100vw, 50vw"
                   className="aspect-[16/10] w-full"
@@ -441,7 +445,7 @@ export function KnowledgeCenter() {
               <div className="mt-5 flex items-center gap-4 text-xs uppercase tracking-[0.14em] text-muted">
                 <span className="text-gold">{a.category}</span>
                 <span>·</span>
-                <span>{a.read}</span>
+                <span>{a.readingTime}</span>
               </div>
               <h3 className="mt-3 flex items-start justify-between gap-4 font-serif text-2xl text-navy md:text-3xl">
                 <span className="transition-colors group-hover:text-gold">{a.title}</span>
