@@ -61,7 +61,7 @@ export default function ContactPage() {
 
             <div className="mt-10">
               <MediaFrame
-                src="/media/sharma_sharma_office_reception.png"
+                src="/media/sharma_sharma_office_reception.jpg"
                 alt="Sharma & Sharma office reception"
                 sizes="(max-width:768px) 100vw, 45vw"
                 className="aspect-[16/11] w-full"
