@@ -37,7 +37,7 @@ export default function CopyrightPage() {
         label="Copyright Registration"
         title="Original work deserves an original defence."
         intro="From manuscripts to source code, copyright protects the expression of your ideas. We register and enforce it so your creativity remains yours."
-        image={media.heritage[0]}
+        image="/media/Copyright Registration.jpeg"
         imageAlt="Handwritten manuscript and books"
       />
 
@@ -101,7 +101,7 @@ export default function CopyrightPage() {
               Copyright, clarified.
             </SplitHeading>
             <div className="mt-8">
-              <MediaFrame src={media.heritage[3]} alt="Vintage papers" sizes="40vw" className="aspect-[4/3] w-full" />
+              <MediaFrame src="/media/Lawyer's_desk_Delhi_heritage.jpeg" alt="Vintage papers" sizes="40vw" className="aspect-[4/3] w-full" />
             </div>
           </div>
           <Accordion items={faqs} />

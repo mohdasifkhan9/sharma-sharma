@@ -33,7 +33,7 @@ export default function TrademarkPage() {
         label="Trademark Registration"
         title="The name that carries your reputation."
         intro="A trademark is the legal embodiment of everything your brand stands for. We help you claim it, register it, and defend it — completely."
-        image={media.packaging[0]}
+        image="/media/Trademark Registration.jpeg"
         imageAlt="Brand packaging and labels"
       />
 
@@ -104,7 +104,7 @@ export default function TrademarkPage() {
           Marks live on shelves, screens and streets.
         </SplitHeading>
         <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {[media.retail[0], media.packaging[1], media.retail[3]].map((src, i) => (
+          {["/media/automobile.jpeg", "/media/fashion.jpeg", "/media/medical.jpeg"].map((src, i) => (
             <Reveal key={src} delay={i * 0.08}>
               <MediaFrame src={src} alt="Trademark in practice" sizes="33vw" className="aspect-[3/4] w-full" />
             </Reveal>

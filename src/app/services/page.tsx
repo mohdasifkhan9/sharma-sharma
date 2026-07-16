@@ -42,7 +42,7 @@ export default function ServicesPage() {
           </SplitHeading>
           <div className="mt-14">
             <MediaFrame
-              src={media.meeting[0]}
+              src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
               alt="Advisory in session"
               priority
               parallax

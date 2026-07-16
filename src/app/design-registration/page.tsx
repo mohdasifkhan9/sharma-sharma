@@ -34,7 +34,7 @@ export default function DesignPage() {
         label="Design Registration"
         title="Protect form as fiercely as function."
         intro="The way a product looks can be its most valuable asset. We register the shape, configuration and ornamentation that make yours unmistakable."
-        image={media.design[0]}
+        image="/media/Design Registration.jpeg"
         imageAlt="Industrial design sketches"
       />
 
@@ -93,7 +93,7 @@ export default function DesignPage() {
           From sketch to shelf.
         </SplitHeading>
         <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {[media.design[1], media.design[2], media.packaging[2]].map((src, i) => (
+          {["/media/trademark-classes-india.jpeg", "/media/Global_filing_strategy_document.jpeg", "/media/word-mark-vs-logo-trademark.jpeg"].map((src, i) => (
             <Reveal key={src} delay={i * 0.08}>
               <MediaFrame src={src} alt="Design in practice" sizes="33vw" className="aspect-[3/4] w-full" />
             </Reveal>
