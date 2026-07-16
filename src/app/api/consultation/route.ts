@@ -17,15 +17,23 @@ export async function POST(request: Request) {
 
     const { name, email, phone, company, service, message } = parsed.data;
 
-    // Insert into local database
-    await db.insert(consultations).values({
-      name,
-      email,
-      phone: phone || null,
-      company: company || null,
-      service,
-      message,
-    });
+    // Insert into local database if DATABASE_URL is configured
+    if (process.env.DATABASE_URL) {
+      try {
+        await db.insert(consultations).values({
+          name,
+          email,
+          phone: phone || null,
+          company: company || null,
+          service,
+          message,
+        });
+      } catch (dbError) {
+        console.error("Database insert error:", dbError);
+      }
+    } else {
+      console.warn("DATABASE_URL is not set. Skipping database insert.");
+    }
 
     // Forward payload to Google Apps Script Webhook
     const userAgent = request.headers.get("user-agent") || "Unknown";

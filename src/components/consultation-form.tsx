@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Check, Loader2 } from "lucide-react";
 import { consultationSchema, type ConsultationInput } from "@/lib/schemas";
@@ -14,7 +15,8 @@ const fieldCls =
 const labelCls = "overline text-muted";
 
 export function ConsultationForm() {
-  const [status, setStatus] = useState<"idle" | "success">("idle");
+  const router = useRouter();
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -26,41 +28,24 @@ export function ConsultationForm() {
   });
 
   const onSubmit = async (data: ConsultationInput) => {
-    const res = await fetch("/api/consultation", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (res.ok) {
-      setStatus("success");
-      reset();
+    setErrorMsg(null);
+    try {
+      const res = await fetch("/api/consultation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        reset();
+        router.push("/contact/thanks");
+      } else {
+        const errData = await res.json();
+        setErrorMsg(errData?.error || "Submission failed. Please verify your entries.");
+      }
+    } catch (err) {
+      setErrorMsg("Network error. Please check your connection and try again.");
     }
   };
-
-  if (status === "success") {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col items-start gap-4 rounded-[4px] border border-gold/40 bg-paper p-10"
-      >
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest text-cream">
-          <Check className="h-5 w-5" />
-        </span>
-        <h3 className="font-serif text-3xl text-navy">Thank you.</h3>
-        <p className="max-w-sm text-[15px] leading-relaxed text-muted">
-          Your consultation request has been received. A senior counsel will be in
-          touch within one business day.
-        </p>
-        <button
-          onClick={() => setStatus("idle")}
-          className="link-underline text-sm text-navy"
-        >
-          Submit another request
-        </button>
-      </motion.div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
@@ -108,22 +93,28 @@ export function ConsultationForm() {
         {errors.message && <p className="mt-1 text-xs text-forest">{errors.message.message}</p>}
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-navy px-8 py-4 text-sm font-medium text-cream disabled:opacity-60"
-      >
-        {isSubmitting ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" /> Sending…
-          </>
-        ) : (
-          <>
-            Request Consultation
-            <span className="text-gold">→</span>
-          </>
+      <div className="flex flex-col items-start gap-4">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-navy px-8 py-4 text-sm font-medium text-cream disabled:opacity-60"
+        >
+          {isSubmitting ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+            </>
+          ) : (
+            <>
+              Request Consultation
+              <span className="text-gold">→</span>
+            </>
+          )}
+        </button>
+
+        {errorMsg && (
+          <p className="text-sm text-forest font-medium">{errorMsg}</p>
         )}
-      </button>
+      </div>
     </form>
   );
 }
