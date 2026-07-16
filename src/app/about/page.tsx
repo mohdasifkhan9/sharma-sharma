@@ -35,8 +35,8 @@ export default function AboutPage() {
           <div className="mt-14 grid gap-4 md:grid-cols-12">
             <div className="md:col-span-8">
               <MediaFrame
-                src={media.architecture[1]}
-                alt="The firm's offices"
+                src="/media/trademark-registration-india-guide.jpeg"
+                alt="Intellectual Property records archive"
                 priority
                 parallax
                 sizes="66vw"
@@ -45,8 +45,8 @@ export default function AboutPage() {
             </div>
             <div className="md:col-span-4">
               <MediaFrame
-                src={media.heritage[0]}
-                alt="Historic documents"
+                src="/media/Copyright Registration.jpeg"
+                alt="Vintage legal registers and library shelves"
                 sizes="33vw"
                 className="aspect-[3/4] h-full w-full"
               />
@@ -60,8 +60,8 @@ export default function AboutPage() {
         <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:items-center">
           <Reveal>
             <MediaFrame
-              src={media.heritage[1]}
-              alt="Founder's desk"
+              src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+              alt="Archival fountain pen and legal draft files"
               sizes="50vw"
               className="aspect-[4/5] w-full"
             />
