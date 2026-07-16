@@ -10,7 +10,7 @@ import { media } from "@/lib/media";
 export const metadata: Metadata = {
   title: "Contact & Consultation",
   description:
-    "Book a consultation with Sharma & Sharma. Visit our Chandni Chowk, Delhi office or reach our IP counsel by phone and email.",
+    "Book a consultation with Sharma & Sharma. Visit our Tis Hazari Courts, Delhi office or reach our IP counsel by phone and email.",
 };
 
 const details = [
@@ -71,7 +71,7 @@ export default function ContactPage() {
             <div className="mt-4 overflow-hidden rounded-[4px] border border-line">
               <iframe
                 title="Office location"
-                src="https://www.google.com/maps?q=Chandni+Chowk+Fatehpuri+Delhi+110006&output=embed"
+                src="https://www.google.com/maps?q=466+Western+Wing+Tis+Hazari+Courts+Delhi+110006&output=embed"
                 className="h-64 w-full grayscale"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

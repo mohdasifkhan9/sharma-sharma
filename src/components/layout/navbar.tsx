@@ -465,12 +465,16 @@ export function Navbar() {
                             <span className="block text-[10px] font-sans text-muted tracking-[0.2em] uppercase mb-4">Locations</span>
                             <ul className="space-y-3">
                               <li>
-                                <span className="block text-[13px] text-navy/80">New Delhi Headquarters</span>
-                                <span className="text-[11px] text-muted">Chandni Chowk, Delhi 110006</span>
+                                <span className="block text-[13px] text-navy/80">New Delhi Office</span>
+                                <span className="text-[11px] text-muted leading-relaxed block">
+                                  {site.address.line1}<br />
+                                  {site.address.line2}<br />
+                                  {site.address.city} {site.address.postal}, {site.address.country}
+                                </span>
                               </li>
                               <li>
                                 <span className="block text-[13px] text-navy/80">Representations</span>
-                                <span className="text-[11px] text-muted">All registries across India & global associate network</span>
+                                <span className="text-[11px] text-muted block mt-1">All registries across India & global network</span>
                               </li>
                             </ul>
                           </div>
@@ -479,14 +483,14 @@ export function Navbar() {
                         <div className="col-span-3 flex flex-col justify-between">
                           <div className="relative aspect-[4/3] w-full overflow-hidden border border-line bg-line/20">
                             <img
-                              src="https://images.pexels.com/photos/8527251/pexels-photo-8527251.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=450&w=600"
-                              alt="Sharma Partners"
-                              className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-750 ease-out"
+                              src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+                              alt="The Counsel's Desk"
+                              className="object-cover w-full h-full object-center grayscale hover:grayscale-0 transition-all duration-750 ease-out"
                             />
                           </div>
                           <div className="mt-4 flex items-center justify-between text-[11px]">
-                            <span className="text-gold uppercase tracking-[0.18em]">Counsel & Partners</span>
-                            <span className="text-muted/70">Est. 1972</span>
+                            <span className="text-gold uppercase tracking-[0.18em]">THE COUNSEL'S DESK</span>
+                            <span className="text-muted/70">SINCE 1972</span>
                           </div>
                         </div>
                       </>
