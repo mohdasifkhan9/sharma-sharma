@@ -11,7 +11,12 @@ import { stories } from "@/lib/content";
 import { articles } from "@/data/insights";
 import { cn } from "@/lib/utils";
 import { MediaFrame } from "@/components/ui/media";
-import { Globe } from "@/components/ui/globe";
+import dynamic from "next/dynamic";
+
+const Globe = dynamic(() => import("@/components/ui/globe").then((m) => m.Globe), {
+  ssr: false,
+  loading: () => <div className="aspect-square w-full max-w-[600px] bg-transparent" />,
+});
 
 export function GlobalProtection() {
   const [selectedDest, setSelectedDest] = useState<string | null>(null);

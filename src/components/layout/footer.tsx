@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { navItems, services, site } from "@/lib/site";
 import { Monogram } from "@/components/ui/monogram";
 
@@ -11,9 +12,11 @@ export function Footer() {
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
           <div>
             <div className="mb-6 select-none">
-              <img
+              <Image
                 src="/media/Logo.png"
                 alt="Sharma & Sharma Intellectual Property Law"
+                width={180}
+                height={56}
                 className="h-14 w-auto object-contain brightness-0 invert"
               />
             </div>

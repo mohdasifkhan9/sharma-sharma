@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export function ClientTicker() {
@@ -30,10 +31,12 @@ export function ClientTicker() {
         {/* Infinite CSS animation track defined in globals.css */}
         <div className="flex marquee-track whitespace-nowrap gap-28 items-center h-full">
           {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map((src, i) => (
-            <img
+            <Image
               key={i}
               src={src}
               alt="Trusted Client Partner Logo"
+              width={120}
+              height={64}
               className="h-[60px] md:h-[64px] w-auto object-contain transition-transform duration-300 pointer-events-auto filter drop-shadow-sm"
             />
           ))}

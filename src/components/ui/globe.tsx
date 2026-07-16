@@ -6,9 +6,24 @@ import { cn } from "@/lib/utils";
 
 export function Globe({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const pointerInteracting = useRef<number | null>(null);
   const pointerInteractionStart = useRef<number>(0);
+  const isInViewRef = useRef(false);
   const [r, setR] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     let phi = 0;
@@ -55,6 +70,7 @@ export function Globe({ className }: { className?: string }) {
         { location: [25.2048, 55.2708], size: 0.03 }, // UAE
       ],
       onRender: (state) => {
+        if (!isInViewRef.current) return;
         // Auto-rotation (1 full rotation ~ 90 seconds -> speed ~ 0.003 rad per frame)
         if (!pointerInteracting.current) {
           phi += 0.0025;
@@ -79,6 +95,7 @@ export function Globe({ className }: { className?: string }) {
 
   return (
     <div
+      ref={containerRef}
       className={cn(
         "relative mx-auto aspect-square w-full max-w-[600px] flex items-center justify-center bg-transparent",
         className

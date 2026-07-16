@@ -89,26 +89,30 @@ export function Hero() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // GSAP Reveal animations for headline and statements
-    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+    const ctx = gsap.context(() => {
+      // GSAP Reveal animations for headline and statements
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-    tl.fromTo(
-      ".hero-reveal-line",
-      { y: "100%", opacity: 0 },
-      { y: "0%", opacity: 1, duration: 1.4, stagger: 0.15, delay: 0.3 }
-    )
-    .fromTo(
-      ".hero-fade-in",
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 1, stagger: 0.1 },
-      "-=0.8"
-    )
-    .fromTo(
-      ".hero-scale-in",
-      { scale: 0.9, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 1.5 },
-      "-=1.2"
-    );
+      tl.fromTo(
+        ".hero-reveal-line",
+        { y: "100%", opacity: 0 },
+        { y: "0%", opacity: 1, duration: 1.4, stagger: 0.15, delay: 0.3 }
+      )
+      .fromTo(
+        ".hero-fade-in",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 1, stagger: 0.1 },
+        "-=0.8"
+      )
+      .fromTo(
+        ".hero-scale-in",
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.5 },
+        "-=1.2"
+      );
+    });
+
+    return () => ctx.revert();
   }, []);
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -482,10 +483,12 @@ export function Navbar() {
 
                         <div className="col-span-3 flex flex-col justify-between">
                           <div className="relative aspect-[4/3] w-full overflow-hidden border border-line bg-line/20">
-                            <img
+                            <Image
                               src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
                               alt="The Counsel's Desk"
-                              className="object-cover w-full h-full object-center grayscale hover:grayscale-0 transition-all duration-750 ease-out"
+                              fill
+                              sizes="33vw"
+                              className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-750 ease-out"
                             />
                           </div>
                           <div className="mt-4 flex items-center justify-between text-[11px]">
