@@ -652,13 +652,12 @@ export function Navbar() {
                   </motion.div>
                 </div>
 
-                {/* Direct Links (Trademark, Copyright, Design, Insights, Consultation) */}
+                {/* Direct Links (Trademark, Copyright, Design, Insights) */}
                 {[
                   { label: "Trademark", href: "/trademark" },
                   { label: "Copyright", href: "/copyright" },
                   { label: "Design", href: "/design-registration" },
                   { label: "Insights", href: "/insights" },
-                  { label: "Consultation", href: "/contact" },
                 ].map((item, i) => {
                   const active = pathname === item.href;
                   return (
