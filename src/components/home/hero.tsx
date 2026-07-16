@@ -52,6 +52,16 @@ export function Hero() {
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [activeStage, setActiveStage] = useState(0);
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -123,15 +133,22 @@ export function Hero() {
     >
       {/* Background cinematic video container */}
       <motion.div style={{ y: videoY }} className="absolute inset-0 z-0 pointer-events-none">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 object-cover w-full h-[120%] grayscale opacity-[0.32] transition-all duration-[2000ms]"
-          src={media.hero.video}
-        />
+        {!isMobile ? (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 object-cover w-full h-[120%] grayscale opacity-[0.32] transition-all duration-[2000ms]"
+            src={media.hero.video}
+          />
+        ) : (
+          <div
+            className="absolute inset-0 bg-cover bg-center grayscale opacity-[0.22]"
+            style={{ backgroundImage: "url('/media/Lawyer\\'s_desk_Delhi_heritage.jpeg')" }}
+          />
+        )}
         {/* Luxury editorial overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-cream/5 via-cream/50 to-cream" />
         <div className="paper-grain absolute inset-0 mix-blend-overlay opacity-30" />

@@ -105,7 +105,8 @@ export function LegacyTimeline() {
             Math.floor(progress * milestones.length),
             milestones.length - 1
           );
-          setActiveIndex(index);
+          
+          setActiveIndex((prev) => (prev !== index ? index : prev));
 
           // Animate the timeline progress line
           if (progressLineRef.current) {
