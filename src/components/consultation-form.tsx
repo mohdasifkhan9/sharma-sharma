@@ -30,20 +30,29 @@ export function ConsultationForm() {
   const onSubmit = async (data: ConsultationInput) => {
     setErrorMsg(null);
     try {
-      const res = await fetch("/api/consultation", {
+      const webhookUrl = "https://script.google.com/macros/s/AKfycby-dk4Q95MOD_u653N-kwX2kd4_32Ha7Pzz5kgGWHeD4kdkt9j_rDlOA8H9oJL14f3ElQ/exec";
+      const payload = {
+        fullName: data.name,
+        email: data.email,
+        phone: data.phone || "",
+        company: data.company || "",
+        service: data.service,
+        message: data.message,
+        submittedAt: new Date().toISOString(),
+        userAgent: typeof window !== "undefined" ? navigator.userAgent : "Unknown",
+        ip: "Browser Submission",
+      };
+
+      await fetch(webhookUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        mode: "no-cors",
+        body: JSON.stringify(payload),
       });
-      if (res.ok) {
-        reset();
-        router.push("/contact/thanks");
-      } else {
-        const errData = await res.json();
-        setErrorMsg(errData?.error || "Submission failed. Please verify your entries.");
-      }
+
+      reset();
+      router.push("/contact/thanks");
     } catch (err) {
-      setErrorMsg("Network error. Please check your connection and try again.");
+      setErrorMsg("Submission error. Please check your connection and try again.");
     }
   };
 
