@@ -15,7 +15,7 @@ export function ConsultationCTA() {
       
       {/* Background cinematic luxury office video (<12% opacity, blurred) */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08] blur-[8px]">
-        <VideoFrame src={media.video.office} overlay={false} className="h-full w-full object-cover scale-105 animate-[zoom_60s_infinite]" />
+        <VideoFrame src="https://res.cloudinary.com/dlxsw8hba/video/upload/v1784358862/4475743-uhd_3840_2160_25fps_1_ujfekn.mp4" overlay={false} className="h-full w-full object-cover scale-105 animate-[zoom_60s_infinite]" />
       </div>
 
       {/* Blueprint gridlines & texture details */}
