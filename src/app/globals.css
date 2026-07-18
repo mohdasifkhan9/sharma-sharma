@@ -68,13 +68,7 @@ body {
   font-weight: 500;
 }
 
-/* Custom cursor */
-@media (hover: hover) and (pointer: fine) {
-  .cursor-none-desktop,
-  .cursor-none-desktop * {
-    cursor: none;
-  }
-}
+
 
 /* GSAP split reveal helpers */
 .line-mask {

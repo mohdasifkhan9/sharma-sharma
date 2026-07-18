@@ -4,7 +4,6 @@ import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
-import { Cursor } from "@/components/ui/cursor";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -79,13 +78,12 @@ const orgSchema = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
-      <body className="cursor-none-desktop">
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
         <LoadingScreen />
-        <Cursor />
         <ScrollProgress />
         <SmoothScroll>
           <Navbar />
