@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -77,9 +77,28 @@ export function VideoFrame({
   rounded?: boolean;
 }) {
   const [loaded, setLoaded] = useState(false);
+  const [inView, setInView] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
+      ref={containerRef}
       className={cn(
         "relative overflow-hidden bg-navy",
         rounded && "rounded-[4px]",
@@ -99,18 +118,20 @@ export function VideoFrame({
           priority
         />
       )}
-      <video
-        className="h-full w-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster={poster}
-        onCanPlay={() => setLoaded(true)}
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+      {inView && (
+        <video
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={poster}
+          onCanPlay={() => setLoaded(true)}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      )}
       {overlay && (
         <div className="absolute inset-0 bg-gradient-to-b from-navy/40 via-navy/20 to-navy/60" />
       )}
