@@ -5,7 +5,7 @@ export const site = {
   since: "1972",
   description:
     "Sharma & Sharma is one of India's established Intellectual Property law firms — safeguarding trademarks, copyrights, designs and global brand portfolios since 1972.",
-  url: "https://sharmaandsharma.example",
+  url: "https://ipmark.in",
   email: "info@ipmark.in",
   phones: ["+91-11-45143161"],
   address: {
