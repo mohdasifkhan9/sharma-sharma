@@ -8,6 +8,7 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { LoadingScreen } from "@/components/loading-screen";
+import { GA4Analytics } from "@/components/analytics/ga4";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
       <body>
+        <GA4Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
