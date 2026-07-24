@@ -1,65 +1,128 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import React, { useEffect, useRef, useState, memo, useCallback, useMemo } from "react";
+import { AnimatePresence, motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { site } from "@/lib/site";
 import { media } from "@/lib/media";
 import { ArrowUpRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-// Magnetic Button Wrapper Component for Luxury feel
-function MagneticButton({ children, className, href }: { children: React.ReactNode; className?: string; href: string }) {
+// 1. Zero Re-render Magnetic Button using Framer Motion Springs
+const MagneticButton = memo(function MagneticButton({
+  children,
+  className,
+  href,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  href: string;
+}) {
   const buttonRef = useRef<HTMLAnchorElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const x = useSpring(rawX, { stiffness: 150, damping: 15, mass: 0.1 });
+  const y = useSpring(rawY, { stiffness: 150, damping: 15, mass: 0.1 });
+
+  const handlePointerMove = useCallback((e: React.PointerEvent<HTMLAnchorElement>) => {
     const btn = buttonRef.current;
     if (!btn) return;
     const { clientX, clientY } = e;
     const { left, top, width, height } = btn.getBoundingClientRect();
-    const x = clientX - (left + width / 2);
-    const y = clientY - (top + height / 2);
-    // Limit range to 15px
-    setPosition({ x: x * 0.35, y: y * 0.35 });
-  };
+    rawX.set((clientX - (left + width / 2)) * 0.35);
+    rawY.set((clientY - (top + height / 2)) * 0.35);
+  }, [rawX, rawY]);
 
-  const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 });
-  };
+  const handlePointerLeave = useCallback(() => {
+    rawX.set(0);
+    rawY.set(0);
+  }, [rawX, rawY]);
 
   return (
     <motion.a
       ref={buttonRef}
       href={href}
-      className={cn("inline-flex items-center justify-center relative overflow-hidden", className)}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      className={cn("inline-flex items-center justify-center relative overflow-hidden select-none", className)}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      style={{ x, y }}
     >
       {children}
     </motion.a>
   );
-}
+});
 
-// Utility helper
-import { cn } from "@/lib/utils";
+// 2. Memoized Static Trust Metrics Strip
+const TrustMetrics = memo(function TrustMetrics() {
+  return (
+    <div className="hero-fade-in grid grid-cols-3 gap-6 max-w-md pt-8 border-t border-line/60">
+      <div>
+        <span className="block font-serif text-[24px] text-navy leading-none">1972</span>
+        <span className="block text-[9px] text-muted uppercase tracking-widest mt-1.5 font-sans">ESTABLISHED</span>
+      </div>
+      <div>
+        <span className="block font-serif text-[24px] text-navy leading-none">50+ Yrs</span>
+        <span className="block text-[9px] text-muted uppercase tracking-widest mt-1.5 font-sans">IP ADVOCACY</span>
+      </div>
+      <div>
+        <span className="block font-serif text-[24px] text-navy leading-none">Thousands</span>
+        <span className="block text-[9px] text-muted uppercase tracking-widest mt-1.5 font-sans">BRANDS SECURED</span>
+      </div>
+    </div>
+  );
+});
+
+// 3. Memoized Structural Gridlines
+const StructuralGridlines = memo(function StructuralGridlines() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 mx-auto max-w-[1520px] px-8 z-0">
+      <div className="grid h-full grid-cols-4 md:grid-cols-12 gap-8 opacity-25">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div key={i} className="border-l border-line h-full last:border-r" />
+        ))}
+      </div>
+    </div>
+  );
+});
+
+const stages = [
+  { year: "1972", title: "Inception", desc: "Founded in New Delhi, safeguarding trade identity." },
+  { year: "2004", title: "Global Expansion", desc: "Pioneering Madrid Protocol filings in India." },
+  { year: "2026", title: "Modern Era", desc: "Leading AI copyright counsel & global portfolio surveillance." },
+];
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [activeStage, setActiveStage] = useState(0);
   const [isMobile, setIsMobile] = useState(true);
+
+  // 4. Motion Values for Zero Re-render Mouse Parallax
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const smoothX = useSpring(mouseX, { stiffness: 100, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 100, damping: 20 });
+
+  // Transform derived motion values directly for GPU layer composition
+  const sealX = useTransform(smoothX, [-1, 1], [-25, 25]);
+  const sealY = useTransform(smoothY, [-1, 1], [-25, 25]);
+
+  const statX = useTransform(smoothX, [-1, 1], [35, -35]);
+  const statY = useTransform(smoothY, [-1, 1], [35, -35]);
+
+  const cardX = useTransform(smoothX, [-1, 1], [-12, 12]);
+  const cardY = useTransform(smoothY, [-1, 1], [-12, 12]);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
-    window.addEventListener("resize", checkMobile);
+    window.addEventListener("resize", checkMobile, { passive: true });
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
@@ -68,27 +131,21 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
 
-  // Track cursor movement for subtle parallax inside the interactive column
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const { clientX, clientY } = e;
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    setMousePos({
-      x: (clientX - w / 2) / (w / 2),
-      y: (clientY - h / 2) / (h / 2),
-    });
-  };
+  // Handle pointer movement with ZERO React re-renders
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLElement>) => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      mouseX.set((e.clientX - w / 2) / (w / 2));
+      mouseY.set((e.clientY - h / 2) / (h / 2));
+    },
+    [mouseX, mouseY]
+  );
 
-  const stages = [
-    { year: "1972", title: "Inception", desc: "Founded in New Delhi, safeguarding trade identity." },
-    { year: "2004", title: "Global Expansion", desc: "Pioneering Madrid Protocol filings in India." },
-    { year: "2026", title: "Modern Era", desc: "Leading AI copyright counsel & global portfolio surveillance." },
-  ];
-
-  // Rotate through stages every 4 seconds for storytelling
+  // Rotate through stages every 4.5 seconds for storytelling
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveStage((prev) => (prev + 1) % stages.length);
@@ -96,11 +153,11 @@ export function Hero() {
     return () => clearInterval(timer);
   }, []);
 
+  // GSAP Reveal Timeline inside isolated context
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // GSAP Reveal animations for headline and statements
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
       tl.fromTo(
@@ -108,19 +165,19 @@ export function Hero() {
         { y: "100%", opacity: 0 },
         { y: "0%", opacity: 1, duration: 1.4, stagger: 0.15, delay: 0.3 }
       )
-      .fromTo(
-        ".hero-fade-in",
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 1, stagger: 0.1 },
-        "-=0.8"
-      )
-      .fromTo(
-        ".hero-scale-in",
-        { scale: 0.9, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.5 },
-        "-=1.2"
-      );
-    });
+        .fromTo(
+          ".hero-fade-in",
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 1, stagger: 0.1 },
+          "-=0.8"
+        )
+        .fromTo(
+          ".hero-scale-in",
+          { scale: 0.9, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 1.5 },
+          "-=1.2"
+        );
+    }, heroRef);
 
     return () => ctx.revert();
   }, []);
@@ -128,11 +185,11 @@ export function Hero() {
   return (
     <section
       ref={heroRef}
-      onMouseMove={handleMouseMove}
+      onPointerMove={handlePointerMove}
       className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-cream pt-[95px] md:pt-[105px] lg:pt-[115px] pb-6 pointer-events-auto"
     >
       {/* Background cinematic video container */}
-      <motion.div style={{ y: videoY }} className="absolute inset-0 z-0 pointer-events-none">
+      <motion.div style={{ y: videoY }} className="absolute inset-0 z-0 pointer-events-none will-change-transform">
         {!isMobile ? (
           <video
             ref={videoRef}
@@ -140,7 +197,8 @@ export function Hero() {
             loop
             muted
             playsInline
-            className="absolute inset-0 object-cover w-full h-[120%] grayscale opacity-[0.32] transition-all duration-[2000ms]"
+            poster="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+            className="absolute inset-0 object-cover w-full h-[120%] grayscale opacity-[0.32] pointer-events-none"
             src={media.hero.video}
           />
         ) : (
@@ -151,17 +209,11 @@ export function Hero() {
         )}
         {/* Luxury editorial overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-cream/5 via-cream/50 to-cream" />
-        <div className="paper-grain absolute inset-0 mix-blend-overlay opacity-30" />
+        <div className="paper-grain absolute inset-0 mix-blend-overlay opacity-30 pointer-events-none" />
       </motion.div>
 
-      {/* Subtle geometric structural gridlines */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 mx-auto max-w-[1520px] px-8 z-0">
-        <div className="grid h-full grid-cols-4 md:grid-cols-12 gap-8 opacity-25">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="border-l border-line h-full last:border-r" />
-          ))}
-        </div>
-      </div>
+      {/* Structural Gridlines */}
+      <StructuralGridlines />
 
       {/* Hero content grid */}
       <motion.div
@@ -210,32 +262,14 @@ export function Hero() {
           </div>
 
           {/* Trust indicators row */}
-          <div className="hero-fade-in grid grid-cols-3 gap-6 max-w-md pt-8 border-t border-line/60">
-            <div>
-              <span className="block font-serif text-[24px] text-navy leading-none">1972</span>
-              <span className="block text-[9px] text-muted uppercase tracking-widest mt-1.5 font-sans">ESTABLISHED</span>
-            </div>
-            <div>
-              <span className="block font-serif text-[24px] text-navy leading-none">50+ Yrs</span>
-              <span className="block text-[9px] text-muted uppercase tracking-widest mt-1.5 font-sans">IP ADVOCACY</span>
-            </div>
-            <div>
-              <span className="block font-serif text-[24px] text-navy leading-none">Thousands</span>
-              <span className="block text-[9px] text-muted uppercase tracking-widest mt-1.5 font-sans">BRANDS SECURED</span>
-            </div>
-          </div>
+          <TrustMetrics />
         </div>
 
         {/* RIGHT COLUMN: Interactive Luxury Composition */}
         <div className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center relative min-h-[480px]">
-          
-          {/* 1. Animated IP Seal (Parallax mouse follow) */}
+          {/* 1. Animated IP Seal (Parallax mouse follow using GPU Motion Values) */}
           <motion.div
-            animate={{
-              x: mousePos.x * 25,
-              y: mousePos.y * 25,
-            }}
-            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            style={{ x: sealX, y: sealY }}
             className="hero-scale-in absolute top-[10%] left-[5%] xl:left-[15%] w-36 h-36 border border-gold/30 rounded-full flex items-center justify-center pointer-events-none select-none z-10"
           >
             <div className="absolute inset-1 border border-line rounded-full animate-[spin_40s_linear_infinite]" />
@@ -252,11 +286,7 @@ export function Hero() {
 
           {/* 2. Floating Statistic Card (Opposite Parallax mouse follow) */}
           <motion.div
-            animate={{
-              x: mousePos.x * -35,
-              y: mousePos.y * -35,
-            }}
-            transition={{ type: "spring", stiffness: 90, damping: 22 }}
+            style={{ x: statX, y: statY }}
             className="hero-scale-in absolute bottom-[15%] left-[0%] xl:left-[10%] bg-cream/95 backdrop-blur-md border border-line p-5 max-w-[170px] shadow-sm z-20 pointer-events-none"
           >
             <span className="block font-serif text-[28px] text-navy leading-none">99.4%</span>
@@ -264,13 +294,9 @@ export function Hero() {
             <p className="text-[10px] text-muted leading-normal mt-1 font-light font-sans">In administrative oppositions & litigation appeal registers.</p>
           </motion.div>
 
-          {/* 3. Main Composition Block (Timeline and Architectural Grid) */}
+          {/* 3. Main Composition Block */}
           <motion.div
-            animate={{
-              x: mousePos.x * 12,
-              y: mousePos.y * 12,
-            }}
-            transition={{ type: "spring", stiffness: 120, damping: 18 }}
+            style={{ x: cardX, y: cardY }}
             className="hero-scale-in bg-cream border border-line p-8 w-full max-w-[380px] shadow-[0_15px_40px_-20px_rgba(22,33,58,0.06)] relative z-10"
           >
             <div className="flex justify-between items-center border-b border-line/60 pb-4 mb-6">
