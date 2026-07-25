@@ -10,6 +10,24 @@ export interface BreadcrumbItemSchema {
   url: string;
 }
 
+export function getWebSiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    alternateName: site.legalName,
+    url: site.url,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${site.url}/insights?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+
 export function getOrganizationSchema() {
   return {
     "@context": "https://schema.org",
@@ -135,5 +153,77 @@ export function getServiceSchema({
       "@type": "Country",
       name: "India",
     },
+  };
+}
+
+export function getArticleSchema({
+  title,
+  description,
+  url,
+  image,
+  datePublished,
+  dateModified,
+  authorName = "Sharma & Sharma Legal Editorial Team",
+}: {
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+  authorName?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    url,
+    image: image || `${site.url}/media/Lawyer's_desk_Delhi_heritage.jpeg`,
+    datePublished: datePublished || "2026-01-01T08:00:00+05:30",
+    dateModified: dateModified || new Date().toISOString(),
+    author: {
+      "@type": "Organization",
+      name: authorName,
+      url: site.url,
+    },
+    publisher: {
+      "@type": "LegalService",
+      name: site.legalName,
+      url: site.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${site.url}/media/Logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+  };
+}
+
+export function getPersonSchema({
+  name,
+  jobTitle,
+  worksFor,
+  url,
+}: {
+  name: string;
+  jobTitle: string;
+  worksFor?: string;
+  url?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name,
+    jobTitle,
+    worksFor: {
+      "@type": "LegalService",
+      name: worksFor || site.legalName,
+      url: site.url,
+    },
+    url: url || site.url,
   };
 }

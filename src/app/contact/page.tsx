@@ -7,10 +7,29 @@ import { ConsultationForm } from "@/components/consultation-form";
 import { site } from "@/lib/site";
 import { media } from "@/lib/media";
 
+import { getLegalServiceSchema, getBreadcrumbSchema } from "@/lib/seo";
+
 export const metadata: Metadata = {
-  title: "Contact & Consultation",
+  title: "Contact Counsel | Book IP Consultation in Delhi, India",
   description:
-    "Book a consultation with Sharma & Sharma. Visit our Tis Hazari Courts, Delhi office or reach our IP counsel by phone and email.",
+    "Schedule a legal consultation with Sharma & Sharma Intellectual Property Attorneys. Visit our Tis Hazari Courts, Delhi practice or contact our IP counsel by email and telephone.",
+  alternates: {
+    canonical: `${site.url}/contact`,
+  },
+  openGraph: {
+    title: "Contact Sharma & Sharma | Intellectual Property Attorneys Delhi",
+    description:
+      "Direct legal consultation with senior IP attorneys representing international brand owners, US corporations, and tech founders in India.",
+    url: `${site.url}/contact`,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Sharma & Sharma | IP Attorneys Delhi",
+    description:
+      "Book a legal consultation for trademark registration, copyright defense, design protection, and IP litigation in India.",
+  },
 };
 
 const details = [
@@ -29,8 +48,21 @@ const details = [
 ];
 
 export default function ContactPage() {
+  const legalSchema = getLegalServiceSchema({
+    name: "Sharma & Sharma Contact & Consultation",
+    description: "Book an IP consultation with senior attorneys at Tis Hazari Courts, Delhi.",
+    url: `${site.url}/contact`,
+  });
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: site.url },
+    { name: "Contact & Consultation", url: `${site.url}/contact` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(legalSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <header className="px-5 pb-10 pt-36 md:px-10 md:pb-16 md:pt-48">
         <div className="mx-auto max-w-[1400px]">
           <SectionLabel>Contact</SectionLabel>

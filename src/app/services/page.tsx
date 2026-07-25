@@ -8,29 +8,62 @@ import { ConsultationCTA } from "@/components/sections/cta";
 import { MediaFrame } from "@/components/ui/media";
 import { media } from "@/lib/media";
 
+import { site } from "@/lib/site";
+import { getLegalServiceSchema, getBreadcrumbSchema } from "@/lib/seo";
+
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Intellectual Property Services | Trademark, Copyright, Design & Litigation",
   description:
-    "The full breadth of Sharma & Sharma's intellectual property services — from registration and portfolio management to litigation and advisory.",
+    "Explore the full breadth of Sharma & Sharma's IP legal services — trademark registration, copyright protection, design registration, Madrid Protocol filings, and High Court IP litigation.",
+  alternates: {
+    canonical: `${site.url}/services`,
+  },
+  openGraph: {
+    title: "IP Services | Sharma & Sharma Attorneys Delhi",
+    description:
+      "Comprehensive intellectual property counsel, trademark prosecution, copyright registration, industrial design protection, and brand enforcement in India.",
+    url: `${site.url}/services`,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IP Services | Sharma & Sharma Attorneys Delhi",
+    description:
+      "Comprehensive intellectual property counsel and brand protection services in India since 1972.",
+  },
 };
 
 const catalog = [
   { h: "Trademark Registration", t: "End-to-end registration, from search to certificate and renewal.", href: "/trademark" },
   { h: "Copyright Registration", t: "Protection for literary, artistic, musical and software works.", href: "/copyright" },
   { h: "Design Registration", t: "Rights over the shape, pattern and ornamentation of products.", href: "/design-registration" },
-  { h: "International Filing", t: "Madrid Protocol and national filings across 150+ jurisdictions.", href: "/contact" },
-  { h: "IP Portfolio Management", t: "Centralised administration, docketing and renewals for global portfolios.", href: "/contact" },
-  { h: "Trademark Monitoring", t: "Continuous watch services across registries and marketplaces.", href: "/contact" },
-  { h: "Trademark Opposition", t: "Prosecuting and defending oppositions before the Registry.", href: "/contact" },
-  { h: "Brand Enforcement", t: "Cease-and-desist, takedowns and anti-counterfeiting action.", href: "/contact" },
+  { h: "International Filing", t: "Madrid Protocol and national filings across 150+ jurisdictions.", href: "/madrid-protocol-india" },
+  { h: "IP Portfolio Management", t: "Centralised administration, docketing and renewals for global portfolios.", href: "/trademark-agent-india" },
+  { h: "Trademark Monitoring", t: "Continuous watch services across registries and marketplaces.", href: "/trademark-attorney-india" },
+  { h: "Trademark Opposition", t: "Prosecuting and defending oppositions before the Registry.", href: "/trademark-lawyer-india" },
+  { h: "Brand Enforcement", t: "Cease-and-desist, takedowns and anti-counterfeiting action.", href: "/ip-lawyer-india" },
   { h: "Licensing", t: "Drafting and negotiating assignment and licensing agreements.", href: "/contact" },
-  { h: "IP Litigation", t: "Infringement and passing-off actions before courts and tribunals.", href: "/contact" },
+  { h: "IP Litigation", t: "Infringement and passing-off actions before courts and tribunals.", href: "/ip-lawyer-india" },
   { h: "Legal Advisory", t: "Strategic counsel on IP strategy, valuation and due diligence.", href: "/contact" },
 ];
 
 export default function ServicesPage() {
+  const legalSchema = getLegalServiceSchema({
+    name: "Sharma & Sharma Intellectual Property Services",
+    description: "Complete intellectual property services portfolio across trademarks, copyrights, designs, and litigation.",
+    url: `${site.url}/services`,
+  });
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: site.url },
+    { name: "IP Services", url: `${site.url}/services` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(legalSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <header className="px-5 pb-16 pt-36 md:px-10 md:pb-20 md:pt-48">
         <div className="mx-auto max-w-[1400px]">
           <SectionLabel>Services</SectionLabel>

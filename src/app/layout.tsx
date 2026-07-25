@@ -57,24 +57,10 @@ export const metadata: Metadata = {
   alternates: { canonical: site.url },
 };
 
-const orgSchema = {
-  "@context": "https://schema.org",
-  "@type": "LegalService",
-  name: site.legalName,
-  description: site.description,
-  foundingDate: site.since,
-  url: site.url,
-  email: site.email,
-  telephone: site.phones,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: `${site.address.line1}, ${site.address.line2}`,
-    addressLocality: site.address.city,
-    postalCode: site.address.postal,
-    addressCountry: "IN",
-  },
-  areaServed: "Worldwide",
-};
+import { getOrganizationSchema, getWebSiteSchema } from "@/lib/seo";
+
+const orgSchema = getOrganizationSchema();
+const webSiteSchema = getWebSiteSchema();
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -84,6 +70,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
         />
         <LoadingScreen />
         <ScrollProgress />

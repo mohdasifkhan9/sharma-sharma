@@ -7,10 +7,29 @@ import { ConsultationCTA } from "@/components/sections/cta";
 import { media } from "@/lib/media";
 import { site } from "@/lib/site";
 
+import { getLegalServiceSchema, getBreadcrumbSchema } from "@/lib/seo";
+
 export const metadata: Metadata = {
-  title: "About the Firm",
+  title: "About the Firm | Intellectual Property Attorneys Since 1972",
   description:
-    "Since 1972, Sharma & Sharma has protected the ideas, brands and creations of India's most ambitious founders and enterprises.",
+    "Since 1972, Sharma & Sharma has protected the ideas, trademarks, copyrights, and designs of ambitious founders, US corporations, and international enterprises.",
+  alternates: {
+    canonical: `${site.url}/about`,
+  },
+  openGraph: {
+    title: "About Sharma & Sharma | Indian IP Attorneys Since 1972",
+    description:
+      "Heritage legal counsel representing international corporations, tech founders, and law firms before the Indian Trade Marks Registry and Delhi High Court.",
+    url: `${site.url}/about`,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Sharma & Sharma | Indian IP Attorneys Since 1972",
+    description:
+      "Established 1972. Five decades of IP advocacy, trademark protection, and cross-border portfolio defense in India.",
+  },
 };
 
 const values = [
@@ -21,8 +40,21 @@ const values = [
 ];
 
 export default function AboutPage() {
+  const legalSchema = getLegalServiceSchema({
+    name: "Sharma & Sharma Intellectual Property Attorneys",
+    description: site.description,
+    url: `${site.url}/about`,
+  });
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: site.url },
+    { name: "About the Firm", url: `${site.url}/about` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(legalSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <header className="px-5 pb-16 pt-36 md:px-10 md:pb-24 md:pt-48">
         <div className="mx-auto max-w-[1400px]">
           <SectionLabel>The Firm</SectionLabel>
