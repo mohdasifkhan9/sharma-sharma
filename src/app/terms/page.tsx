@@ -1,9 +1,26 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/layout/legal";
 
+import { site } from "@/lib/site";
+
 export const metadata: Metadata = {
-  title: "Terms of Use",
+  title: "Terms of Use | Sharma & Sharma Attorneys",
   description: "The terms governing your use of the Sharma & Sharma website.",
+  alternates: {
+    canonical: `${site.url}/terms`,
+  },
+  openGraph: {
+    title: "Terms of Use | Sharma & Sharma Attorneys",
+    description: "The terms governing your use of the Sharma & Sharma website.",
+    url: `${site.url}/terms`,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Terms of Use | Sharma & Sharma Attorneys",
+    description: "The terms governing your use of the Sharma & Sharma website.",
+  },
 };
 
 export default function TermsPage() {

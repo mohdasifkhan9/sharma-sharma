@@ -1,9 +1,26 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "@/components/layout/legal";
 
+import { site } from "@/lib/site";
+
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Policy | Sharma & Sharma Attorneys",
   description: "How Sharma & Sharma collects, uses and protects your information.",
+  alternates: {
+    canonical: `${site.url}/privacy`,
+  },
+  openGraph: {
+    title: "Privacy Policy | Sharma & Sharma Attorneys",
+    description: "How Sharma & Sharma collects, uses and protects your information.",
+    url: `${site.url}/privacy`,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Privacy Policy | Sharma & Sharma Attorneys",
+    description: "How Sharma & Sharma collects, uses and protects your information.",
+  },
 };
 
 export default function PrivacyPage() {

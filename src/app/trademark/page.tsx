@@ -11,10 +11,30 @@ import { ConsultationCTA } from "@/components/sections/cta";
 import { trademarkFaqs } from "@/lib/content";
 import { media } from "@/lib/media";
 
+import { site } from "@/lib/site";
+import { getLegalServiceSchema, getBreadcrumbSchema, getFAQSchema } from "@/lib/seo";
+
 export const metadata: Metadata = {
-  title: "Trademark Registration",
+  title: "Trademark Registration Practice | India Brand Protection Counsel",
   description:
     "Secure your brand with India's trademark experts. Search, filing, examination, opposition and renewal — a complete registration journey since 1972.",
+  alternates: {
+    canonical: `${site.url}/trademark`,
+  },
+  openGraph: {
+    title: "Trademark Registration Practice | Sharma & Sharma Attorneys",
+    description:
+      "Comprehensive trademark search, classification, prosecution, opposition defense, and portfolio maintenance in India.",
+    url: `${site.url}/trademark`,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trademark Registration Practice | Sharma & Sharma Attorneys",
+    description:
+      "Established 1972. Five decades of trademark prosecution and brand defense across all 45 Nice classes.",
+  },
 };
 
 const benefits = [
@@ -27,8 +47,23 @@ const benefits = [
 ];
 
 export default function TrademarkPage() {
+  const legalSchema = getLegalServiceSchema({
+    name: "Sharma & Sharma Trademark Practice",
+    description: "Complete trademark search, registration, examination defense, and renewal services in India.",
+    url: `${site.url}/trademark`,
+  });
+
+  const faqSchema = getFAQSchema(trademarkFaqs);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: site.url },
+    { name: "Trademark Registration", url: `${site.url}/trademark` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(legalSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHero
         label="Trademark Registration"
         title="The name that carries your reputation."

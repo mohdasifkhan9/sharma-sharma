@@ -7,10 +7,30 @@ import { Accordion } from "@/components/ui/interactive";
 import { ConsultationCTA } from "@/components/sections/cta";
 import { media } from "@/lib/media";
 
+import { site } from "@/lib/site";
+import { getLegalServiceSchema, getBreadcrumbSchema, getFAQSchema } from "@/lib/seo";
+
 export const metadata: Metadata = {
-  title: "Design Registration",
+  title: "Industrial Design Practice | Product Shape & Aesthetic IP",
   description:
-    "Protect the shape, configuration, pattern and ornamentation of your products. Industrial design registration by Sharma & Sharma.",
+    "Protect the shape, configuration, pattern and ornamentation of your products under the Indian Designs Act 2000. Industrial design registration by Sharma & Sharma.",
+  alternates: {
+    canonical: `${site.url}/design-registration`,
+  },
+  openGraph: {
+    title: "Industrial Design Practice | Sharma & Sharma Attorneys",
+    description:
+      "Statutory protection for product shapes, packaging, and aesthetic industrial designs before the Patent Office Kolkata.",
+    url: `${site.url}/design-registration`,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Industrial Design Practice | Sharma & Sharma Attorneys",
+    description:
+      "Established 1972. Complete industrial design registration and Locarno classification in India.",
+  },
 };
 
 const faqs = [
@@ -27,9 +47,24 @@ const steps = [
   { h: "Registration", t: "On acceptance, your design is registered and published." },
 ];
 
-export default function DesignPage() {
+export default function DesignRegistrationPage() {
+  const legalSchema = getLegalServiceSchema({
+    name: "Sharma & Sharma Industrial Design Practice",
+    description: "Industrial design registration and Locarno classification services in India.",
+    url: `${site.url}/design-registration`,
+  });
+
+  const faqSchema = getFAQSchema(faqs);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: site.url },
+    { name: "Design Registration", url: `${site.url}/design-registration` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(legalSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHero
         label="Design Registration"
         title="Protect form as fiercely as function."

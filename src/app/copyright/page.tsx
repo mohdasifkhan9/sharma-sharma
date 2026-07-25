@@ -8,10 +8,30 @@ import { Accordion } from "@/components/ui/interactive";
 import { ConsultationCTA } from "@/components/sections/cta";
 import { media } from "@/lib/media";
 
+import { site } from "@/lib/site";
+import { getLegalServiceSchema, getBreadcrumbSchema, getFAQSchema } from "@/lib/seo";
+
 export const metadata: Metadata = {
-  title: "Copyright Registration",
+  title: "Copyright Protection Practice | India Creative & Software IP",
   description:
-    "Protect original literary, artistic, musical, dramatic and software works. Copyright registration and enforcement by Sharma & Sharma.",
+    "Protect original literary, artistic, musical, dramatic and software works. Copyright registration and enforcement by Sharma & Sharma since 1972.",
+  alternates: {
+    canonical: `${site.url}/copyright`,
+  },
+  openGraph: {
+    title: "Copyright Protection Practice | Sharma & Sharma Attorneys",
+    description:
+      "Statutory copyright registration and software source code protection before the Copyright Office of India.",
+    url: `${site.url}/copyright`,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Copyright Protection Practice | Sharma & Sharma Attorneys",
+    description:
+      "Established 1972. Complete copyright registration, software source code deposit, and enforcement.",
+  },
 };
 
 const works = [
@@ -31,8 +51,23 @@ const faqs = [
 ];
 
 export default function CopyrightPage() {
+  const legalSchema = getLegalServiceSchema({
+    name: "Sharma & Sharma Copyright Practice",
+    description: "Copyright registration for software, literary, musical, and artistic works in India.",
+    url: `${site.url}/copyright`,
+  });
+
+  const faqSchema = getFAQSchema(faqs);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: site.url },
+    { name: "Copyright Protection", url: `${site.url}/copyright` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(legalSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <PageHero
         label="Copyright Registration"
         title="Original work deserves an original defence."
