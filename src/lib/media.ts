@@ -2,7 +2,8 @@
 
 export const media = {
   hero: {
-    video: "https://videos.pexels.com/video-files/8170599/uhd_25fps.mp4",
+    video: "https://res.cloudinary.com/dlxsw8hba/video/upload/f_auto,q_auto:eco,w_1920/v1784358826/8426049-uhd_3840_2160_25fps_uigz49.mp4",
+    videoMobile: "https://res.cloudinary.com/dlxsw8hba/video/upload/f_auto,q_auto:eco,w_1280/v1784358826/8426049-uhd_3840_2160_25fps_uigz49.mp4",
     poster:
       "https://images.pexels.com/photos/7841451/pexels-photo-7841451.jpeg?auto=compress&w=1260&h=750&dpr=2",
   },
