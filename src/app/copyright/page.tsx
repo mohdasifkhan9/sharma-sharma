@@ -12,25 +12,25 @@ import { site } from "@/lib/site";
 import { getLegalServiceSchema, getBreadcrumbSchema, getFAQSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Copyright Protection Practice | India Creative & Software IP",
+  title: "Copyright Registration in India | Sharma & Sharma | IPMARK",
   description:
-    "Protect original literary, artistic, musical, dramatic and software works. Copyright registration and enforcement by Sharma & Sharma since 1972.",
+    "Protect original literary, artistic, musical, dramatic works with copyright registration in India. Sharma & Sharma helps creators and businesses worldwide secure their intellectual property.",
   alternates: {
     canonical: `${site.url}/copyright`,
   },
   openGraph: {
-    title: "Copyright Protection Practice | Sharma & Sharma Attorneys",
+    title: "Copyright Registration in India | Sharma & Sharma | IPMARK",
     description:
-      "Statutory copyright registration and software source code protection before the Copyright Office of India.",
+      "Protect original literary, artistic, musical, dramatic works with copyright registration in India. Sharma & Sharma helps creators and businesses worldwide secure their intellectual property.",
     url: `${site.url}/copyright`,
     siteName: site.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Copyright Protection Practice | Sharma & Sharma Attorneys",
+    title: "Copyright Registration in India | Sharma & Sharma | IPMARK",
     description:
-      "Established 1972. Complete copyright registration, software source code deposit, and enforcement.",
+      "Protect original literary, artistic, musical, dramatic works with copyright registration in India. Sharma & Sharma helps creators and businesses worldwide secure their intellectual property.",
   },
 };
 

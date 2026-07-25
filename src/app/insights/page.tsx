@@ -5,25 +5,25 @@ import { site } from "@/lib/site";
 import { getLegalServiceSchema, getBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "IP Insights & Legal Commentary | Intellectual Property Jurisprudence",
+  title: "IP & Trademark Insights | Sharma & Sharma | IPMARK",
   description:
-    "Expert legal perspectives, statutory commentary, and practical guidance on Indian trademark law, copyright protection, Madrid Protocol, and IP litigation.",
+    "Insights on trademarks, copyrights, designs, patents, IP laws in India. Sharma & Sharma shares expert legal updates and guidance for businesses worldwide.",
   alternates: {
     canonical: `${site.url}/insights`,
   },
   openGraph: {
-    title: "IP Insights | Sharma & Sharma Legal Commentary",
+    title: "IP & Trademark Insights | Sharma & Sharma | IPMARK",
     description:
-      "Statutory analysis and practical legal guidance on intellectual property prosecution, enforcement, and trademark jurisprudence in India.",
+      "Insights on trademarks, copyrights, designs, patents, IP laws in India. Sharma & Sharma shares expert legal updates and guidance for businesses worldwide.",
     url: `${site.url}/insights`,
     siteName: site.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IP Insights | Sharma & Sharma Legal Commentary",
+    title: "IP & Trademark Insights | Sharma & Sharma | IPMARK",
     description:
-      "Expert commentary on Indian trademark law, copyright protection, design registration, and High Court IP litigation.",
+      "Insights on trademarks, copyrights, designs, patents, IP laws in India. Sharma & Sharma shares expert legal updates and guidance for businesses worldwide.",
   },
 };
 

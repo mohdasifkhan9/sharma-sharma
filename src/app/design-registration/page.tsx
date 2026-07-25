@@ -11,25 +11,25 @@ import { site } from "@/lib/site";
 import { getLegalServiceSchema, getBreadcrumbSchema, getFAQSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Industrial Design Practice | Product Shape & Aesthetic IP",
+  title: "Design Registration in India | Sharma & Sharma | IPMARK",
   description:
     "Protect the shape, configuration, pattern and ornamentation of your products under the Indian Designs Act 2000. Industrial design registration by Sharma & Sharma.",
   alternates: {
     canonical: `${site.url}/design-registration`,
   },
   openGraph: {
-    title: "Industrial Design Practice | Sharma & Sharma Attorneys",
+    title: "Design Registration in India | Sharma & Sharma | IPMARK",
     description:
-      "Statutory protection for product shapes, packaging, and aesthetic industrial designs before the Patent Office Kolkata.",
+      "Protect the shape, configuration, pattern and ornamentation of your products under the Indian Designs Act 2000. Industrial design registration by Sharma & Sharma.",
     url: `${site.url}/design-registration`,
     siteName: site.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Industrial Design Practice | Sharma & Sharma Attorneys",
+    title: "Design Registration in India | Sharma & Sharma | IPMARK",
     description:
-      "Established 1972. Complete industrial design registration and Locarno classification in India.",
+      "Protect the shape, configuration, pattern and ornamentation of your products under the Indian Designs Act 2000. Industrial design registration by Sharma & Sharma.",
   },
 };
 

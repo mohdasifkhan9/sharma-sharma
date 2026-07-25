@@ -15,25 +15,25 @@ import { site } from "@/lib/site";
 import { getLegalServiceSchema, getBreadcrumbSchema, getFAQSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Trademark Registration Practice | India Brand Protection Counsel",
+  title: "Trademark Registration in India | Sharma & Sharma | IPMARK",
   description:
-    "Secure your brand with India's trademark experts. Search, filing, examination, opposition and renewal — a complete registration journey since 1972.",
+    "Register your trademark in India with Sharma & Sharma. We help businesses from the USA, China, and worldwide with trademark search, renewal services.",
   alternates: {
     canonical: `${site.url}/trademark`,
   },
   openGraph: {
-    title: "Trademark Registration Practice | Sharma & Sharma Attorneys",
+    title: "Trademark Registration in India | Sharma & Sharma | IPMARK",
     description:
-      "Comprehensive trademark search, classification, prosecution, opposition defense, and portfolio maintenance in India.",
+      "Register your trademark in India with Sharma & Sharma. We help businesses from the USA, China, and worldwide with trademark search, renewal services.",
     url: `${site.url}/trademark`,
     siteName: site.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trademark Registration Practice | Sharma & Sharma Attorneys",
+    title: "Trademark Registration in India | Sharma & Sharma | IPMARK",
     description:
-      "Established 1972. Five decades of trademark prosecution and brand defense across all 45 Nice classes.",
+      "Register your trademark in India with Sharma & Sharma. We help businesses from the USA, China, and worldwide with trademark search, renewal services.",
   },
 };
 

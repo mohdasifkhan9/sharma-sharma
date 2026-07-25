@@ -13,23 +13,25 @@ import { ConsultationCTA } from "@/components/sections/cta";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `${site.name} — Intellectual Property Law Firm India`,
+  title: "Sharma & Sharma —Global Intellectual Property Law Since 1972",
   description:
-    "Sharma & Sharma is a premier Indian Intellectual Property law firm established in 1972 — safeguarding trademarks, copyrights, designs, and global brand portfolios.",
+    "Sharma & Sharma provides trademark, patent, copyright and design protection in India for clients from the USA, India, China and worldwide since 1972.",
   alternates: {
     canonical: site.url,
   },
   openGraph: {
-    title: `${site.name} — Intellectual Property Attorneys India`,
-    description: site.description,
+    title: "Sharma & Sharma —Global Intellectual Property Law Since 1972",
+    description:
+      "Sharma & Sharma provides trademark, patent, copyright and design protection in India for clients from the USA, India, China and worldwide since 1972.",
     url: site.url,
     siteName: site.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Intellectual Property Law Firm India`,
-    description: site.description,
+    title: "Sharma & Sharma —Global Intellectual Property Law Since 1972",
+    description:
+      "Sharma & Sharma provides trademark, patent, copyright and design protection in India for clients from the USA, India, China and worldwide since 1972.",
   },
 };
 
