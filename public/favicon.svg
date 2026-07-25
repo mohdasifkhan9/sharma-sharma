@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <rect width="512" height="512" rx="100" fill="#0E1726"/>
+  <rect x="12" y="12" width="488" height="488" rx="88" fill="none" stroke="#D4AF37" stroke-width="14"/>
+  <!-- Gold dot above 'i' -->
+  <rect x="160" y="70" width="60" height="60" fill="#D4AF37" rx="4"/>
+  <!-- Stem of 'i' -->
+  <rect x="160" y="150" width="60" height="190" fill="#2A3859" rx="4"/>
+  <!-- Bowl & tail of 'p' -->
+  <path d="M 220 150 H 310 C 370 150 410 190 410 250 C 410 310 370 350 310 350 H 280 V 440 H 220 Z" fill="#2A3859"/>
+  <!-- Inner counter of 'p' -->
+  <path d="M 280 200 H 305 C 335 200 355 220 355 250 C 355 280 335 300 305 300 H 280 Z" fill="#0E1726"/>
+</svg>
