@@ -1,0 +1,52 @@
+# ====================================================================
+# Enterprise Apache Configuration for Sharma & Sharma Static Export
+# ====================================================================
+
+# 1. DISABLE DIRECTORY BROWSING GLOBALLY
+# Prevents Apache from ever displaying "Index of /" or "Index of /contact"
+Options -Indexes
+
+# 2. SET DEFAULT INDEX FILE PRIORITY
+# Instructs Apache to automatically serve index.html when a folder is requested
+DirectoryIndex index.html
+
+# 3. REWRITE ENGINE CONFIGURATION
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Handle trailing slash consistency
+  # If a directory is requested without trailing slash, rewrite to /folder/index.html
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !(.*)/$
+  RewriteRule ^(.*)$ $1/ [L,R=301]
+
+  # Serve index.html inside directory if it exists
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.*)$ $1/index.html [L]
+
+  # Fallback to custom 404 page if requested file or directory does not exist
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /404.html [L]
+</IfModule>
+
+# 4. GZIP / DEFLATE COMPRESSION FOR HIGH PERFORMANCE
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# 5. BROWSER CACHING HEADERS FOR STATIC ASSETS
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/json "access plus 0 seconds"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+</IfModule>
