@@ -3,7 +3,6 @@ import Link from "next/link";
 import {
   ShieldCheck,
   Scale,
-  TrendingUp,
   Globe2,
   CheckCircle2,
   Building2,
@@ -11,9 +10,11 @@ import {
   ArrowRight,
   Clock,
   Award,
-  Check,
+  FileCheck2,
+  HelpCircle,
   Landmark,
-  FileCheck,
+  FileText,
+  FileSignature,
 } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { Section } from "@/components/layout/section";
@@ -26,313 +27,391 @@ import {
   getLegalServiceSchema,
   getFAQSchema,
   getBreadcrumbSchema,
-  getServiceSchema,
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Trademark Registration India | Comprehensive Brand Filing",
+  title: "Trademark Registration in India | Sharma & Sharma | IPMARK",
   description:
-    "Register your trademark in India with established IP attorneys. Availability search, class specification, registry prosecution & certificate issuance since 1972.",
+    "Complete trademark registration in India for US, Chinese, and foreign corporations, founders, and domestic enterprises. Statutory search, filing, and registry clearance since 1972.",
   keywords: [
-    "Trademark Registration India",
-    "Register Trademark in India",
-    "Indian Trademark Application",
-    "Brand Registration Delhi",
-    "TM Filing India for US Companies",
+    "Trademark Registration in India",
+    "Trademark Registration in India for US Businesses",
+    "Trademark Registration in India for Chinese Businesses",
+    "Trademark Registration for Indian Businesses",
+    "Foreign Company Trademark Registration India",
     "Trade Marks Registry India",
   ],
   alternates: {
     canonical: `${site.url}/trademark-registration-india`,
   },
   openGraph: {
-    title: "Trademark Registration India | Foreign & US Brand Security",
+    title: "Trademark Registration in India | Sharma & Sharma | IPMARK",
     description:
-      "Complete trademark search, classification, registry examination defense, and registration certificate grant in India.",
+      "Comprehensive trademark availability search, Nice classification, registry examination defense, and registration certificate issuance in India.",
     url: `${site.url}/trademark-registration-india`,
     siteName: site.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trademark Registration India | Legal Brand Counsel",
+    title: "Trademark Registration in India | Sharma & Sharma | IPMARK",
     description:
-      "Established 1972. Complete trademark registration services across all 45 Nice classes in India.",
+      "Established 1972. Five decades of statutory trademark registration and portfolio defense across all 45 Nice classes in India.",
   },
 };
 
 const registrationFaqs = [
   {
-    q: "What is the legal benefit of registering a trademark in India?",
-    a: "Trademark registration under the Trade Marks Act 1999 grants exclusive statutory rights to use the mark across India, blocks unauthorized competitors, enables civil infringement lawsuits, and anchors international Madrid Protocol expansions.",
+    q: "How long does trademark registration take in India?",
+    a: "Under standard statutory processing before the Trade Marks Registry of India, straightforward applications take 6 to 12 months from filing to final registration certificate issuance. Expedited examination under Rule 34 can issue examination reports within 5–10 business days.",
   },
   {
-    q: "Can a foreign corporation file for trademark registration in India directly?",
-    a: "Yes. Foreign entities do not require an Indian subsidiary to own trademarks in India. You simply require an Indian Address for Service, which is provided by our firm upon execution of Form TM-M Power of Attorney.",
+    q: "Can foreign companies apply for trademark registration in India without a local office?",
+    a: "Yes. Under Section 18 of the Trade Marks Act 1999, foreign entities (US, Chinese, UK, EU) can register trademarks directly through a registered Indian Trademark Attorney using their legal representative's Indian service address.",
   },
   {
-    q: "What is the difference between the ™ and ® symbols in India?",
-    a: "The ™ symbol indicates that a trademark application has been officially filed with the Trade Marks Registry. The ® symbol can strictly only be used once the official Registration Certificate has been granted.",
+    q: "What is the validity period of a registered trademark in India?",
+    a: "A registered trademark in India is valid for ten (10) years from the date of application filing. It can be renewed indefinitely for successive ten-year periods upon payment of statutory renewal fees.",
   },
   {
-    q: "How are goods and services classified for Indian trademark applications?",
-    a: "India follows the International Classification of Goods and Services (Nice Classification) comprising 45 classes (Classes 1–34 for goods, Classes 35–45 for services). Precise specification drafting prevents registry objections.",
+    q: "What is the difference between ® and ™ symbols in India?",
+    a: "The ™ symbol indicates an unregistered trademark or pending application. The ® symbol signifies a fully registered trademark granted by the Trade Marks Registry. Using ® on unregistered marks is an offense under Section 107 of the Act.",
   },
   {
-    q: "What is the official government fee for registering a trademark in India?",
-    a: "Official fees are 9,000 INR (~$110 USD) per mark per class for commercial companies, and 4,500 INR (~$55 USD) per mark per class for individuals, MSMEs, or recognized startups.",
-  },
-  {
-    q: "How does claiming a prior user date strengthen an Indian application?",
-    a: "India recognizes prior commercial use. If you have sold products or services under the mark in India or globally prior to the application date, filing a User Affidavit establishes prior rights over subsequent filers.",
-  },
-  {
-    q: "What happens if the Trade Marks Registry issues an Examination Report objection?",
-    a: "Our attorneys formulate a formal statutory reply citing judicial precedents within 30 days. If required, we present oral arguments at show-cause hearings before the Registrar of Trade Marks.",
-  },
-  {
-    q: "What is the duration of statutory opposition in India?",
-    a: "Once a mark is published in the Trade Marks Journal, third parties have a non-extendable 4-month window to file a Notice of Opposition (Form TM-O).",
-  },
-  {
-    q: "How long is an Indian trademark registration valid?",
-    a: "Registration is valid for 10 years from the original filing date and can be renewed indefinitely every 10 years by filing Form TM-R.",
-  },
-  {
-    q: "How does trademark registration assist Amazon sellers in India?",
-    a: "An active pending application or registered trademark number allows instant enrollment in Amazon Brand Registry India, protecting product listings from hijackers.",
-  },
-];
-
-const timelineSteps = [
-  {
-    num: "01",
-    phase: "SEARCH & CLEARANCE",
-    title: "Pre-Filing Availability Audit",
-    desc: "Exhaustive phonetic, visual, and conceptual search across official Indian TMR databases to identify prior registrations and prevent Section 9/11 refusals.",
-  },
-  {
-    num: "02",
-    phase: "CLASSIFICATION",
-    title: "Class Mapping & Goods Specification",
-    desc: "Structuring goods/services specifications in alignment with Nice 11th Edition standards to ensure comprehensive statutory protection across target classes.",
-  },
-  {
-    num: "03",
-    phase: "REGISTRY SUBMISSION",
-    title: "Electronic Filing & ™ Ack Issuance",
-    desc: "Direct filing with the Trade Marks Registry. Official TM Application Receipt issued within 24 hours enabling immediate ™ symbol usage.",
-  },
-  {
-    num: "04",
-    phase: "PROSECUTION",
-    title: "Examination Reply & Hearing Advocacy",
-    desc: "Drafting statutory replies within 30 days to clear registry objections and representing the applicant at show-cause hearings if scheduled.",
-  },
-  {
-    num: "05",
-    phase: "JOURNAL ADVERTISING",
-    title: "Trade Marks Journal Publication",
-    desc: "Publication in the official weekly Journal to initiate the statutory 4-month third-party public opposition window.",
-  },
-  {
-    num: "06",
-    phase: "CERTIFICATE GRANT",
-    title: "Official Registration Certificate",
-    desc: "Issuance of the digital Registration Certificate granting 10-year exclusive statutory ownership and ® symbol rights across India.",
-  },
-];
-
-const relatedPractices = [
-  {
-    title: "Trademark Attorney India",
-    desc: "Direct counsel for foreign corporations and Amazon sellers.",
-    href: "/trademark-attorney-india",
-  },
-  {
-    title: "Trademark Lawyer India",
-    desc: "Litigation, opposition defense, and Delhi High Court advocacy.",
-    href: "/trademark-lawyer-india",
-  },
-  {
-    title: "Madrid Protocol India",
-    desc: "International trademark protection across 150+ WIPO member countries.",
-    href: "/madrid-protocol-india",
-  },
-  {
-    title: "Copyright Registration",
-    desc: "Protecting original software code, literary, and artistic works.",
-    href: "/copyright-registration-india",
+    q: "Is Priority Claim under the Paris Convention recognized in India?",
+    a: "Yes. India is a member of the Paris Convention. Applicants from member countries (including the US and China) can claim priority within six (6) months of filing their convention home application.",
   },
 ];
 
 export default function TrademarkRegistrationIndiaPage() {
   const legalSchema = getLegalServiceSchema({
-    name: "Sharma & Sharma Trademark Registration Counsel",
-    description: "End-to-end trademark registration, search, prosecution and portfolio management in India.",
+    name: "Sharma & Sharma Trademark Registration Practice India",
+    description: "Statutory trademark registration services in India for US, Chinese, foreign, and Indian enterprises.",
     url: `${site.url}/trademark-registration-india`,
   });
 
   const faqSchema = getFAQSchema(registrationFaqs);
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: "Home", url: site.url },
-    { name: "Services", url: `${site.url}/services` },
-    { name: "Trademark Registration India", url: `${site.url}/trademark-registration-india` },
+    { name: "Trademark Registration in India", url: `${site.url}/trademark-registration-india` },
   ]);
-  const serviceSchema = getServiceSchema({
-    name: "Trademark Registration Service India",
-    description: "Complete statutory trademark application filing, search, prosecution, and registration in India.",
-    serviceType: "Legal Service",
-    url: `${site.url}/trademark-registration-india`,
-  });
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(legalSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
+      {/* HERO SECTION */}
       <PageHero
-        label="Statutory Brand Protection"
-        title="Comprehensive Trademark Registration in India."
-        intro="Securing exclusive brand ownership for foreign corporations, technology enterprises, and growing businesses across all five branches of the Indian Trade Marks Registry."
-        image="/media/Trademark Registration.jpeg"
-        imageAlt="Trademark Registration Filings and Certificates in India"
+        label="Intellectual Property Registration"
+        title="Trademark Registration in India"
+        intro="The Name That Carries Your Reputation. Since 1972, Sharma & Sharma has delivered end-to-end statutory trademark protection, class mapping, and registry clearance for US corporations, global enterprises, and Indian market leaders."
+        image="/media/trademark-registration-india-guide.jpeg"
+        imageAlt="Sharma & Sharma Trademark Registration Archives Delhi"
       />
 
-      {/* TRUST STRIP */}
-      <div className="border-b border-line bg-paper py-5 select-none">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12">
-          <div className="flex flex-wrap items-center justify-between gap-y-4 gap-x-8 text-xs font-sans text-navy font-medium">
-            <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                <Check className="h-3 w-3" strokeWidth={3} />
-              </span>
-              <span>Established 1972</span>
+      {/* SECTION 1: US BUSINESSES */}
+      <Section className="bg-paper border-b border-line/60">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <SectionLabel>Cross-Border Expansion</SectionLabel>
+              <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+                Trademark Registration in India for US Businesses
+              </SplitHeading>
+
+              <div className="mt-8 space-y-5 text-base text-muted font-light leading-relaxed">
+                <p>
+                  For United States corporations, Amazon brand owners, SaaS platforms, and multinational brands expanding into India, securing statutory trademark rights is the cornerstone of market protection. India operates strictly under a <strong>&quot;first-to-use&quot; and &quot;first-to-file&quot; hybrid common law framework</strong>.
+                </p>
+                <p>
+                  American enterprises encounter unique challenges before the Indian Trade Marks Registry, including distinctiveness objections under Section 9 and similarity conflicts under Section 11. Sharma & Sharma acts as local IP counsel, managing Paris Convention priority claims, US USPTO cross-filings, and Amazon Brand Registry verification.
+                </p>
+              </div>
+
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 bg-cream border border-line/60 rounded-[4px]">
+                  <h4 className="font-serif text-lg text-navy">Paris Convention Priority</h4>
+                  <p className="text-xs text-muted mt-1">Claim 6-month US priority under Section 154 of the Trade Marks Act 1999.</p>
+                </div>
+                <div className="p-4 bg-cream border border-line/60 rounded-[4px]">
+                  <h4 className="font-serif text-lg text-navy">Amazon Brand Registry</h4>
+                  <p className="text-xs text-muted mt-1">Accelerated TM filing numbers for instant Amazon India marketplace protection.</p>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                <Check className="h-3 w-3" strokeWidth={3} />
-              </span>
-              <span>All 45 Nice Classes</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                <Check className="h-3 w-3" strokeWidth={3} />
-              </span>
-              <span>24-Hour TM Ack Issuance</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                <Check className="h-3 w-3" strokeWidth={3} />
-              </span>
-              <span>Direct TMR Prosecution</span>
+
+            <div className="lg:col-span-5">
+              <MediaFrame
+                src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+                alt="US to India Trademark Filing Docket"
+                className="aspect-[4/3] w-full"
+              />
             </div>
           </div>
         </div>
-      </div>
+      </Section>
 
-      {/* SECTION 1: PERSPECTIVE */}
-      <Section className="bg-cream">
+      {/* SECTION 2: CHINESE BUSINESSES */}
+      <Section className="bg-cream border-b border-line/60">
         <div className="mx-auto max-w-[1400px]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5">
-              <SectionLabel>Statutory Authority</SectionLabel>
-              <SplitHeading className="display mt-6 text-[clamp(2.2rem,4.5vw,3.8rem)] text-navy leading-tight">
-                Securing Exclusive Commercial Brand Rights in India.
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <MediaFrame
+                src="/media/Combination Mark.jpeg"
+                alt="Chinese Cross-Border Brand Protection"
+                className="aspect-[4/3] w-full"
+              />
+            </div>
+
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <SectionLabel>Global Supply Chain & Tech</SectionLabel>
+              <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+                Trademark Registration in India for Chinese Businesses
               </SplitHeading>
-              <p className="mt-6 text-[15px] leading-relaxed text-muted font-light">
-                A registered trademark is a valuable intangible asset that protects your business identity, prevents consumer confusion, and establishes exclusive legal ownership across India.
+
+              <div className="mt-8 space-y-5 text-base text-muted font-light leading-relaxed">
+                <p>
+                  China-based electronics manufacturers, cross-border e-commerce vendors, tech platforms, and consumer product exporters require proactive brand clearance prior to entering the Indian commercial landscape. Unregistered Chinese brands in India face high exposure to bad-faith squatting and unauthorized local distributor filings.
+                </p>
+                <p>
+                  Our firm represents Chinese applicants directly before the Delhi, Mumbai, Kolkata, Chennai, and Ahmedabad Registry branches, handling dual-script (Chinese Hanzi to English transliteration) filings, Form TM-M Power of Attorney execution, and customs enforcement registrations.
+                </p>
+              </div>
+
+              <ul className="mt-6 space-y-3">
+                <li className="flex items-center gap-3 text-sm text-navy font-medium">
+                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0" />
+                  <span>Dual Script Transliteration & Phonetic Search Protection</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm text-navy font-medium">
+                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0" />
+                  <span>Bad-Faith Squatting & Unauthorized Distributor Injunctions</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm text-navy font-medium">
+                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0" />
+                  <span>Customs Recordation under Intellectual Property Rights Rules</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* SECTION 3: INDIAN BUSINESSES */}
+      <Section className="bg-paper border-b border-line/60">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="text-center max-w-3xl mx-auto">
+            <SectionLabel>Domestic Brand Building</SectionLabel>
+            <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+              Trademark Registration for Indian Businesses
+            </SplitHeading>
+            <p className="mt-6 text-base text-muted font-light leading-relaxed">
+              From D2C startups and manufacturing conglomerates to legacy Indian enterprises, registering your word mark, logo, device, or slogan creates an indefeasible commercial monopoly across all 28 states and 8 union territories.
+            </p>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-8 bg-cream border border-line/70 rounded-[4px]">
+              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-2xl text-navy">MSME Statutory Discounts</h3>
+              <p className="mt-3 text-sm text-muted font-light leading-relaxed">
+                Eligible Indian MSMEs and recognized DPIIT startups receive a 50% official government fee reduction on statutory filing fees (₹4,500 vs ₹9,000 per class).
               </p>
             </div>
-            <div className="lg:col-span-7 space-y-6 text-[15px] leading-relaxed text-muted font-light">
-              <p>
-                The Indian Trade Marks Act (1999) governs the registration and protection of word marks, logos, slogans, packaging designs, and non-conventional marks. Obtaining registration provides the exclusive right to use the mark in relation to specified goods or services and authorizes civil lawsuits against infringers.
+
+            <div className="p-8 bg-cream border border-line/70 rounded-[4px]">
+              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6">
+                <Scale className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-2xl text-navy">Comprehensive Class Mapping</h3>
+              <p className="mt-3 text-sm text-muted font-light leading-relaxed">
+                Strategic selection across 34 Goods classes and 11 Service classes under the Nice Classification 12th Edition to eliminate registry overlap.
               </p>
-              <p>
-                At Sharma & Sharma, our trademark attorneys handle every phase of registration with statutory precision — from preliminary availability clearance searches to class specification drafting, examination reply formulation, and certificate issuance.
+            </div>
+
+            <div className="p-8 bg-cream border border-line/70 rounded-[4px]">
+              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6">
+                <Landmark className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-2xl text-navy">Infringement Remedy</h3>
+              <p className="mt-3 text-sm text-muted font-light leading-relaxed">
+                Statutory standing under Section 29 to file civil suits for infringement, seek ex-parte injunctions, and claim punitive damages before High Courts.
               </p>
-              <div className="p-6 bg-paper border-l-2 border-gold rounded-r-[4px] mt-8">
-                <span className="text-[10px] tracking-widest text-gold uppercase font-bold block mb-1 font-mono">
-                  EXCLUSIVITY GUARANTEE
-                </span>
-                <p className="font-serif italic text-navy text-[16px] leading-snug">
-                  &ldquo;Securing early statutory trademark registration eliminates foreign market entry risk, shields product listings on e-commerce channels, and creates transferable corporate value.&rdquo;
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* SECTION 4: WHY FOREIGN COMPANIES SHOULD REGISTER */}
+      <Section className="bg-cream border-b border-line/60">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="max-w-3xl">
+            <SectionLabel>Strategic Necessity</SectionLabel>
+            <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+              Why Foreign Companies Should Register a Trademark in India
+            </SplitHeading>
+            <p className="mt-6 text-base text-muted font-light leading-relaxed">
+              India&apos;s rapidly growing consumer market of 1.4 billion people represents immense expansion opportunity. However, foreign trademarks without local Indian registration face significant statutory vulnerabilities:
+            </p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 bg-paper border border-line/60 rounded-[4px]">
+              <span className="font-mono text-xs text-gold">01</span>
+              <h4 className="font-serif text-xl text-navy mt-2">Prevent Bad-Faith Squatting</h4>
+              <p className="text-xs text-muted mt-2 font-light leading-relaxed">
+                Local squatters frequently file foreign brand names in India to extort buyout settlements. Early filing establishes prior statutory date.
+              </p>
+            </div>
+
+            <div className="p-6 bg-paper border border-line/60 rounded-[4px]">
+              <span className="font-mono text-xs text-gold">02</span>
+              <h4 className="font-serif text-xl text-navy mt-2">Border Control Enforcement</h4>
+              <p className="text-xs text-muted mt-2 font-light leading-relaxed">
+                Indian Customs authorities only seize counterfeit imports/exports if the underlying trademark is registered with Indian Customs.
+              </p>
+            </div>
+
+            <div className="p-6 bg-paper border border-line/60 rounded-[4px]">
+              <span className="font-mono text-xs text-gold">03</span>
+              <h4 className="font-serif text-xl text-navy mt-2">Licensing & Franchise Monopolies</h4>
+              <p className="text-xs text-muted mt-2 font-light leading-relaxed">
+                Secures enforceable statutory royalty structures when licensing brand rights to Indian JV partners or master franchisees.
+              </p>
+            </div>
+
+            <div className="p-6 bg-paper border border-line/60 rounded-[4px]">
+              <span className="font-mono text-xs text-gold">04</span>
+              <h4 className="font-serif text-xl text-navy mt-2">Clean Commercial Title</h4>
+              <p className="text-xs text-muted mt-2 font-light leading-relaxed">
+                Ensures freedom to operate without risk of receiving cease-and-desist letters or passing-off actions from local legacy entities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* SECTION 5: CAN FOREIGN COMPANIES REGISTER */}
+      <Section className="bg-paper border-b border-line/60">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <SectionLabel>Legal Eligibility</SectionLabel>
+              <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+                Can Foreign Companies Register a Trademark in India?
+              </SplitHeading>
+
+              <div className="mt-8 space-y-5 text-base text-muted font-light leading-relaxed">
+                <p>
+                  <strong>Yes, absolutely.</strong> Section 18 of the Trade Marks Act 1999 explicitly permits any person or corporate entity—whether incorporated in the United States, China, United Kingdom, European Union, or elsewhere—claiming to be the proprietor of a trademark to apply for registration in India.
                 </p>
+                <p>
+                  A foreign entity does <strong>not</strong> need to establish an Indian subsidiary, physical office, or local commercial presence to apply. The law simply requires providing an <em>&quot;Address for Service in India&quot;</em>, which is satisfied by appointing a registered Indian Trademark Attorney or Agent.
+                </p>
+                <p>
+                  Foreign applicants can register marks as <strong>&quot;Proposed to be used in India&quot;</strong>, granting immediate statutory protection before launching actual commercial sales.
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 bg-cream p-8 border border-line/70 rounded-[4px]">
+              <h3 className="font-serif text-2xl text-navy mb-4">Statutory Options for Foreign Applicants</h3>
+              <div className="space-y-4">
+                <div className="pb-4 border-b border-line/50">
+                  <h4 className="font-serif text-lg text-gold">1. National Direct Filing (Recommended)</h4>
+                  <p className="text-xs text-muted mt-1">Filed directly with the Indian Trade Marks Registry via local attorney. Fastest examination and direct control over office actions.</p>
+                </div>
+                <div>
+                  <h4 className="font-serif text-lg text-gold">2. Madrid Protocol Designation</h4>
+                  <p className="text-xs text-muted mt-1">Designating India in an WIPO international application. Subject to local Indian registry provisional refusal review.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* SECTION 2: 6-STAGE TIMELINE */}
-      <Section className="bg-paper border-y border-line/60">
+      {/* SECTION 6: DOCUMENTS REQUIRED FOR FOREIGN COMPANIES */}
+      <Section className="bg-cream border-b border-line/60">
         <div className="mx-auto max-w-[1400px]">
-          <div className="max-w-3xl mb-14">
-            <SectionLabel>Registration Protocol</SectionLabel>
-            <SplitHeading className="display mt-4 text-[clamp(2.2rem,4vw,3.5rem)] text-navy">
-              The 6-Step Registration Timeline.
-            </SplitHeading>
-          </div>
+          <SectionLabel>Filing Preparation</SectionLabel>
+          <SplitHeading className="display mt-4 max-w-4xl text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+            Documents Required for Foreign Companies
+          </SplitHeading>
 
-          <div className="space-y-6">
-            {timelineSteps.map((s, idx) => (
-              <Reveal key={s.num} delay={idx * 0.05}>
-                <div className="group grid grid-cols-1 md:grid-cols-[90px_1fr] gap-6 bg-cream p-8 border border-line/60 rounded-[4px] items-center transition-all duration-300 hover:border-gold">
-                  <div className="flex flex-col items-start md:items-center">
-                    <span className="font-serif text-3xl font-bold text-gold group-hover:scale-110 transition-transform duration-300">{s.num}</span>
-                    <span className="text-[8px] font-mono text-muted uppercase tracking-widest mt-1">{s.phase}</span>
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-2xl text-navy mb-2 group-hover:text-gold transition-colors duration-300">{s.title}</h3>
-                    <p className="text-sm text-muted leading-relaxed font-light">{s.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="p-8 bg-paper border border-line/70 rounded-[4px]">
+              <FileSignature className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-xl text-navy">1. Power of Attorney (Form TM-M)</h3>
+              <p className="text-xs text-muted mt-2 leading-relaxed font-light">
+                Simply signed by an authorized signatory of the applicant entity. No legalization or embassy apostille required for standard filing.
+              </p>
+            </div>
+
+            <div className="p-8 bg-paper border border-line/70 rounded-[4px]">
+              <FileText className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-xl text-navy">2. Applicant Corporate Identity</h3>
+              <p className="text-xs text-muted mt-2 leading-relaxed font-light">
+                Legal corporate name, state/country of incorporation, and registered office address of the foreign business.
+              </p>
+            </div>
+
+            <div className="p-8 bg-paper border border-line/70 rounded-[4px]">
+              <FileCheck2 className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-xl text-navy">3. Clear Mark Representation</h3>
+              <p className="text-xs text-muted mt-2 leading-relaxed font-light">
+                Exact word mark text or high-resolution vector/image file for logo, label, shape, or device mark.
+              </p>
+            </div>
+
+            <div className="p-8 bg-paper border border-line/70 rounded-[4px]">
+              <Globe2 className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-xl text-navy">4. Nice Class Goods & Services Specification</h3>
+              <p className="text-xs text-muted mt-2 leading-relaxed font-light">
+                Detailed description of products or services mapped to Nice Classification Classes 1 through 45.
+              </p>
+            </div>
+
+            <div className="p-8 bg-paper border border-line/70 rounded-[4px]">
+              <Clock className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-xl text-navy">5. User Date Affidavit (If Claiming Prior Use)</h3>
+              <p className="text-xs text-muted mt-2 leading-relaxed font-light">
+                If claiming use in India prior to filing date, a signed User Affidavit accompanied by documentary evidence (invoices, domain records).
+              </p>
+            </div>
+
+            <div className="p-8 bg-paper border border-line/70 rounded-[4px]">
+              <Award className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-xl text-navy">6. Paris Convention Priority Certificate</h3>
+              <p className="text-xs text-muted mt-2 leading-relaxed font-light">
+                Certified copy of home country application if claiming 6-month convention priority in India.
+              </p>
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* SECTION 3: FAQS */}
-      <Section className="bg-cream">
+      {/* SECTION 7: FREQUENTLY ASKED QUESTIONS */}
+      <Section className="bg-paper">
         <div className="mx-auto max-w-[1400px]">
-          <div className="max-w-3xl mb-12">
-            <SectionLabel>Guidance</SectionLabel>
-            <SplitHeading className="display mt-4 text-[clamp(2.2rem,4.5vw,3.8rem)] text-navy">
-              Trademark Registration FAQs.
-            </SplitHeading>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-5">
+              <SectionLabel>Statutory Clarifications</SectionLabel>
+              <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+                Frequently Asked Questions
+              </SplitHeading>
+              <p className="mt-6 text-sm text-muted font-light leading-relaxed">
+                Expert answers regarding trademark registration in India, foreign company eligibility, priority claims, and statutory timelines.
+              </p>
+            </div>
 
-          <div className="max-w-4xl">
-            <Accordion items={registrationFaqs} />
-          </div>
-        </div>
-      </Section>
-
-      {/* SECTION 4: RELATED PRACTICES */}
-      <Section className="bg-paper border-t border-line/60">
-        <div className="mx-auto max-w-[1400px]">
-          <SectionLabel>Capabilities</SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl text-navy mt-4 mb-10">Explore Related IP Practices</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {relatedPractices.map((prac, idx) => (
-              <Reveal key={prac.title} delay={idx * 0.05} className="h-full">
-                <Link
-                  href={prac.href}
-                  className="group h-full bg-cream p-6 border border-line/60 rounded-[4px] flex flex-col justify-between transition-all duration-300 hover:border-gold hover:shadow-sm"
-                >
-                  <div>
-                    <h3 className="font-serif text-xl text-navy mb-2 group-hover:text-gold transition-colors duration-300">{prac.title}</h3>
-                    <p className="text-xs text-muted leading-relaxed font-light">{prac.desc}</p>
-                  </div>
-                  <div className="mt-6 pt-4 border-t border-line/40 flex items-center justify-between text-[10px] font-mono text-gold uppercase tracking-wider">
-                    <span>LEARN MORE</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
+            <div className="lg:col-span-7">
+              <Accordion items={registrationFaqs} />
+            </div>
           </div>
         </div>
       </Section>

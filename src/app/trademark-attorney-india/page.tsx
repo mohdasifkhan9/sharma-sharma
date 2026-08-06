@@ -3,23 +3,19 @@ import Link from "next/link";
 import {
   ShieldCheck,
   Scale,
-  TrendingUp,
   Globe2,
-  Eye,
-  Landmark,
-  FileText,
   CheckCircle2,
   Building2,
-  HelpCircle,
   ArrowUpRight,
   ArrowRight,
   Clock,
   Award,
-  Check,
+  FileCheck2,
+  HelpCircle,
+  Landmark,
   Shield,
-  FileCheck,
+  FileText,
   Lock,
-  Compass,
 } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { Section } from "@/components/layout/section";
@@ -28,653 +24,367 @@ import { Accordion } from "@/components/ui/interactive";
 import { MediaFrame } from "@/components/ui/media";
 import { ConsultationCTA } from "@/components/sections/cta";
 import { site } from "@/lib/site";
+import {
+  getLegalServiceSchema,
+  getFAQSchema,
+  getBreadcrumbSchema,
+} from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Trademark Attorney India | US & Global Brand Protection Counsel",
+  title: "Trademark Attorney & Trademark Lawyer in India | Sharma & Sharma",
   description:
-    "Established 1972. Premier Indian Trademark Attorney practice representing US corporations, Amazon brand registry applicants & international law firms in India Trade Marks Registry.",
+    "Premier Trademark Attorney & Trademark Lawyer in India since 1972. Expert legal counsel for US, Chinese, and foreign corporations in Trade Marks Registry prosecution and High Court IP litigation.",
   keywords: [
-    "Indian Trademark Attorney",
-    "Trademark Registration India",
-    "Trademark Filing India for US Companies",
-    "IP Attorney India",
-    "Foreign Brand Protection India",
-    "US to India Trademark Registration",
-    "Delhi IP Law Firm",
-    "Amazon Brand Registry India Attorney",
+    "Trademark Attorney in India",
+    "Trademark Lawyer in India",
+    "Trademark Attorney for US Businesses",
+    "Trademark Attorney for Chinese Businesses",
+    "Trademark Lawyer for Foreign Companies",
+    "Indian IP Counsel",
+    "Delhi High Court IP Lawyer",
   ],
   alternates: {
     canonical: `${site.url}/trademark-attorney-india`,
   },
   openGraph: {
-    title: "Trademark Attorney India | US & Global Brand Protection Counsel",
+    title: "Trademark Attorney & Trademark Lawyer in India | Sharma & Sharma",
     description:
-      "Premier Indian IP advocacy firm providing comprehensive trademark search, registration, office action responses, and opposition representation for US & international clients.",
+      "Statutory trademark prosecution, examination hearing defense, opposition representation, and High Court IP litigation for international businesses in India.",
     url: `${site.url}/trademark-attorney-india`,
     siteName: site.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trademark Attorney India | US & Global Brand Protection Counsel",
+    title: "Trademark Attorney & Trademark Lawyer in India | Sharma & Sharma",
     description:
-      "Established 1972. Trusted trademark attorney counsel for international corporations entering the Indian market.",
+      "Established 1972. Five decades of specialized trademark advocacy and High Court IP litigation in India.",
   },
 };
 
 const attorneyFaqs = [
   {
-    q: "Can a foreign company or US business register a trademark in India without a local office?",
-    a: "Yes. Overseas entities do not need a physical presence or subsidiary in India to obtain trademark protection. Foreign applicants simply require a designated Address for Service in India, which is provided by your retained Indian Trademark Attorney. We file directly with the Trade Marks Registry on behalf of US corporations, Amazon sellers, and global startups.",
+    q: "What is the role of a Trademark Attorney in India?",
+    a: "A Trademark Attorney in India is an advocate enrolled with the Bar Council of India who specializes in intellectual property law. Attorneys handle statutory filings, draft complex responses to Examination Reports, represent clients in contested Registrar hearings, prosecute oppositions, and litigate infringement suits before High Courts.",
   },
   {
-    q: "Why should US companies retain a specialized Indian Trademark Attorney rather than filing blindly?",
-    a: "The Indian Trade Marks Act (1999) features unique distinctiveness thresholds, rigid classification standards (NIER), and procedural nuances regarding prior adoption claims ('user dates'). A specialized attorney conducts pre-filing search audits to clear deceptive similarities, drafts precise goods/services specifications, and handles registry objections, preventing costly refusals.",
+    q: "How does an Indian Trademark Lawyer assist US corporations?",
+    a: "An Indian Trademark Lawyer acts as local legal counsel for US companies, managing cross-border filings under the Paris Convention, structuring Amazon Brand Registry filings, defending against local squatters, and enforcing IP rights in Indian courts.",
   },
   {
-    q: "What is the typical timeline for securing trademark registration in India?",
-    a: "If an application receives no registry examination objections or third-party oppositions, the official certificate is usually issued within 6 to 10 months. However, filing with a registered attorney allows you to use the ™ symbol immediately upon receipt of the application official acknowledgement number within 24 hours.",
+    q: "What is the difference between a Trademark Attorney and a Trademark Lawyer in India?",
+    a: "In India, 'Trademark Attorney' and 'Trademark Lawyer' are practically synonymous terms referring to advocates with IP specialization. Both possess full rights of audience before the Trade Marks Registry, Commercial Courts, and High Courts.",
   },
   {
-    q: "How does claiming prior 'User Date' impact Indian trademark applications?",
-    a: "India operates on a 'first-to-use' priority doctrine alongside registration. If your business has used the brand name in India or internationally prior to filing (including online sales or exports to Indian consumers), submitting an Affidavit of User with proof of usage secures retroactive priority over subsequent applicants.",
+    q: "Can a foreign company hire an Indian Trademark Attorney directly?",
+    a: "Yes. Foreign companies can appoint an Indian Trademark Attorney directly by executing a Power of Attorney (Form TM-M). The attorney provides an Indian address for service and manages all statutory communication with the Registry.",
   },
   {
-    q: "What documents are required for a US entity to file a trademark in India?",
-    a: "You require: (1) Full legal name and corporate address of applicant, (2) High-resolution logo mark image (or word mark string), (3) International Class specification, (4) Executed Power of Attorney (Form TM-M), and (5) User Affidavit if prior commercial use is claimed.",
-  },
-  {
-    q: "Is Madrid Protocol international registration or direct Indian filing better for US brands?",
-    a: "Direct national filing via an Indian trademark attorney is generally faster and offers greater local control over office actions and objections. Madrid Protocol filings designating India are routed through WIPO and can experience delays in administrative processing at the local Trade Marks Registry.",
-  },
-  {
-    q: "Can an Indian trademark attorney help with Amazon Brand Registry enrollment?",
-    a: "Yes. Amazon Brand Registry requires an active pending or registered trademark in India with the official Trade Marks Registry. We provide instant filing numbers so US and international sellers can enroll on Amazon.in without administrative delays.",
-  },
-  {
-    q: "What happens if our Indian trademark application receives an Examination Report objection?",
-    a: "Under Section 9 (absolute grounds of non-distinctiveness) or Section 11 (relative grounds of similarity), the registrar issues an Examination Report within 30 days. Our attorneys draft formal legal responses backed by judicial precedents to overcome objections and advance the mark to publication in the Trade Marks Journal.",
-  },
-  {
-    q: "What is the validity period of an Indian trademark registration?",
-    a: "A registered trademark in India remains valid for 10 years from the original filing date. It can be renewed indefinitely every 10 years by filing Form TM-R before the expiry date.",
-  },
-  {
-    q: "How are trademark infringement disputes handled for international brands in India?",
-    a: "Our firm enforces brand rights through cease-and-desist notices, administrative registry oppositions, and interim civil injunction lawsuits before Commercial Courts and the Delhi High Court to halt infringing domain names, counterfeit goods, or deceptive brand imitations.",
-  },
-];
-
-const trustCards = [
-  {
-    icon: Landmark,
-    title: "Established 1972",
-    text: "Over five decades of continuous legal practice representing brand owners before the Trade Marks Registry & Courts.",
-  },
-  {
-    icon: Award,
-    title: "50+ Years IP Excellence",
-    text: "Deep institutional expertise in Indian trademark law, office actions, oppositions, and commercial enforcement.",
-  },
-  {
-    icon: Globe2,
-    title: "International Network",
-    text: "Trusted local associate counsel for overseas law firms, US corporate legal teams, and global brand managers.",
-  },
-  {
-    icon: Scale,
-    title: "High Court Practice",
-    text: "Litigation standing before Commercial Courts and the Delhi High Court for urgent injunctions and enforcement.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Strategic Brand Defense",
-    text: "Proactive search audits and custom specification drafting to build impregnable defensive moats around marks.",
-  },
-  {
-    icon: Clock,
-    title: "24-Hour Ack Issuance",
-    text: "Rapid electronic filing providing official TM application numbers within 24 hours for immediate brand security.",
-  },
-];
-
-const timelineSteps = [
-  {
-    num: "01",
-    phase: "AUDIT & CLEARANCE",
-    title: "Comprehensive Availability Search",
-    desc: "Exhaustive search across identical, phonetic, and well-known trademark registers in India to clear Section 9 & 11 conflicts before submission.",
-  },
-  {
-    num: "02",
-    phase: "STRATEGY & MAPPING",
-    title: "Class Specification & Drafting",
-    desc: "Structuring goods/services specifications under Nice Classification (Classes 1–45) and drafting international user priority claims.",
-  },
-  {
-    num: "03",
-    phase: "FILING & ™ RIGHTS",
-    title: "Direct Registry Submission",
-    desc: "Electronic submission with the Trade Marks Registry. Official TM Application Number issued within 24 hours allowing immediate ™ symbol usage.",
-  },
-  {
-    num: "04",
-    phase: "PROSECUTION",
-    title: "Examination Report Defense",
-    desc: "Drafting statutory responses backed by judicial precedents within 30 days to overcome any registrar objections under Section 9 or 11.",
-  },
-  {
-    num: "05",
-    phase: "PUBLICATION",
-    title: "Trade Marks Journal Advertising",
-    desc: "Accepted mark is published in the official Journal, triggering the mandatory 4-month statutory public opposition period.",
-  },
-  {
-    num: "06",
-    phase: "GRANT & REGISTRATION",
-    title: "Official Certificate Issuance",
-    desc: "Upon completion of the publication window without opposition, the official Registration Certificate (® symbol) is issued for 10 years.",
-  },
-  {
-    num: "07",
-    phase: "PORTFOLIO WATCH",
-    title: "Continuous Brand Protection",
-    desc: "Ongoing registry surveillance, renewal tracking (Form TM-R), and administrative opposition filings against infringing third-party marks.",
-  },
-];
-
-const relatedPractices = [
-  {
-    title: "Trademark Registration",
-    desc: "Complete search, filing, and registry prosecution across all 45 classes.",
-    href: "/trademark",
-  },
-  {
-    title: "Trademark Lawyer India",
-    desc: "Litigation, opposition defense, and Delhi High Court legal representation.",
-    href: "/trademark-lawyer-india",
-  },
-  {
-    title: "Trademark Agent India",
-    desc: "Registered agent services, Power of Attorney handling, and expedited filings.",
-    href: "/trademark-agent-india",
-  },
-  {
-    title: "Copyright Registration",
-    desc: "Safeguarding software code, literary works, design assets, and creative IP.",
-    href: "/copyright",
-  },
-  {
-    title: "Design Registration",
-    desc: "Protecting aesthetic industrial designs, product shapes, and packaging.",
-    href: "/design-registration",
-  },
-  {
-    title: "International Filing",
-    desc: "Madrid Protocol filings and cross-border portfolio expansion in 150+ countries.",
-    href: "/services",
-  },
-  {
-    title: "IP Insights & Journal",
-    desc: "Expert analysis on Indian IP jurisprudence, court rulings, and filing strategy.",
-    href: "/insights",
-  },
-  {
-    title: "Direct Attorney Consultation",
-    desc: "Schedule a confidential strategic review with senior IP legal counsel.",
-    href: "/contact",
+    q: "What happens if my trademark application receives an Office Action in India?",
+    a: "If an Examination Report raises Section 9 (distinctiveness) or Section 11 (similarity) objections, your Trademark Attorney prepares a statutory written response backed by judicial precedents and represents your firm during official show-cause hearings.",
   },
 ];
 
 export default function TrademarkAttorneyIndiaPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LegalService",
-    name: "Sharma & Sharma Intellectual Property Attorneys",
+  const legalSchema = getLegalServiceSchema({
+    name: "Sharma & Sharma Trademark Attorney & Lawyer Practice India",
+    description: "Legal advocacy, trademark prosecution, and High Court IP litigation in India for international entities.",
     url: `${site.url}/trademark-attorney-india`,
-    logo: `${site.url}/media/Logo.png`,
-    description:
-      "Premier Indian Trademark Attorney practice serving US enterprises, foreign law firms, and multinational corporations entering the Indian market.",
-    telephone: site.phones[0],
-    email: site.email,
-    foundingDate: "1972",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: `${site.address.line1}, ${site.address.line2}`,
-      addressLocality: site.address.city,
-      postalCode: site.address.postal,
-      addressCountry: "IN",
-    },
-    areaServed: ["United States", "India", "European Union", "United Kingdom", "Worldwide"],
-    knowsAbout: [
-      "Indian Trademark Law",
-      "Trademark Registration India",
-      "WIPO Madrid Protocol Filings",
-      "Cross-Border Brand Protection",
-      "Delhi High Court IP Advocacy",
-    ],
-  };
+  });
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
-      { "@type": "ListItem", position: 2, name: "Services", item: `${site.url}/services` },
-      { "@type": "ListItem", position: 3, name: "Trademark Attorney India", item: `${site.url}/trademark-attorney-india` },
-    ],
-  };
-
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: attorneyFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-      },
-    })),
-  };
+  const faqSchema = getFAQSchema(attorneyFaqs);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", url: site.url },
+    { name: "Trademark Attorney & Trademark Lawyer in India", url: `${site.url}/trademark-attorney-india` },
+  ]);
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(legalSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* HERO SECTION */}
       <PageHero
-        label="Indian Trademark Attorney Practice"
-        title="Protecting Global Marks Across Indian Jurisdictions."
-        intro="Representing international technology corporations, cross-border law firms, and Amazon Brand Registry applicants before the Indian Trade Marks Registry since 1972."
-        image="/media/Lawyer's_desk_Delhi_heritage.jpeg"
-        imageAlt="Experienced Indian Trademark Attorney Reviewing Legal Filings & Documents"
+        label="Intellectual Property Advocacy"
+        title="Trademark Attorney & Trademark Lawyer in India"
+        intro="Preserving commercial identity through five decades of legal precision. Sharma & Sharma delivers specialized trademark prosecution, opposition representation, and High Court litigation for US corporations, Chinese exporters, global brands, and domestic market leaders."
+        image="/media/sharma_sharma_office_reception_1784177182438.png"
+        imageAlt="Sharma & Sharma Law Offices Delhi High Court Legal Practice"
       />
 
-      {/* HERO TRUST METRICS STRIP */}
-      <div className="border-b border-line bg-paper py-5 select-none">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12">
-          <div className="flex flex-wrap items-center justify-between gap-y-4 gap-x-8 text-xs font-sans text-navy font-medium">
-            <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                <Check className="h-3 w-3" strokeWidth={3} />
-              </span>
-              <span>Established Since 1972</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                <Check className="h-3 w-3" strokeWidth={3} />
-              </span>
-              <span>50+ Years of IP Excellence</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                <Check className="h-3 w-3" strokeWidth={3} />
-              </span>
-              <span>International Trademark Attorneys</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                <Check className="h-3 w-3" strokeWidth={3} />
-              </span>
-              <span>Global Client Portfolio</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                <Check className="h-3 w-3" strokeWidth={3} />
-              </span>
-              <span>Fast Response Within 24 Hours</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* SECTION 1: WHY INDIA TRADEMARK PROTECTION MATTERS */}
-      <Section className="bg-cream">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5">
-              <SectionLabel>Market Landscape</SectionLabel>
-              <SplitHeading className="display mt-6 text-[clamp(2.2rem,4.5vw,3.8rem)] text-navy leading-tight">
-                Why Foreign Brands Must Secure Indian Rights Early.
-              </SplitHeading>
-              <p className="mt-6 text-[15px] leading-relaxed text-muted font-light">
-                India has emerged as the world&apos;s fifth-largest economy and a primary destination for global enterprise expansion.
-                However, brand squatting, counterfeit manufacturing, and unauthorized registration by local distributors
-                present significant legal hazards for international businesses.
-              </p>
-            </div>
-            <div className="lg:col-span-7 space-y-6 text-[15px] leading-relaxed text-muted font-light">
-              <p>
-                Under the Indian Trade Marks Act (1999), trademark ownership is established through statutory registration or verified commercial prior adoption. Without a registered Indian trademark, overseas corporations face severe legal friction when enforcing brand exclusivity on e-commerce platforms like Amazon India or stopping local imitators.
-              </p>
-              <p>
-                Retaining a experienced **Indian Trademark Attorney** provides foreign companies with direct legal standing before all five branches of the Indian Trade Marks Registry (Delhi, Mumbai, Kolkata, Chennai, and Ahmedabad). Our practice establishes comprehensive defensive moats around your intellectual assets before commercial expansion occurs.
-              </p>
-              <div className="p-6 bg-paper border-l-2 border-gold rounded-r-[4px] mt-8">
-                <span className="text-[10px] tracking-widest text-gold uppercase font-bold block mb-1 font-mono">
-                  STRATEGIC ADVISORY FOR US COUNSEL
-                </span>
-                <p className="font-serif italic text-navy text-[16px] leading-snug">
-                  &ldquo;A prior US registration does not automatically grant rights in India. Securing direct Indian national registration is the single most effective legal action for protecting overseas market equity.&rdquo;
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* SECTION 2: EDITORIAL TRUST CARDS GRID */}
-      <Section className="bg-paper border-y border-line/60">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="max-w-3xl mb-14">
-            <SectionLabel>Institutional Trust</SectionLabel>
-            <SplitHeading className="display mt-4 text-[clamp(2rem,4vw,3.5rem)] text-navy">
-              Why Global Brands Choose Sharma & Sharma.
-            </SplitHeading>
-            <p className="mt-4 text-[15px] text-muted font-light">
-              Combining half a century of trademark advocacy with modern cross-border filing protocols.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {trustCards.map((card, idx) => (
-              <Reveal key={card.title} delay={idx * 0.08} className="h-full">
-                <div className="group h-full bg-cream p-8 border border-line/70 rounded-[4px] flex flex-col justify-between transition-all duration-500 hover:border-gold hover:shadow-sm">
-                  <div>
-                    <card.icon className="w-8 h-8 text-gold mb-6 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.4} />
-                    <h3 className="font-serif text-2xl text-navy mb-3 group-hover:text-gold transition-colors duration-300">{card.title}</h3>
-                    <p className="text-sm text-muted leading-relaxed font-light">{card.text}</p>
-                  </div>
-                  <div className="mt-8 pt-4 border-t border-line/40 text-[9px] font-mono text-gold uppercase tracking-wider">
-                    VERIFIED LEGAL CAPABILITY
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* SECTION 3: CINEMATIC MEDIA BREAKDOWN */}
-      <Section className="bg-cream">
+      {/* SECTION 1: US BUSINESSES */}
+      <Section className="bg-paper border-b border-line/60">
         <div className="mx-auto max-w-[1400px]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6">
-              <MediaFrame
-                src="/media/Global_filing_strategy_document.jpeg"
-                alt="International Trademark Filing Documentation & Portfolio Strategy"
-                className="aspect-[4/3] w-full"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                parallax
-              />
+            <div className="lg:col-span-7">
+              <SectionLabel>Cross-Border Legal Counsel</SectionLabel>
+              <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+                Trademark Attorney for US Businesses Registering in India
+              </SplitHeading>
+
+              <div className="mt-8 space-y-5 text-base text-muted font-light leading-relaxed">
+                <p>
+                  American enterprises, technology platforms, and Amazon brand owners entering the Indian market require experienced <strong>Trademark Attorneys in India</strong> who understand both US commercial expectations and Indian statutory jurisprudence under the Trade Marks Act 1999.
+                </p>
+                <p>
+                  Our firm represents US clients directly before the Trade Marks Registry and Intellectual Property Division (IPD) of the Delhi High Court. We assist American businesses in claiming Paris Convention priority, overcoming Section 9/11 examination objections, and establishing enforceable brand monopolies across India.
+                </p>
+              </div>
+
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 bg-cream border border-line/60 rounded-[4px]">
+                  <h4 className="font-serif text-lg text-navy">US-India Priority Filing</h4>
+                  <p className="text-xs text-muted mt-1">Direct Paris Convention claims within 6 months of USPTO filing.</p>
+                </div>
+                <div className="p-4 bg-cream border border-line/60 rounded-[4px]">
+                  <h4 className="font-serif text-lg text-navy">Amazon Brand Enforcement</h4>
+                  <p className="text-xs text-muted mt-1">Filing verification numbers for instant protection on Amazon.in.</p>
+                </div>
+              </div>
             </div>
-            <div className="lg:col-span-6">
-              <SectionLabel>Global Alignment</SectionLabel>
-              <h2 className="font-serif text-3xl sm:text-4xl text-navy tracking-tight mt-4 mb-6 leading-tight">
-                Seamless Associate Representation for Foreign Law Firms & Corporate Legal Departments.
-              </h2>
-              <p className="text-[15px] text-muted leading-relaxed font-light mb-6">
-                Overseas trademark attorneys and international corporate counsel rely on Sharma & Sharma as their dedicated in-country associate in India. We handle local docketing, Power of Attorney compliance, examination hearings, and statutory maintenance while ensuring full transparency.
-              </p>
-              <ul className="space-y-3 text-sm text-muted font-light mb-8">
-                <li className="flex items-center gap-3">
-                  <span className="text-gold font-serif">✦</span>
-                  <span>Direct electronic filing before all 5 branches of the Trade Marks Registry.</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-gold font-serif">✦</span>
-                  <span>Transparent associate fee schedules with zero hidden disbursements.</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-gold font-serif">✦</span>
-                  <span>Dedicated docketing support and 24-hour application number confirmation.</span>
-                </li>
-              </ul>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.2em] text-navy hover:text-gold font-bold transition-colors"
-              >
-                <span>Partner With Local Counsel</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+
+            <div className="lg:col-span-5">
+              <MediaFrame
+                src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+                alt="US Legal Docket Sharma & Sharma"
+                className="aspect-[4/3] w-full"
+              />
             </div>
           </div>
         </div>
       </Section>
 
-      {/* SECTION 4: 7-STAGE LUXURY TIMELINE */}
-      <Section className="bg-paper border-y border-line/60">
+      {/* SECTION 2: CHINESE BUSINESSES */}
+      <Section className="bg-cream border-b border-line/60">
         <div className="mx-auto max-w-[1400px]">
-          <div className="max-w-3xl mb-14">
-            <SectionLabel>Registration Journey</SectionLabel>
-            <SplitHeading className="display mt-4 text-[clamp(2.2rem,4vw,3.5rem)] text-navy">
-              The 7-Stage Trademark Process in India.
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <MediaFrame
+                src="/media/Combination Mark.jpeg"
+                alt="Chinese Enterprise Brand Protection Practice"
+                className="aspect-[4/3] w-full"
+              />
+            </div>
+
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <SectionLabel>Supply Chain & Tech Protection</SectionLabel>
+              <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+                Trademark Attorney for Chinese Businesses Registering in India
+              </SplitHeading>
+
+              <div className="mt-8 space-y-5 text-base text-muted font-light leading-relaxed">
+                <p>
+                  Chinese manufacturers, e-commerce conglomerates, and technology exporters face unique legal hurdles when registering trademarks in India. Language barriers, script transliteration (Chinese Hanzi to English), and unauthorized filings by local distributor entities require aggressive legal intervention.
+                </p>
+                <p>
+                  As specialized <strong>Trademark Attorneys for Chinese businesses</strong>, Sharma & Sharma manages direct registry filings, defends against bad-faith trademark squatting, executes Form TM-M Power of Attorney documentation, and secures Customs Recordation under the Intellectual Property Rights (Imported Goods) Rules.
+                </p>
+              </div>
+
+              <ul className="mt-6 space-y-3">
+                <li className="flex items-center gap-3 text-sm text-navy font-medium">
+                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0" />
+                  <span>Hanzi to English Script Transliteration & Search</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm text-navy font-medium">
+                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0" />
+                  <span>Opposition Prosecution Against Unauthorized Distributor Filings</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm text-navy font-medium">
+                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0" />
+                  <span>Direct Representation Across All 5 Indian Registry Branches</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* SECTION 3: TRADEMARK ATTORNEY SERVICES IN INDIA */}
+      <Section className="bg-paper border-b border-line/60">
+        <div className="mx-auto max-w-[1400px]">
+          <SectionLabel>Comprehensive Practice Scope</SectionLabel>
+          <SplitHeading className="display mt-4 max-w-4xl text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+            Trademark Attorney Services in India
+          </SplitHeading>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="p-8 bg-cream border border-line/70 rounded-[4px]">
+              <Shield className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-2xl text-navy">Comprehensive Brand Search</h3>
+              <p className="text-xs text-muted mt-3 leading-relaxed font-light">
+                Deep statutory availability searches covering word mark phonetics, logo similarities, well-known mark conflicts, and pending Registry filings.
+              </p>
+            </div>
+
+            <div className="p-8 bg-cream border border-line/70 rounded-[4px]">
+              <FileText className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-2xl text-navy">Office Action Responses</h3>
+              <p className="text-xs text-muted mt-3 leading-relaxed font-light">
+                Drafting precise statutory responses to Examination Reports raising Section 9 (lack of distinctiveness) and Section 11 (relative grounds) objections.
+              </p>
+            </div>
+
+            <div className="p-8 bg-cream border border-line/70 rounded-[4px]">
+              <Landmark className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-2xl text-navy">Show-Cause Hearing Defense</h3>
+              <p className="text-xs text-muted mt-3 leading-relaxed font-light">
+                Personal advocacy before Officers of the Trade Marks Registry to overcome official objections and secure advertisement in the Trade Marks Journal.
+              </p>
+            </div>
+
+            <div className="p-8 bg-cream border border-line/70 rounded-[4px]">
+              <Scale className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-2xl text-navy">Opposition Prosecution</h3>
+              <p className="text-xs text-muted mt-3 leading-relaxed font-light">
+                Filing Form TM-O Oppositions against conflicting third-party marks and defending clients&apos; published marks through evidence affidavits.
+              </p>
+            </div>
+
+            <div className="p-8 bg-cream border border-line/70 rounded-[4px]">
+              <Lock className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-2xl text-navy">Rectification & Cancellation</h3>
+              <p className="text-xs text-muted mt-3 leading-relaxed font-light">
+                Initiating proceedings before the High Court IPD or Registrar for removal of non-used or improperly registered third-party marks.
+              </p>
+            </div>
+
+            <div className="p-8 bg-cream border border-line/70 rounded-[4px]">
+              <Award className="w-8 h-8 text-gold mb-4" />
+              <h3 className="font-serif text-2xl text-navy">Portfolio Renewals & Assignments</h3>
+              <p className="text-xs text-muted mt-3 leading-relaxed font-light">
+                Managing 10-year statutory renewals, brand assignments, licensing agreements, and corporate name changes in the Registry records.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* SECTION 4: TRADEMARK LAWYER FOR FOREIGN COMPANIES */}
+      <Section className="bg-cream border-b border-line/60">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <SectionLabel>Litigation & High Court Practice</SectionLabel>
+              <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+                Trademark Lawyer for Foreign Companies in India
+              </SplitHeading>
+
+              <div className="mt-8 space-y-5 text-base text-muted font-light leading-relaxed">
+                <p>
+                  When trademark disputes escalate beyond administrative Registry proceedings, foreign corporations require a seasoned <strong>Trademark Lawyer in India</strong> with full rights of audience before High Courts and Commercial Courts.
+                </p>
+                <p>
+                  Our senior advocates represent foreign clients in civil suits for trademark infringement, passing off actions, ex-parte temporary injunctions, Anton Piller search orders, and border enforcement seizures. We protect foreign intellectual property against counterfeiters, unauthorized sellers, and rogue domain registrants.
+                </p>
+              </div>
+
+              <div className="mt-8 space-y-3">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-1" />
+                  <div>
+                    <h4 className="font-serif text-lg text-navy">Ex-Parte Injunctions</h4>
+                    <p className="text-xs text-muted">Securing immediate emergency court orders restraining infringers prior to notice.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-1" />
+                  <div>
+                    <h4 className="font-serif text-lg text-navy">High Court IPD Advocacy</h4>
+                    <p className="text-xs text-muted">Direct representation before specialized Intellectual Property Divisions of High Courts.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 bg-paper p-8 border border-line/70 rounded-[4px]">
+              <h3 className="font-serif text-2xl text-navy mb-4">High Court Litigation Scope</h3>
+              <ul className="space-y-3 text-xs text-muted font-light">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                  Civil Suits for Trademark Infringement & Passing Off
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                  Ex-Parte Interim Injunctions & Local Commissioner Appointments
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                  Domain Name Dispute Resolution (INDRP & UDRP)
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                  Customs Counterfeit Seizures & Border Rights Rules
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* SECTION 5: WHY CHOOSE IPMARK */}
+      <Section className="bg-paper border-b border-line/60">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="text-center max-w-3xl mx-auto">
+            <SectionLabel>Institutional Trust</SectionLabel>
+            <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+              Why Choose IPMARK as Your Trademark Attorney
             </SplitHeading>
-            <p className="mt-4 text-[15px] text-muted font-light">
-              From preliminary availability clearance to final statutory certificate grant — structured for speed and legal precision.
+            <p className="mt-6 text-base text-muted font-light leading-relaxed">
+              Established in 1972, Sharma & Sharma (IPMARK) combines five decades of statutory legacy with cutting-edge cross-border portfolio administration.
             </p>
           </div>
 
-          <div className="space-y-6">
-            {timelineSteps.map((s, idx) => (
-              <Reveal key={s.num} delay={idx * 0.05}>
-                <div className="group grid grid-cols-1 md:grid-cols-[90px_1fr] gap-6 bg-cream p-8 border border-line/60 rounded-[4px] items-center transition-all duration-300 hover:border-gold">
-                  <div className="flex flex-col items-start md:items-center">
-                    <span className="font-serif text-3xl font-bold text-gold group-hover:scale-110 transition-transform duration-300">{s.num}</span>
-                    <span className="text-[8px] font-mono text-muted uppercase tracking-widest mt-1">{s.phase}</span>
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-2xl text-navy mb-2 group-hover:text-gold transition-colors duration-300">{s.title}</h3>
-                    <p className="text-sm text-muted leading-relaxed font-light">{s.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="p-6 bg-cream border border-line/70 rounded-[4px] text-center">
+              <span className="font-serif text-4xl text-gold">50+</span>
+              <h4 className="font-serif text-xl text-navy mt-2">Years Legacy</h4>
+              <p className="text-xs text-muted mt-2 font-light">Continuous intellectual property practice in Delhi since 1972.</p>
+            </div>
+
+            <div className="p-6 bg-cream border border-line/70 rounded-[4px] text-center">
+              <span className="font-serif text-4xl text-gold">99.4%</span>
+              <h4 className="font-serif text-xl text-navy mt-2">Success Rate</h4>
+              <p className="text-xs text-muted mt-2 font-light">Proven track record in administrative hearings and opposition defense.</p>
+            </div>
+
+            <div className="p-6 bg-cream border border-line/70 rounded-[4px] text-center">
+              <span className="font-serif text-4xl text-gold">150+</span>
+              <h4 className="font-serif text-xl text-navy mt-2">Global Network</h4>
+              <p className="text-xs text-muted mt-2 font-light">Associate counsel network across major international IP jurisdictions.</p>
+            </div>
+
+            <div className="p-6 bg-cream border border-line/70 rounded-[4px] text-center">
+              <span className="font-serif text-4xl text-gold">100%</span>
+              <h4 className="font-serif text-xl text-navy mt-2">Direct Counsel</h4>
+              <p className="text-xs text-muted mt-2 font-light">Direct attorney oversight without intermediate agent outsourcing.</p>
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* SECTION 5: TIMELINE SPEED & DOCUMENTATION MATRIX */}
+      {/* SECTION 6: FREQUENTLY ASKED QUESTIONS */}
       <Section className="bg-cream">
         <div className="mx-auto max-w-[1400px]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-6 bg-paper p-8 md:p-10 border border-line/70 rounded-[4px]">
-              <SectionLabel>Filing Checklist</SectionLabel>
-              <h3 className="font-serif text-3xl text-navy mt-4 mb-6">Required Documentation for Foreign Applicants</h3>
-              <ul className="space-y-4 font-sans text-sm text-muted">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-                  <span><strong>Applicant Details:</strong> Entity legal name, jurisdiction of incorporation, and corporate address.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-                  <span><strong>Mark Asset:</strong> High-resolution vector file or text string of the word mark/logo.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-                  <span><strong>Form TM-M (Power of Attorney):</strong> Executed power authorization permitting Sharma & Sharma to represent you.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-                  <span><strong>User Affidavit (Optional):</strong> Required if prior commercial use in India or globally is claimed.</span>
-                </li>
-              </ul>
+            <div className="lg:col-span-5">
+              <SectionLabel>Legal Guidance</SectionLabel>
+              <SplitHeading className="display mt-4 text-[clamp(2.2rem,5vw,4.2rem)] text-navy">
+                Frequently Asked Questions
+              </SplitHeading>
+              <p className="mt-6 text-sm text-muted font-light leading-relaxed">
+                Clear answers regarding trademark attorney selection, office actions, hearing representation, and High Court IP litigation in India.
+              </p>
             </div>
 
-            <div className="lg:col-span-6 bg-paper p-8 md:p-10 border border-line/70 rounded-[4px]">
-              <SectionLabel>Turnaround Speed</SectionLabel>
-              <h3 className="font-serif text-3xl text-navy mt-4 mb-6">Procedural Milestones & Durations</h3>
-              <div className="space-y-6 font-sans text-sm">
-                <div className="flex justify-between items-center border-b border-line/40 pb-3">
-                  <span className="text-navy font-semibold">Official Application Number Issued</span>
-                  <span className="text-gold font-mono font-bold">Within 24 Hours</span>
-                </div>
-                <div className="flex justify-between items-center border-b border-line/40 pb-3">
-                  <span className="text-navy font-semibold">Registry Examination Report</span>
-                  <span className="text-gold font-mono font-bold">30 – 45 Days</span>
-                </div>
-                <div className="flex justify-between items-center border-b border-line/40 pb-3">
-                  <span className="text-navy font-semibold">Trade Marks Journal Advertising</span>
-                  <span className="text-gold font-mono font-bold">3 – 5 Months</span>
-                </div>
-                <div className="flex justify-between items-center border-b border-line/40 pb-3">
-                  <span className="text-navy font-semibold">Opposition Window Duration</span>
-                  <span className="text-gold font-mono font-bold">4 Months Fixed</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-navy font-semibold">Final Registration Certificate</span>
-                  <span className="text-gold font-mono font-bold">6 – 10 Months</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* SECTION 6: CASE STUDY HIGHLIGHT */}
-      <Section className="bg-navy text-cream relative overflow-hidden">
-        <div className="mx-auto max-w-[1400px] relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7">
-              <span className="text-[10px] tracking-[0.3em] font-sans uppercase text-gold font-bold mb-4 block">
-                CASE HIGHLIGHT • US SAAS UNICORN
-              </span>
-              <h2 className="font-serif text-3xl md:text-5xl text-cream leading-tight mb-6">
-                Overcoming Relative Similarity Objections for a Silicon Valley Tech Leader.
-              </h2>
-              <p className="text-sm md:text-base text-cream/70 font-light leading-relaxed mb-8">
-                When a major California software enterprise faced a Section 11 refusal due to a phonetically similar mark filed by a local domestic business, Sharma & Sharma established prior international adoption doctrines. We successfully secured an order from the Registrar allowing registration to proceed unhindered.
-              </p>
-              <div className="grid grid-cols-3 gap-6 border-t border-cream/15 pt-6 text-xs font-mono text-gold">
-                <div>
-                  <span className="block text-[9px] text-cream/50 uppercase">RESULT</span>
-                  <span className="font-bold text-sm">Full Registration Granted</span>
-                </div>
-                <div>
-                  <span className="block text-[9px] text-cream/50 uppercase">TIME</span>
-                  <span className="font-bold text-sm">7 Months Total</span>
-                </div>
-                <div>
-                  <span className="block text-[9px] text-cream/50 uppercase">FORUM</span>
-                  <span className="font-bold text-sm">TMR Delhi Branch</span>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-5 bg-cream/5 p-8 border border-cream/15 rounded-[4px]">
-              <h3 className="font-serif text-2xl text-gold mb-4">Need Direct Counsel?</h3>
-              <p className="text-xs text-cream/70 leading-relaxed font-light mb-6">
-                Discuss your Indian trademark expansion strategy with our senior attorneys today.
-              </p>
-              <Link
-                href="/contact"
-                className="w-full bg-gold hover:bg-gold-light text-navy font-sans text-xs tracking-widest uppercase font-bold py-4 px-6 rounded-[2px] flex items-center justify-center gap-2 transition-colors"
-              >
-                <span>Book Attorney Consultation</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
+              <Accordion items={attorneyFaqs} />
             </div>
           </div>
         </div>
       </Section>
 
-      {/* SECTION 7: FAQ ACCORDION SECTION */}
-      <Section className="bg-cream">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="max-w-3xl mb-12">
-            <SectionLabel>Common Questions</SectionLabel>
-            <SplitHeading className="display mt-4 text-[clamp(2.2rem,4.5vw,3.8rem)] text-navy">
-              Frequently Asked Questions.
-            </SplitHeading>
-            <p className="mt-4 text-[15px] text-muted font-light">
-              Essential legal guidance for international companies registering trademarks in India.
-            </p>
-          </div>
-
-          <div className="max-w-4xl">
-            <Accordion items={attorneyFaqs} />
-          </div>
-        </div>
-      </Section>
-
-      {/* SECTION 8: INTERACTIVE RELATED PRACTICES CARDS */}
-      <Section className="bg-paper border-t border-line/60">
-        <div className="mx-auto max-w-[1400px]">
-          <SectionLabel>Related IP Practices</SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl text-navy mt-4 mb-10">Explore Our Practice Capabilities</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {relatedPractices.map((prac, idx) => (
-              <Reveal key={prac.title} delay={idx * 0.05} className="h-full">
-                <Link
-                  href={prac.href}
-                  className="group h-full bg-cream p-6 border border-line/60 rounded-[4px] flex flex-col justify-between transition-all duration-300 hover:border-gold hover:shadow-sm"
-                >
-                  <div>
-                    <h3 className="font-serif text-xl text-navy mb-2 group-hover:text-gold transition-colors duration-300">{prac.title}</h3>
-                    <p className="text-xs text-muted leading-relaxed font-light">{prac.desc}</p>
-                  </div>
-                  <div className="mt-6 pt-4 border-t border-line/40 flex items-center justify-between text-[10px] font-mono text-gold uppercase tracking-wider">
-                    <span>EXPLORE PRACTICE</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* SECTION 9: PRE-FOOTER REASSURANCE SECTION */}
-      <Section className="bg-cream border-t border-line/60 select-none">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="bg-paper border border-line/70 rounded-[8px] p-8 md:p-14 text-center max-w-4xl mx-auto shadow-sm relative overflow-hidden">
-            <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.02] border m-4 border-navy/40" />
-
-            <span className="text-[10px] tracking-[0.3em] font-sans uppercase text-gold font-bold block mb-4">
-              COMMERCIAL BRAND SECURITY
-            </span>
-
-            <h2 className="font-serif text-[clamp(2.2rem,4vw,3.6rem)] text-navy leading-tight mb-6">
-              Protect Your Brand Before Someone Else Does.
-            </h2>
-
-            <p className="text-sm md:text-base text-muted font-light leading-relaxed max-w-2xl mx-auto mb-10">
-              Under Indian trademark jurisprudence, first-to-use and direct registration provide absolute statutory protection. Delaying registration exposes your corporate identity to unauthorized third-party filings and market dilution.
-            </p>
-
-            <div className="flex flex-wrap gap-4 items-center justify-center mb-10">
-              <Link
-                href="/contact"
-                className="bg-navy hover:bg-navy-soft text-cream px-8 py-4 text-[11px] font-sans tracking-[0.25em] uppercase border border-navy transition-all duration-300 shadow-md flex items-center gap-2"
-              >
-                <span>Book Attorney Consultation</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/trademark"
-                className="bg-transparent hover:bg-navy/5 text-navy px-8 py-4 text-[11px] font-sans tracking-[0.25em] uppercase border border-navy/35 hover:border-navy transition-all duration-300"
-              >
-                <span>Review Filing Process</span>
-              </Link>
-            </div>
-
-            {/* Reassurance Badges */}
-            <div className="pt-8 border-t border-line/50 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[10px] font-mono text-gold uppercase tracking-wider">
-              <span>✓ 24-HOUR RESPONSE GUARANTEE</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-navy/20 hidden sm:inline-block" />
-              <span>✓ CONFIDENTIAL LEGAL ADVISORY</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-navy/20 hidden sm:inline-block" />
-              <span>✓ INTERNATIONAL CLIENTS WELCOME</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-navy/20 hidden sm:inline-block" />
-              <span>✓ ESTABLISHED 1972</span>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* BOTTOM CONSULTATION SECTION */}
       <ConsultationCTA />
     </>
   );
