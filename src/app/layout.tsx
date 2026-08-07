@@ -75,6 +75,7 @@ export const metadata: Metadata = {
 };
 
 import { getOrganizationSchema, getWebSiteSchema } from "@/lib/seo";
+import { GTMAnalytics } from "@/components/analytics/gtm";
 
 const orgSchema = getOrganizationSchema();
 const webSiteSchema = getWebSiteSchema();
@@ -83,6 +84,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
       <body>
+        <GTMAnalytics />
         <GA4Analytics />
         <script
           type="application/ld+json"
