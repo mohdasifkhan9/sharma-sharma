@@ -12,7 +12,7 @@ export const site = {
     line1: "466, Western Wing",
     line2: "Tis Hazari Courts",
     city: "Delhi",
-    postal: "110006",
+    postal: "110054",
     country: "India",
   },
 } as const;
