@@ -103,7 +103,7 @@ export default function ContactPage() {
             <div className="mt-4 overflow-hidden rounded-[4px] border border-line">
               <iframe
                 title="Office location"
-                src="https://www.google.com/maps?q=466+Western+Wing+Tis+Hazari+Courts+Delhi+110054&output=embed"
+                src="https://www.google.com/maps?q=466+Western+Wing+Tis+Hazari+Courts+Delhi+110006&output=embed"
                 className="h-64 w-full grayscale"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

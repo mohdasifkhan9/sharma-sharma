@@ -14,7 +14,7 @@ const CONFIG = {
   FIRM_NAME: "Sharma & Sharma Intellectual Property Law",
   WEBSITE_URL: "https://ipmark.in",
   NOTIFICATION_EMAIL: "info@ipmark.in",
-  OFFICE_ADDRESS: "466, Western Wing,\nTis Hazari Courts,\nDelhi 110054,\nIndia",
+  OFFICE_ADDRESS: "466, Western Wing,\nTis Hazari Courts,\nDelhi 110006,\nIndia",
   HEADERS: [
     "Timestamp",
     "Full Name",

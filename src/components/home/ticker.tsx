@@ -5,16 +5,21 @@ import { motion } from "framer-motion";
 
 export function ClientTicker() {
   const clientLogos = [
-    "/media/client_1.png",
-    "/media/client_2.png",
-    "/media/client_3.png",
-    "/media/client_4.png",
-    "/media/client_5.png",
-    "/media/client_6.png",
-    "/media/client_7.png",
-    "/media/client_8.png",
-    "/media/client_9.png",
-    "/media/client_10.png",
+    "/media/client1.png",
+    "/media/client2.png",
+    "/media/client3.png",
+    "/media/client4.png",
+    "/media/client5.png",
+    "/media/client6.png",
+    "/media/client7.png",
+    "/media/client8.png",
+    "/media/client9.png",
+    "/media/client10.png",
+    "/media/client11.png",
+    "/media/client12.png",
+    "/media/client13.png",
+    "/media/client14.png",
+    "/media/client15.png",
   ];
 
   return (
