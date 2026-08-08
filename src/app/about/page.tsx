@@ -107,7 +107,7 @@ export default function AboutPage() {
               <Reveal>
                 <p>
                   In {site.since}, in a modest office near Fatehpuri in Old Delhi,
-                  Sharma &amp; Sharma opened with a belief that would outlast trends
+                  Sharma & Sharma opened with a belief that would outlast trends
                   and governments alike: that ideas deserve the same protection as
                   property, and that a nation of creators would one day depend on it.
                 </p>

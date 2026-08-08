@@ -151,7 +151,7 @@ const relatedPractices = [
   {
     title: "Trademark Lawyer India",
     desc: "Litigation, opposition defense, and High Court advocacy.",
-    href: "/trademark-lawyer-india",
+    href: "/trademark-attorney-india",
   },
 ];
 

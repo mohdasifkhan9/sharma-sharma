@@ -141,7 +141,7 @@ export default function TrademarkAgentIndiaPage() {
 
             <div className="lg:col-span-5">
               <MediaFrame
-                src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+                src="/media/lawyers-desk-delhi-heritage.jpeg"
                 alt="Trade Marks Registry Agent Docket"
                 className="aspect-[4/3] w-full"
               />
@@ -338,7 +338,7 @@ export default function TrademarkAgentIndiaPage() {
 
             <div className="lg:col-span-5">
               <MediaFrame
-                src="/media/Combination Mark.jpeg"
+                src="/media/combinationmark.jpg"
                 alt="US Agent Representation Docket"
                 className="aspect-[4/3] w-full"
               />

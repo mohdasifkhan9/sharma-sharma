@@ -133,7 +133,7 @@ const relatedPractices = [
   {
     title: "Trademark Lawyer India",
     desc: "Specialized trademark opposition, cancellation, and registry advocacy.",
-    href: "/trademark-lawyer-india",
+    href: "/trademark-attorney-india",
   },
   {
     title: "Trademark Attorney India",

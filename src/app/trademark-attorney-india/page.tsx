@@ -109,7 +109,7 @@ export default function TrademarkAttorneyIndiaPage() {
         label="Intellectual Property Advocacy"
         title="Trademark Attorney & Trademark Lawyer in India"
         intro="Preserving commercial identity through five decades of legal precision. Sharma & Sharma delivers specialized trademark prosecution, opposition representation, and High Court litigation for US corporations, Chinese exporters, global brands, and domestic market leaders."
-        image="/media/sharma_sharma_office_reception_1784177182438.png"
+        image="/media/sharma_sharma_office_reception.jpeg"
         imageAlt="Sharma & Sharma Law Offices Delhi High Court Legal Practice"
       />
 
@@ -146,7 +146,7 @@ export default function TrademarkAttorneyIndiaPage() {
 
             <div className="lg:col-span-5">
               <MediaFrame
-                src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+                src="/media/lawyers-desk-delhi-heritage.jpeg"
                 alt="US Legal Docket Sharma & Sharma"
                 className="aspect-[4/3] w-full"
               />
@@ -161,7 +161,7 @@ export default function TrademarkAttorneyIndiaPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 order-2 lg:order-1">
               <MediaFrame
-                src="/media/Combination Mark.jpeg"
+                src="/media/combinationmark.jpg"
                 alt="Chinese Enterprise Brand Protection Practice"
                 className="aspect-[4/3] w-full"
               />

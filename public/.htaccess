@@ -15,6 +15,9 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /
 
+  # 301 Redirect legacy trademark-lawyer-india URL to unified trademark-attorney-india landing page
+  RewriteRule ^trademark-lawyer-india/?$ /trademark-attorney-india/ [L,R=301]
+
   # Handle trailing slash consistency
   # If a directory is requested without trailing slash, rewrite to /folder/index.html
   RewriteCond %{REQUEST_FILENAME} -d

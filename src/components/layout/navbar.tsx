@@ -163,16 +163,13 @@ export function Navbar() {
   }, []);
 
   const serviceAccordionItems = [
-    { name: "Trademark Registration", href: "/trademark" },
-    { name: "Trademark Search", href: "/services" },
-    { name: "Trademark Renewal", href: "/services" },
+    { name: "TM Registration India", href: "/trademark-registration-india" },
+    { name: "Trademark Attorney & Lawyer", href: "/trademark-attorney-india" },
+    { name: "Trademark Agent India", href: "/trademark-agent-india" },
+    { name: "Trademark Practice", href: "/trademark" },
     { name: "Copyright Registration", href: "/copyright" },
     { name: "Design Registration", href: "/design-registration" },
     { name: "International Filing", href: "/services" },
-    { name: "Brand Protection", href: "/services" },
-    { name: "Licensing", href: "/services" },
-    { name: "Monitoring", href: "/services" },
-    { name: "IP Portfolio Management", href: "/services" },
   ];
 
   const aboutAccordionItems = [
@@ -343,32 +340,32 @@ export function Navbar() {
 
                         <div className="col-span-5 grid grid-cols-2 gap-x-8 border-l border-r border-line/60 px-10">
                           <div>
-                            <span className="block text-[10px] font-sans text-muted tracking-[0.2em] uppercase mb-4">Core Filings</span>
+                            <span className="block text-[10px] font-sans text-muted tracking-[0.2em] uppercase mb-4">Trademark Filings</span>
                             <ul className="space-y-3">
                               <li>
                                 <Link
-                                  href="/trademark"
+                                  href="/trademark-registration-india"
                                   className="group flex items-center justify-between py-1 text-[13px] text-navy/85 hover:text-gold transition-colors duration-300"
                                 >
-                                  <span>Trademark Registration</span>
+                                  <span>TM Registration India</span>
                                   <span className="text-[11px] translate-x-[-4px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</span>
                                 </Link>
                               </li>
                               <li>
                                 <Link
-                                  href="/copyright"
+                                  href="/trademark-attorney-india"
                                   className="group flex items-center justify-between py-1 text-[13px] text-navy/85 hover:text-gold transition-colors duration-300"
                                 >
-                                  <span>Copyright Registration</span>
+                                  <span>Trademark Attorney & Lawyer</span>
                                   <span className="text-[11px] translate-x-[-4px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</span>
                                 </Link>
                               </li>
                               <li>
                                 <Link
-                                  href="/design-registration"
+                                  href="/trademark-agent-india"
                                   className="group flex items-center justify-between py-1 text-[13px] text-navy/85 hover:text-gold transition-colors duration-300"
                                 >
-                                  <span>Design Registration</span>
+                                  <span>Trademark Agent India</span>
                                   <span className="text-[11px] translate-x-[-4px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</span>
                                 </Link>
                               </li>

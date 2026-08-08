@@ -41,7 +41,7 @@ const catalog = [
   { h: "International Filing", t: "Madrid Protocol and national filings across 150+ jurisdictions.", href: "/madrid-protocol-india" },
   { h: "IP Portfolio Management", t: "Centralised administration, docketing and renewals for global portfolios.", href: "/trademark-agent-india" },
   { h: "Trademark Monitoring", t: "Continuous watch services across registries and marketplaces.", href: "/trademark-attorney-india" },
-  { h: "Trademark Opposition", t: "Prosecuting and defending oppositions before the Registry.", href: "/trademark-lawyer-india" },
+  { h: "Trademark Opposition", t: "Prosecuting and defending oppositions before the Registry.", href: "/trademark-attorney-india" },
   { h: "Brand Enforcement", t: "Cease-and-desist, takedowns and anti-counterfeiting action.", href: "/ip-lawyer-india" },
   { h: "Licensing", t: "Drafting and negotiating assignment and licensing agreements.", href: "/contact" },
   { h: "IP Litigation", t: "Infringement and passing-off actions before courts and tribunals.", href: "/ip-lawyer-india" },

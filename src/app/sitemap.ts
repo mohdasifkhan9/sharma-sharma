@@ -10,7 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/trademark",
     "/trademark-attorney-india",
-    "/trademark-lawyer-india",
     "/trademark-agent-india",
     "/trademark-registration-india",
     "/madrid-protocol-india",

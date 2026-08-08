@@ -144,7 +144,7 @@ export default function TrademarkRegistrationIndiaPage() {
 
             <div className="lg:col-span-5">
               <MediaFrame
-                src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+                src="/media/lawyers-desk-delhi-heritage.jpeg"
                 alt="US to India Trademark Filing Docket"
                 className="aspect-[4/3] w-full"
               />
@@ -159,7 +159,7 @@ export default function TrademarkRegistrationIndiaPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 order-2 lg:order-1">
               <MediaFrame
-                src="/media/Combination Mark.jpeg"
+                src="/media/combinationmark.jpg"
                 alt="Chinese Cross-Border Brand Protection"
                 className="aspect-[4/3] w-full"
               />

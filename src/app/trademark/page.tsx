@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ShieldCheck, Scale, TrendingUp, Globe2, Eye, Landmark } from "lucide-react";
+import Link from "next/link";
+import { ShieldCheck, Scale, TrendingUp, Globe2, Eye, Landmark, ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { Section } from "@/components/layout/section";
 import { SectionLabel, SplitHeading, Reveal } from "@/components/ui/reveal";
@@ -148,6 +149,69 @@ export default function TrademarkPage() {
       </Section>
 
       <TrademarkJourney />
+
+      {/* Dedicated Trademark Services Links */}
+      <Section className="bg-paper border-t border-line/60">
+        <SectionLabel>Specialized Practice Areas</SectionLabel>
+        <SplitHeading className="display mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.8rem)] text-navy">
+          Dedicated Trademark Practice Portals.
+        </SplitHeading>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <Reveal delay={0.05}>
+            <Link
+              href="/trademark-registration-india"
+              className="group block p-8 bg-cream border border-line/70 hover:border-gold transition-colors duration-300 rounded-[4px] h-full"
+            >
+              <div className="flex items-center justify-between text-gold">
+                <span className="font-mono text-xs uppercase tracking-widest">Filing & Clearance</span>
+                <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </div>
+              <h3 className="font-serif text-2xl text-navy mt-4 group-hover:text-gold transition-colors duration-300">
+                Trademark Registration in India
+              </h3>
+              <p className="text-xs text-muted mt-2 font-light leading-relaxed">
+                End-to-end statutory brand registration for US, Chinese, foreign, and Indian enterprises since 1972.
+              </p>
+            </Link>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <Link
+              href="/trademark-attorney-india"
+              className="group block p-8 bg-cream border border-line/70 hover:border-gold transition-colors duration-300 rounded-[4px] h-full"
+            >
+              <div className="flex items-center justify-between text-gold">
+                <span className="font-mono text-xs uppercase tracking-widest">Advocacy & Litigation</span>
+                <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </div>
+              <h3 className="font-serif text-2xl text-navy mt-4 group-hover:text-gold transition-colors duration-300">
+                Trademark Attorney & Lawyer
+              </h3>
+              <p className="text-xs text-muted mt-2 font-light leading-relaxed">
+                Examination hearings, opposition prosecution, and High Court IP litigation counsel.
+              </p>
+            </Link>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <Link
+              href="/trademark-agent-india"
+              className="group block p-8 bg-cream border border-line/70 hover:border-gold transition-colors duration-300 rounded-[4px] h-full"
+            >
+              <div className="flex items-center justify-between text-gold">
+                <span className="font-mono text-xs uppercase tracking-widest">Statutory Agency</span>
+                <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </div>
+              <h3 className="font-serif text-2xl text-navy mt-4 group-hover:text-gold transition-colors duration-300">
+                Trademark Agent in India
+              </h3>
+              <p className="text-xs text-muted mt-2 font-light leading-relaxed">
+                Registered agent representation under Section 145 and Form TM-M Power of Attorney handling.
+              </p>
+            </Link>
+          </Reveal>
+        </div>
+      </Section>
 
       {/* FAQs */}
       <Section className="bg-cream">
