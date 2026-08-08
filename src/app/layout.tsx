@@ -72,6 +72,9 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/site.webmanifest",
+  verification: {
+    google: "cK97wstpC5ne7LRzJbpZ20afHPTS6GsM2gEpHLHoYT0",
+  },
 };
 
 import { getOrganizationSchema, getWebSiteSchema } from "@/lib/seo";
