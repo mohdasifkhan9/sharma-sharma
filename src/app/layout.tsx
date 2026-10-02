@@ -54,6 +54,9 @@ export const metadata: Metadata = {
     description: site.description,
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "lDkI4N-Yhyyb6_144RMJgoZsAkxQjFgvug92Zm7BqK8",
+  },
   alternates: { canonical: site.url },
   icons: {
     icon: [
@@ -72,9 +75,6 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/site.webmanifest",
-  verification: {
-    google: "cK97wstpC5ne7LRzJbpZ20afHPTS6GsM2gEpHLHoYT0",
-  },
 };
 
 import { getOrganizationSchema, getWebSiteSchema } from "@/lib/seo";
