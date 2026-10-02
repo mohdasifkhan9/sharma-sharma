@@ -317,6 +317,18 @@ export default function TrademarkAttorneyIndiaPage() {
                   <span className="w-1.5 h-1.5 rounded-full bg-gold"></span>
                   Customs Counterfeit Seizures & Border Rights Rules
                 </li>
+                <li className="flex items-center gap-2 pt-3 border-t border-line/50">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                  <Link href="/trademark-registration-india" className="text-navy hover:text-gold transition-colors font-medium">
+                    Explore Trademark Registration in India
+                  </Link>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                  <Link href="/trademark-agent-india" className="text-navy hover:text-gold transition-colors font-medium">
+                    Appoint a Registered Trademark Agent in India
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

@@ -14,9 +14,13 @@ export function getWebSiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${site.url}/#website`,
     name: site.name,
     alternateName: site.legalName,
     url: site.url,
+    publisher: {
+      "@id": `${site.url}/#organization`,
+    },
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -32,11 +36,12 @@ export function getOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "LegalService",
+    "@id": `${site.url}/#organization`,
     name: site.legalName,
     alternateName: site.name,
     url: site.url,
     logo: `${site.url}/media/Logo.png`,
-    image: `${site.url}/media/Lawyer's_desk_Delhi_heritage.jpeg`,
+    image: `${site.url}/media/lawyers-desk-delhi-heritage.jpeg`,
     description: site.description,
     foundingDate: site.since,
     telephone: site.phones[0],
@@ -74,9 +79,11 @@ export function getLegalServiceSchema({
   return {
     "@context": "https://schema.org",
     "@type": "LegalService",
+    "@id": `${url}/#legalservice`,
     name,
     url,
     logo: `${site.url}/media/Logo.png`,
+    image: `${site.url}/media/lawyers-desk-delhi-heritage.jpeg`,
     description,
     telephone: site.phones[0],
     email: site.email,
@@ -88,10 +95,18 @@ export function getLegalServiceSchema({
       postalCode: site.address.postal,
       addressCountry: "IN",
     },
+    parentOrganization: {
+      "@type": "LegalService",
+      "@id": `${site.url}/#organization`,
+      name: site.legalName,
+      url: site.url,
+    },
     areaServed: ["United States", "India", "European Union", "United Kingdom", "Worldwide"],
     knowsAbout: knowsAbout || [
       "Indian Intellectual Property Law",
       "Trademark Registration India",
+      "Trademark Attorney Practice",
+      "Registered Trademark Agent Services",
       "WIPO Madrid Protocol Filings",
       "Delhi High Court IP Practice",
     ],
@@ -146,6 +161,7 @@ export function getServiceSchema({
     url,
     provider: {
       "@type": "LegalService",
+      "@id": `${site.url}/#organization`,
       name: site.legalName,
       url: site.url,
     },
@@ -179,7 +195,7 @@ export function getArticleSchema({
     headline: title,
     description,
     url,
-    image: image || `${site.url}/media/Lawyer's_desk_Delhi_heritage.jpeg`,
+    image: image || `${site.url}/media/lawyers-desk-delhi-heritage.jpeg`,
     datePublished: datePublished || "2026-01-01T08:00:00+05:30",
     dateModified: dateModified || new Date().toISOString(),
     author: {
@@ -189,6 +205,7 @@ export function getArticleSchema({
     },
     publisher: {
       "@type": "LegalService",
+      "@id": `${site.url}/#organization`,
       name: site.legalName,
       url: site.url,
       logo: {

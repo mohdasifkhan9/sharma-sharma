@@ -186,7 +186,7 @@ export default function DesignRegistrationIndiaPage() {
         label="Industrial Aesthetic Protection"
         title="Industrial Design Registration in India."
         intro="Securing exclusive 15-year statutory protection for aesthetic product shapes, consumer packaging, electronics contours, and industrial designs before the Indian Patent Office."
-        image="/media/Design_registration_hero_workspace.jpeg"
+        image="/media/Design Registration.jpeg"
         imageAlt="Industrial Product Design Blueprint and Aesthetic Registration Documentation"
       />
 

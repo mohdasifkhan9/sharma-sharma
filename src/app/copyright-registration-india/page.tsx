@@ -187,7 +187,7 @@ export default function CopyrightRegistrationIndiaPage() {
         label="Original Asset Protection"
         title="Copyright Registration in India."
         intro="Safeguarding software source code, SaaS algorithms, literary manuscripts, artistic logos, and digital media before the Copyright Office of India under the Copyright Act 1957."
-        image="/media/Copyright_registration_work_desk.jpeg"
+        image="/media/Copyright Registration.jpeg"
         imageAlt="Software Source Code and Copyright Registration Documents"
       />
 

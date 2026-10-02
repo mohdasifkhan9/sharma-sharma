@@ -36,7 +36,7 @@ export const practiceAreas = [
     title: "Trademark Registration",
     blurb:
       "From availability search to registration and renewal — securing the marks that define your brand.",
-    href: "/trademark",
+    href: "/trademark-registration-india",
   },
   {
     slug: "copyright",
@@ -44,7 +44,7 @@ export const practiceAreas = [
     title: "Copyright Registration",
     blurb:
       "Protecting original works of authorship — literary, artistic, musical and software.",
-    href: "/copyright",
+    href: "/copyright-registration-india",
   },
   {
     slug: "design",
@@ -52,7 +52,7 @@ export const practiceAreas = [
     title: "Design Registration",
     blurb:
       "Guarding the aesthetic and configuration of industrial products and packaging.",
-    href: "/design-registration",
+    href: "/design-registration-india",
   },
   {
     slug: "international",

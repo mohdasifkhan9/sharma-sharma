@@ -481,7 +481,7 @@ export function Navbar() {
                         <div className="col-span-3 flex flex-col justify-between">
                           <div className="relative aspect-[4/3] w-full overflow-hidden border border-line bg-line/20">
                             <Image
-                              src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+                              src="/media/lawyers-desk-delhi-heritage.jpeg"
                               alt="The Counsel's Desk"
                               fill
                               sizes="33vw"

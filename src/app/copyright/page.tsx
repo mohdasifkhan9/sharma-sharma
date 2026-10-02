@@ -136,7 +136,7 @@ export default function CopyrightPage() {
               Copyright, clarified.
             </SplitHeading>
             <div className="mt-8">
-              <MediaFrame src="/media/Lawyer's_desk_Delhi_heritage.jpeg" alt="Vintage papers" sizes="40vw" className="aspect-[4/3] w-full" />
+              <MediaFrame src="/media/lawyers-desk-delhi-heritage.jpeg" alt="Vintage papers" sizes="40vw" className="aspect-[4/3] w-full" />
             </div>
           </div>
           <Accordion items={faqs} />

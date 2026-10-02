@@ -327,7 +327,20 @@ export default function TrademarkRegistrationIndiaPage() {
                 </div>
                 <div>
                   <h4 className="font-serif text-lg text-gold">2. Madrid Protocol Designation</h4>
-                  <p className="text-xs text-muted mt-1">Designating India in an WIPO international application. Subject to local Indian registry provisional refusal review.</p>
+                  <p className="text-xs text-muted mt-1">Designating India in a WIPO international application. Subject to local Indian registry provisional refusal review.</p>
+                </div>
+                <div className="pt-4 border-t border-line/50 space-y-2">
+                  <p className="font-serif text-sm text-navy font-medium">Related Legal Practice Scope:</p>
+                  <div className="flex flex-col gap-2 text-xs">
+                    <Link href="/trademark-attorney-india" className="text-navy hover:text-gold transition-colors flex items-center gap-1 font-medium">
+                      <span>• Retain a Trademark Attorney & Lawyer in India</span>
+                      <ArrowRight className="w-3 h-3 text-gold" />
+                    </Link>
+                    <Link href="/trademark-agent-india" className="text-navy hover:text-gold transition-colors flex items-center gap-1 font-medium">
+                      <span>• Appoint a Registered Trademark Agent in India</span>
+                      <ArrowRight className="w-3 h-3 text-gold" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

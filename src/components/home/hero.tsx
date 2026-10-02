@@ -197,7 +197,7 @@ export function Hero() {
           loop
           muted
           playsInline
-          poster="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+          poster="/media/lawyers-desk-delhi-heritage.jpeg"
           className="absolute inset-0 object-cover w-full h-[120%] grayscale opacity-[0.32] pointer-events-none"
           src={isMobile ? media.hero.videoMobile : media.hero.video}
         />

@@ -285,6 +285,18 @@ export default function TrademarkAgentIndiaPage() {
                   <CheckCircle2 className="w-4 h-4 text-gold" />
                   Statutory Power of Attorney Handling
                 </li>
+                <li className="flex items-center gap-2 pt-3 border-t border-line/50">
+                  <CheckCircle2 className="w-4 h-4 text-gold" />
+                  <Link href="/trademark-attorney-india" className="text-navy hover:text-gold transition-colors font-medium">
+                    Consult a Trademark Attorney & Lawyer in India
+                  </Link>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-gold" />
+                  <Link href="/trademark-registration-india" className="text-navy hover:text-gold transition-colors font-medium">
+                    Explore Statutory Trademark Registration in India
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

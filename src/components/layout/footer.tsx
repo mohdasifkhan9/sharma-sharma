@@ -39,13 +39,38 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="overline text-cream/40">Expertise</p>
+            <p className="overline text-cream/40">IP Practice Areas</p>
             <ul className="mt-6 space-y-3">
-              {services.slice(0, 7).map((s) => (
-                <li key={s} className="text-sm text-cream/60">
-                  {s}
-                </li>
-              ))}
+              <li>
+                <Link href="/trademark-registration-india" className="link-underline text-sm text-cream/80">
+                  Trademark Registration in India
+                </Link>
+              </li>
+              <li>
+                <Link href="/trademark-attorney-india" className="link-underline text-sm text-cream/80">
+                  Trademark Attorney & Lawyer
+                </Link>
+              </li>
+              <li>
+                <Link href="/trademark-agent-india" className="link-underline text-sm text-cream/80">
+                  Trademark Agent in India
+                </Link>
+              </li>
+              <li>
+                <Link href="/madrid-protocol-india" className="link-underline text-sm text-cream/80">
+                  WIPO Madrid Protocol
+                </Link>
+              </li>
+              <li>
+                <Link href="/copyright-registration-india" className="link-underline text-sm text-cream/80">
+                  Copyright Registration India
+                </Link>
+              </li>
+              <li>
+                <Link href="/design-registration-india" className="link-underline text-sm text-cream/80">
+                  Design Registration India
+                </Link>
+              </li>
             </ul>
           </div>
 

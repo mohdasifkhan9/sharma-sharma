@@ -92,7 +92,7 @@ export default function AboutPage() {
         <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:items-center">
           <Reveal>
             <MediaFrame
-              src="/media/Lawyer's_desk_Delhi_heritage.jpeg"
+              src="/media/lawyers-desk-delhi-heritage.jpeg"
               alt="Archival fountain pen and legal draft files"
               sizes="50vw"
               className="aspect-[4/5] w-full"
