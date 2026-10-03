@@ -26,12 +26,21 @@ export const metadata: Metadata = {
     url: site.url,
     siteName: site.name,
     type: "website",
+    images: [
+      {
+        url: `${site.url}/media/hero.jpeg`,
+        width: 1200,
+        height: 630,
+        alt: site.name,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sharma & Sharma —Global Intellectual Property Law Since 1972",
     description:
       "Sharma & Sharma provides trademark, patent, copyright and design protection in India for clients from the USA, India, China and worldwide since 1972.",
+    images: [`${site.url}/media/hero.jpeg`],
   },
 };
 

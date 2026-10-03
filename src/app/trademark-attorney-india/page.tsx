@@ -53,12 +53,21 @@ export const metadata: Metadata = {
     url: `${site.url}/trademark-attorney-india`,
     siteName: site.name,
     type: "website",
+    images: [
+      {
+        url: `${site.url}/media/sharma_sharma_office_reception.jpeg`,
+        width: 1200,
+        height: 630,
+        alt: "Trademark Attorney & Trademark Lawyer in India | Sharma & Sharma",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Trademark Attorney & Trademark Lawyer in India | Sharma & Sharma",
     description:
       "Established 1972. Five decades of specialized trademark advocacy and High Court IP litigation in India.",
+    images: [`${site.url}/media/sharma_sharma_office_reception.jpeg`],
   },
 };
 

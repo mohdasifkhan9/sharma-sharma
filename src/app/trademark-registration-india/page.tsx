@@ -51,12 +51,21 @@ export const metadata: Metadata = {
     url: `${site.url}/trademark-registration-india`,
     siteName: site.name,
     type: "website",
+    images: [
+      {
+        url: `${site.url}/media/trademark-registration-india-guide.jpeg`,
+        width: 1200,
+        height: 630,
+        alt: "Trademark Registration in India | Sharma & Sharma",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Trademark Registration in India | Sharma & Sharma | IPMARK",
     description:
       "Established 1972. Five decades of statutory trademark registration and portfolio defense across all 45 Nice classes in India.",
+    images: [`${site.url}/media/trademark-registration-india-guide.jpeg`],
   },
 };
 

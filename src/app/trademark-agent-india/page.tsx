@@ -52,12 +52,21 @@ export const metadata: Metadata = {
     url: `${site.url}/trademark-agent-india`,
     siteName: site.name,
     type: "website",
+    images: [
+      {
+        url: `${site.url}/media/trademark-registration-india-guide.jpeg`,
+        width: 1200,
+        height: 630,
+        alt: "Trademark Agent in India | Sharma & Sharma",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Trademark Agent in India | Sharma & Sharma | IPMARK",
     description:
       "Established 1972. Five decades of statutory Registered Trademark Agent services in India.",
+    images: [`${site.url}/media/trademark-registration-india-guide.jpeg`],
   },
 };
 

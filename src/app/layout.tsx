@@ -47,11 +47,20 @@ export const metadata: Metadata = {
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
     siteName: site.name,
+    images: [
+      {
+        url: `${site.url}/media/hero.jpeg`,
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — ${site.tagline}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
+    images: [`${site.url}/media/hero.jpeg`],
   },
   robots: { index: true, follow: true },
   verification: {
